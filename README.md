@@ -3,6 +3,8 @@
 Kostenloses Open-Source-Ökosystem für landwirtschaftliche Aufzeichnungen in Österreich.
 Es richtet sich an kleine und mittlere Familienbetriebe (Ackerbau, Grünland, Rinder, Schweine) und ist für das Handy gebaut, auch ohne Internet nutzbar.
 
+**Online testen:** https://bennihager46-lab.github.io/agrardok/ (GitHub Pages, jeder Push auf `main` wird automatisch veröffentlicht). Die Daten bleiben auch dort nur im Browser des jeweiligen Geräts.
+
 ## Stand
 
 Version 0.5.1 (umbenannt von „AgrarOpen“ in **AGRARDOK+**; ältere Sicherungsdateien lassen sich weiter importieren):

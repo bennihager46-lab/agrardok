@@ -1,0 +1,1056 @@
+{
+ "_hinweis": "Einzige Quelle für die Aufgaben der Roadmap. Nach Änderungen ausführen: python3 werkzeuge/erzeuge_roadmap.py – erzeugt .github/ISSUE_TEMPLATE/*.md und den Aufgabenteil in docs/roadmap.md.",
+ "meilensteine": [
+  {
+   "id": "MVP",
+   "titel": "MVP – Dünge- und Pflanzenschutzaufzeichnungen für Ackerbaubetriebe",
+   "ziel": "Ein Ackerbaubetrieb führt seine Aufzeichnungen nach NAPV (§ 8, bei Anlage-5-Gebieten auch § 9) und nach Pflanzenschutzrecht (Art. 67 VO 1107/2009, Anhang DVO 2023/564, Landesrecht) vollständig, offline am Handy, mit maschinenlesbarem Export und Datensicherung."
+  },
+  {
+   "id": "V1",
+   "titel": "v1 – Tierhaltung, ÖPUL und mehrere Geräte",
+   "ziel": "Gemischte Betriebe (Rinder, Schweine) führen Bestandsverzeichnis, Behandlungen und ÖPUL-Aufzeichnungen; mehrere Handys pro Hof gleichen Daten per Sync-Datei ab."
+  },
+  {
+   "id": "V2",
+   "titel": "v2 – Komfort und Erweiterungen",
+   "ziel": "Nice-to-have-Funktionen: Bio, Lager, Planung, Belege, automatischer Abgleich, Auswertungen."
+  }
+ ],
+ "aufgaben": [
+  {
+   "id": "MVP-01",
+   "meilenstein": "MVP",
+   "bereich": "core",
+   "titel": "App-Grundgerüst als PWA",
+   "ziel": "Eine installierbare, offline startende App-Hülle ohne Build-Schritt, die auf GitHub Pages läuft.",
+   "kriterien": [
+    "index.html, manifest.webmanifest, sw.js und Basis-CSS gemäß Ordnerstruktur in docs/architektur.md",
+    "Nach dem ersten Laden startet die App ohne Netz (Service Worker cached alle App-Dateien, Versionierung des Caches)",
+    "Installierbar auf Android (Chrome) und iOS (Safari, Home-Bildschirm); Installationshinweis in der App",
+    "Gestaltung: Touch-Ziele mindestens 48 × 48 px, Grundschrift mindestens 18 px, hoher Kontrast (helles Design als Standard für Sonnenlicht)",
+    "Nur relative Pfade, damit die App in einem Unterordner von GitHub Pages läuft",
+    "Startseite mit Navigation zu Stammdaten und Modulen (zunächst Platzhalter)"
+   ],
+   "abhaengig": [],
+   "quellen": [
+    "docs/architektur.md#3-ordnerstruktur-und-module",
+    "CLAUDE.md"
+   ],
+   "prompt": "Setze MVP-01 aus docs/roadmap.md um: Lege das PWA-Grundgerüst (index.html, manifest.webmanifest, sw.js, Basis-CSS, Startseite mit Navigation) nach der Ordnerstruktur in docs/architektur.md an – ohne Build-Tooling, nur relative Pfade, offline-fähig, große Touch-Ziele und hoher Kontrast. Erkläre kurz die Cache-Strategie des Service Workers und aktualisiere die README.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.1.0",
+    "text": "App-Hülle, Service Worker, Manifest, Navigation."
+   }
+  },
+  {
+   "id": "MVP-02",
+   "meilenstein": "MVP",
+   "bereich": "core",
+   "titel": "Testumgebung ohne Build",
+   "ziel": "Automatische Tests für den Kern, die direkt im Browser laufen.",
+   "kriterien": [
+    "tests/index.html mit einem minimalen Testrunner (describe/it/assert, async-fähig), Ergebnis grün/rot auf einen Blick",
+    "Tests laufen gegen eine eigene, temporäre IndexedDB und räumen danach auf",
+    "Beispieltest und Anleitung in der README (lokalen Server starten, Testseite öffnen)",
+    "Kein npm, kein Build; optional: Fremdbibliothek nur eingecheckt unter vendor/"
+   ],
+   "abhaengig": [
+    "MVP-01"
+   ],
+   "quellen": [
+    "docs/architektur.md"
+   ],
+   "prompt": "Setze MVP-02 aus docs/roadmap.md um: Baue eine Testumgebung unter tests/, die ohne Build direkt im Browser läuft (kleiner Testrunner mit describe/it/assert, async, isolierte IndexedDB). Lege einen Beispieltest an und beschreibe in der README, wie man die Tests startet.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.1.0",
+    "text": "tests/index.html und werkzeuge/teste_offline.py."
+   }
+  },
+  {
+   "id": "MVP-03",
+   "meilenstein": "MVP",
+   "bereich": "core",
+   "titel": "IDs und Hybrid Logical Clock (core/ids.js)",
+   "ziel": "Offline erzeugte, eindeutige IDs und sortierbare Zeitstempel für Synchronisation.",
+   "kriterien": [
+    "uuid(): crypto.randomUUID mit Fallback; Format laut common.schema.json",
+    "hlc.jetzt(), hlc.empfangen(fremd), hlc.vergleiche(a, b) im Format von common.schema.json#/$defs/hlc",
+    "Geräte-ID wird einmalig erzeugt und dauerhaft gespeichert",
+    "Tests: Monotonie bei gleicher Millisekunde, Uhr geht zurück, Empfang einer HLC aus der Zukunft"
+   ],
+   "abhaengig": [
+    "MVP-02"
+   ],
+   "quellen": [
+    "docs/architektur.md#46-empfehlung-variante-a-in-stufen-ausbaubar",
+    "schema/common.schema.json"
+   ],
+   "prompt": "Setze MVP-03 aus docs/roadmap.md um: Implementiere core/ids.js mit UUID-Erzeugung, dauerhafter Geräte-ID und einer Hybrid Logical Clock im Format aus schema/common.schema.json. Schreibe Tests für Monotonie, zurückgestellte Uhren und fremde Zeitstempel aus der Zukunft.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.1.0"
+   }
+  },
+  {
+   "id": "MVP-04",
+   "meilenstein": "MVP",
+   "bereich": "core",
+   "titel": "Datenspeicher mit Änderungsprotokoll (core/daten.js)",
+   "ziel": "Einheitlicher Zugriff aller Module auf IndexedDB, der jede Änderung protokolliert.",
+   "kriterien": [
+    "Ein Object Store je Entität plus Store 'aenderungen'; Indizes für betrieb_id, jahr, art, datum, schlag_ids (multiEntry)",
+    "API: liste(entitaet, filter), hole(entitaet, id), speichern(entitaet, obj), loeschen(entitaet, id)",
+    "speichern ergänzt id, betrieb_id, erstellt_*/geaendert_*, geraet_id, hlc, rev+1 und schreibt einen Eintrag nach aenderung.schema.json (bei Änderung nur geänderte Felder)",
+    "loeschen setzt nur geloescht = true; liste blendet Gelöschtes standardmäßig aus",
+    "Datensatz und Protokolleintrag werden in einer Transaktion geschrieben",
+    "schema_version gespeichert, Gerüst für Migrationen",
+    "Tests für alle Funktionen inkl. Transaktionsabbruch"
+   ],
+   "abhaengig": [
+    "MVP-03"
+   ],
+   "quellen": [
+    "docs/architektur.md#33-kern-api-skizze",
+    "schema/aenderung.schema.json"
+   ],
+   "prompt": "Setze MVP-04 aus docs/roadmap.md um: Implementiere core/daten.js (IndexedDB) mit liste/hole/speichern/loeschen nach der Kern-API-Skizze in docs/architektur.md. Jede Speicherung schreibt in derselben Transaktion einen Eintrag ins Änderungsprotokoll (schema/aenderung.schema.json); Löschen nur als Löschmarke. Mit Tests.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.1.0"
+   }
+  },
+  {
+   "id": "MVP-05",
+   "meilenstein": "MVP",
+   "bereich": "core",
+   "titel": "Validierung im Browser (core/validierung.js)",
+   "ziel": "Kein Datensatz wird gespeichert, der den Schemas unter /schema widerspricht – mit verständlichen deutschen Fehlermeldungen.",
+   "kriterien": [
+    "Entscheidung dokumentiert: eingecheckter Validator unter vendor/ (Größe, Lizenz, Offline) oder eigene schlanke Prüfung – mit Begründung in docs/architektur.md",
+    "Prüft alle Schemas inkl. if/then und unevaluatedProperties so, wie werkzeuge/pruefe_daten.py es tut",
+    "Fehler werden je Feld in Alltagssprache ausgegeben (z. B. 'Bitte die Zulassungsnummer eintragen')",
+    "daten.speichern ruft die Validierung auf",
+    "Tests mit den Negativfällen aus der Architektur-Prüfung (fehlende Zulassungsnummer, Düngung ohne Schlag …)"
+   ],
+   "abhaengig": [
+    "MVP-04"
+   ],
+   "quellen": [
+    "docs/architektur.md#5-offene-entscheidungen",
+    "werkzeuge/pruefe_daten.py"
+   ],
+   "prompt": "Setze MVP-05 aus docs/roadmap.md um: Bewerte kurz, ob wir einen JSON-Schema-Validator (Draft 2020-12) eingecheckt unter vendor/ nutzen oder selbst prüfen, triff eine Empfehlung und implementiere core/validierung.js. Fehlermeldungen je Feld auf Deutsch in Alltagssprache; daten.speichern muss validieren. Mit Tests.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.2.0"
+   }
+  },
+  {
+   "id": "MVP-06",
+   "meilenstein": "MVP",
+   "bereich": "rules",
+   "titel": "Regel-Format und Regel-Lader (core/regeln.js)",
+   "ziel": "Rechtsregeln als versionierte JSON-Dateien, die nach Stichtag ausgewählt werden.",
+   "kriterien": [
+    "schema/regel.schema.json: Pflichtfelder quelle (Link), gueltig_ab, gueltig_bis, stand, status (geprueft / amtliche_erlaeuterung / unsicher) und werte",
+    "rules/README.md erklärt Aufbau, Benennung und Pflegeprozess",
+    "regeln.fuer(name, datum, bundesland?) liefert die am Stichtag gültige Regel; Fehler bei Lücken oder Überschneidungen",
+    "Regeln werden vom Service Worker offline bereitgestellt",
+    "Tests: Wechsel einer Regel zum Stichtag, Bundesland-Auswahl"
+   ],
+   "abhaengig": [
+    "MVP-05"
+   ],
+   "quellen": [
+    "CLAUDE.md",
+    "docs/rechtsgrundlagen.md#8-folgerungen-für-rules-und-das-datenmodell"
+   ],
+   "prompt": "Setze MVP-06 aus docs/roadmap.md um: Definiere schema/regel.schema.json (quelle, gueltig_ab, gueltig_bis, stand, status, werte), schreibe rules/README.md und implementiere core/regeln.js, das die am Stichtag gültige Regel (optional je Bundesland) liefert. Mit Tests.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.1.0",
+    "text": "Regel-Lader vorhanden; Auswahl nach gueltig_ab/gueltig_bis und Regel-Schema fehlen noch."
+   }
+  },
+  {
+   "id": "MVP-07",
+   "meilenstein": "MVP",
+   "bereich": "core",
+   "titel": "Datensicherung, Export und Import",
+   "ziel": "Die Aufzeichnungen überstehen Handywechsel und Browser-Bereinigung (7 Jahre Aufbewahrung nach NAPV).",
+   "kriterien": [
+    "navigator.storage.persist() wird angefragt; Speicherstatus sichtbar",
+    "Vollsicherung als Datei nach schema/export.schema.json (Teilen-Menü bzw. Download)",
+    "Import mit Vorschau (neu / geändert / gleich), Zusammenführung nach id und rev, nichts wird stillschweigend überschrieben",
+    "Sicherungs-Erinnerung (z. B. alle 14 Tage oder nach 20 neuen Einträgen), abschaltbar",
+    "Hinweis für iPhone: App auf den Home-Bildschirm legen, sonst kann Safari Daten nach 7 Tagen löschen",
+    "Test: Export → Datenbank leeren → Import ergibt identische Daten"
+   ],
+   "abhaengig": [
+    "MVP-05"
+   ],
+   "quellen": [
+    "docs/architektur.md#41-anforderungen",
+    "schema/export.schema.json"
+   ],
+   "prompt": "Setze MVP-07 aus docs/roadmap.md um: Implementiere Vollsicherung (Export nach schema/export.schema.json über Teilen-Menü/Download), Import mit Vorschau und sicherer Zusammenführung, persistente Speicheranfrage, Sicherungs-Erinnerung und den iPhone-Hinweis. Mit Rundlauf-Test Export → Leeren → Import.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.1.0"
+   }
+  },
+  {
+   "id": "MVP-08",
+   "meilenstein": "MVP",
+   "bereich": "stammdaten",
+   "titel": "Ersteinrichtung: Betrieb und Personen",
+   "ziel": "In wenigen Minuten ist der Betrieb eingerichtet – mit allem, was die Aufzeichnungspflichten steuert.",
+   "kriterien": [
+    "Assistent in maximal 4 Schritten: Betrieb (Name, Bundesland, Betriebsnummer optional), Bewirtschaftung, Anlage-5-Frage mit verständlicher Erklärung, Personen",
+    "Personen mit Rolle und PSM-Ausbildungsbescheinigung (Nummer, gültig bis)",
+    "Bundesland bestimmt die Landes-Pflanzenschutzregeln (Anzeige, welche gelten)",
+    "Alles später unter Stammdaten änderbar",
+    "Validierung über betrieb.schema.json / person.schema.json"
+   ],
+   "abhaengig": [
+    "MVP-04",
+    "MVP-05"
+   ],
+   "quellen": [
+    "schema/betrieb.schema.json",
+    "schema/person.schema.json",
+    "docs/rechtsgrundlagen.md#12-verstärkte-aktionen-in-gebieten-nach-anlage-5---9-napv--r2"
+   ],
+   "prompt": "Setze MVP-08 aus docs/roadmap.md um: Baue den Ersteinrichtungs-Assistenten (Betrieb, Bewirtschaftung, Anlage-5-Frage mit Erklärung, Personen inkl. PSM-Ausbildungsbescheinigung) im Modul stammdaten/ auf Basis von core/daten.js. Wenig Tipparbeit, große Buttons, alles später änderbar.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.2.0"
+   }
+  },
+  {
+   "id": "MVP-09",
+   "meilenstein": "MVP",
+   "bereich": "stammdaten",
+   "titel": "Feldstücke, Schläge und Kulturkatalog",
+   "ziel": "Die Flächen des Betriebs sind je Jahr erfasst und dienen allen Modulen als Bezug.",
+   "kriterien": [
+    "Feldstücke anlegen/bearbeiten (Nummer, Name, Nutzungsart, Fläche)",
+    "Schläge je Jahr mit Kultur, Fläche, optional InVeKoS-Flächeneinheit; 'Schläge vom Vorjahr übernehmen' mit Kulturwechsel",
+    "Plausibilität: Summe der Schläge ≤ Feldstücksfläche (Warnung, kein Verbot)",
+    "Mitgelieferter Kulturkatalog (global, mit EPPO-Code, napv_kulturgruppe), eigene Kulturen ergänzbar",
+    "Hinweis, ob der Betrieb nach NAPV § 8 aufzeichnungspflichtig ist (≤ 15 ha / > 90 % Grünland), berechnet über rules/napv",
+    "Schnelle Auswahl von Schlägen (mehrere auf einmal) als UI-Baustein in core/ui für alle Module"
+   ],
+   "abhaengig": [
+    "MVP-06",
+    "MVP-08"
+   ],
+   "quellen": [
+    "schema/feldstueck.schema.json",
+    "schema/schlag.schema.json",
+    "schema/kultur.schema.json",
+    "docs/rechtsgrundlagen.md#11-betriebsbezogene-aufzeichnungen---8-napv--r1"
+   ],
+   "prompt": "Setze MVP-09 aus docs/roadmap.md um: Baue die Verwaltung von Feldstücken und Schlägen je Jahr (inkl. 'vom Vorjahr übernehmen'), einen mitgelieferten Kulturkatalog mit EPPO-Codes und den wiederverwendbaren Schlag-Auswahl-Baustein in core/ui. Zeige an, ob der Betrieb nach § 8 NAPV aufzeichnungspflichtig ist.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.3.0"
+   }
+  },
+  {
+   "id": "MVP-10",
+   "meilenstein": "MVP",
+   "bereich": "stammdaten",
+   "titel": "Betriebsmittel: Dünger und Pflanzenschutzmittel",
+   "ziel": "Dünger und PSM sind einmal angelegt und bei jeder Maßnahme mit einem Tipp auswählbar.",
+   "kriterien": [
+    "Dünger mit Nährstoffgehalten (Bezug %, kg/m³, kg/t) und Herkunft (eigen / Zukauf / Übernahme)",
+    "Mitgelieferte Vorlagen für gängige Mineraldüngertypen (generische Bezeichnungen, keine Markennamen) als Regel-/Katalogdatei",
+    "Wirtschaftsdünger-Übernahme mit den Angaben eines Düngerabgabevertrags (Partner, Betriebsnummer, Menge, N/P, Zeitraum)",
+    "PSM mit Bezeichnung, Zulassungsnummer, bienengefährlich",
+    "Zuletzt verwendete Mittel stehen oben"
+   ],
+   "abhaengig": [
+    "MVP-08"
+   ],
+   "quellen": [
+    "schema/betriebsmittel.schema.json",
+    "docs/rechtsgrundlagen.md#12-verstärkte-aktionen-in-gebieten-nach-anlage-5---9-napv--r2"
+   ],
+   "prompt": "Setze MVP-10 aus docs/roadmap.md um: Baue die Verwaltung der Betriebsmittel Dünger (inkl. Nährstoffgehalte und Wirtschaftsdünger-Übernahme mit Düngerabgabevertrag-Angaben) und Pflanzenschutzmittel (Bezeichnung, Zulassungsnummer) nach schema/betriebsmittel.schema.json, mit generischen Mineraldünger-Vorlagen und 'zuletzt verwendet' oben.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.4.0",
+    "text": "Betriebsmittel-Modul mit Düngervorlagen, Wirtschaftsdünger-Übernahme, PSM mit Fristen/Indikationen/Auflagen, Saatgut, Tierarzneimittel; zuletzt verwendete oben."
+   }
+  },
+  {
+   "id": "MVP-11",
+   "meilenstein": "MVP",
+   "bereich": "rules",
+   "titel": "Regeldateien NAPV recherchieren und erfassen",
+   "ziel": "Alle Werte, die die Düngeaufzeichnung braucht, liegen geprüft und mit Quelle unter rules/napv vor.",
+   "kriterien": [
+    "Schwellenwerte § 8 Abs. 2 und § 9 Abs. 5–6, Fristen (31. Jänner, 14 Tage), Aufbewahrung 7 Jahre",
+    "Anlage 3: N-Bedarf je Kultur und Ertragslage, Vorfruchtwirkung, Berechnung N-Entzug",
+    "Anlage 4: Anfall und Stall-/Lagerverluste von Wirtschaftsdünger (Grundlage für jahreswirksames N)",
+    "Faktoren für die jahreswirksame N-Menge je Düngerart",
+    "Anlage 5: Gebietskulisse (mindestens als nachschlagbare Liste)",
+    "Jeder Wert mit Fundstelle im RIS und status; Unsicherheiten markiert statt geraten",
+    "Prüfung, ob seit 2023 eine NAPV-Novelle in Kraft getreten ist"
+   ],
+   "abhaengig": [
+    "MVP-06"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#1-nitrat-aktionsprogramm-verordnung-napv"
+   ],
+   "prompt": "Setze MVP-11 aus docs/roadmap.md um: Recherchiere im RIS die aktuelle NAPV inkl. Anlagen 3, 4 und 5 und erfasse Schwellenwerte, Fristen, N-Bedarf, Anfallswerte und Faktoren für jahreswirksames N als Regeldateien unter rules/napv nach schema/regel.schema.json. Jeder Wert mit Quelle und Status; markiere Unsicherheiten, statt zu raten.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "rules/napv/duengung.json aus der amtlichen RIS-Fassung: Sperrfristen, §§ 3–5, § 7, jahreswirksamer N (§ 1 Z 14), Anlage 2, Anlage 3 (Acker, Grünland, Vorfrucht, Bewässerung, Entzug), Auszug Anlage 4. Offen: Anlage 5 als Gemeindeliste, Gemüse, Wein, vollständige Anlage 4."
+   }
+  },
+  {
+   "id": "MVP-12",
+   "meilenstein": "MVP",
+   "bereich": "rules",
+   "titel": "Regeldateien Pflanzenschutz je Bundesland",
+   "ziel": "Für jedes Bundesland ist bekannt, welche Frist, Aufbewahrung und Zusatzfelder gelten.",
+   "kriterien": [
+    "Offene Länder recherchiert: Burgenland, Vorarlberg, Wien vollständig; Niederösterreich und Kärnten ergänzt",
+    "rules/psm/<bundesland>.json mit Eintragsfrist, Aufbewahrung, Zusatzfeldern (z. B. Tirol: Grund, Anwender-Anschrift) und Übergangsregeln für das elektronische Format",
+    "Gemeinsame Basis rules/psm/eu.json (Anhang DVO 2023/564)",
+    "docs/rechtsgrundlagen.md Abschnitt 2.3 aktualisiert"
+   ],
+   "abhaengig": [
+    "MVP-06"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#23-landesgesetze-im-vergleich"
+   ],
+   "prompt": "Setze MVP-12 aus docs/roadmap.md um: Schließe die Lücken in docs/rechtsgrundlagen.md Abschnitt 2.3 (Burgenland, Vorarlberg, Wien, Rest NÖ/Kärnten) und erfasse die Pflanzenschutz-Aufzeichnungsregeln je Bundesland als rules/psm/*.json mit Quelle und Status. Markiere Unsicherheiten, statt zu raten."
+  },
+  {
+   "id": "MVP-13",
+   "meilenstein": "MVP",
+   "bereich": "modul-ackerbau",
+   "titel": "Modul Ackerbau: Aussaat, Ernte, Bodenbearbeitung, Bewässerung",
+   "ziel": "Die Angaben, die NAPV neben der Düngung verlangt (Anbau- und Erntedatum, Erntemenge, Bodenbearbeitung, Bewässerung), sind schnell erfasst.",
+   "kriterien": [
+    "Erfassung für einen oder mehrere Schläge auf einmal",
+    "Ernte mit Menge, Ertrag je ha, Beleg (Wiegeschein/Silovolumen/Schätzung) und Ertragslage",
+    "Bodenbearbeitung mit Zweck (u. a. Vegetationserneuerung für § 8 Z 7)",
+    "Bewässerung mit mm und N-Zufuhr (Berechnung über rules/napv, sofern erfasst)",
+    "'Wie letztes Mal' als Vorlage, Datum standardmäßig heute",
+    "modul.json nach Modulvertrag"
+   ],
+   "abhaengig": [
+    "MVP-09",
+    "MVP-10"
+   ],
+   "quellen": [
+    "schema/massnahmen/aussaat.schema.json",
+    "schema/massnahmen/ernte.schema.json",
+    "schema/massnahmen/bodenbearbeitung.schema.json",
+    "schema/massnahmen/bewaesserung.schema.json"
+   ],
+   "prompt": "Setze MVP-13 aus docs/roadmap.md um: Baue das Modul module/ackerbau mit Erfassung von Aussaat, Ernte (Menge, Beleg, Ertragslage), Bodenbearbeitung und Bewässerung für einen oder mehrere Schläge, nach dem Modulvertrag in docs/architektur.md und den Schemas unter schema/massnahmen/. Mit 'wie letztes Mal'-Vorlage.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.5.0",
+    "text": "Modul schlagkartei: Bodenbearbeitung, Aussaat (inkl. ÖPUL-Variante), Pflege, Ernte mit Feuchte/Rohprotein, Bewässerung; mehrere Schläge, „wie letztes Mal“."
+   }
+  },
+  {
+   "id": "MVP-14",
+   "meilenstein": "MVP",
+   "bereich": "modul-duengung",
+   "titel": "Modul Düngung: Erfassung",
+   "ziel": "Jede Düngung ist in unter 30 Sekunden erfasst, inklusive berechneter Nährstoffmengen.",
+   "kriterien": [
+    "Dünger wählen, Aufwand je ha, Schläge wählen, Datum – fertig",
+    "Automatische Berechnung von N gesamt, jahreswirksamem N, P₂O₅, K₂O je ha und gesamt (Regelversion wird in 'regeln' gespeichert)",
+    "Ausbringtechnik bei Wirtschaftsdünger",
+    "Feldmiete (Anlage-5-Betriebe): Anlage und Räumung",
+    "Warnung bei Eintrag später als 14 Tage nach Ausbringung (Anlage-5-Betriebe)",
+    "Fehlen Regelwerte, wird das klar angezeigt statt falsch gerechnet"
+   ],
+   "abhaengig": [
+    "MVP-11",
+    "MVP-13"
+   ],
+   "quellen": [
+    "schema/massnahmen/duengung.schema.json",
+    "schema/massnahmen/feldmiete.schema.json",
+    "docs/rechtsgrundlagen.md#1-nitrat-aktionsprogramm-verordnung-napv"
+   ],
+   "prompt": "Setze MVP-14 aus docs/roadmap.md um: Baue module/duengung für die Erfassung von Düngungen und Feldmieten mit automatischer Nährstoffberechnung über rules/napv (Regelversion in 'regeln' speichern) und der 14-Tage-Warnung für Anlage-5-Betriebe. Ziel: eine Düngung in unter 30 Sekunden.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.5.0",
+    "text": "Modul duengung mit Live-Berechnung und NAPV-Prüfungen samt Rechtsquelle. Feldmiete fehlt noch."
+   }
+  },
+  {
+   "id": "MVP-15",
+   "meilenstein": "MVP",
+   "bereich": "modul-duengung",
+   "titel": "Modul Düngung: Jahresaufzeichnung § 8 und Schlagbilanz § 9",
+   "ziel": "Bis 31. Jänner liegt die vollständige betriebsbezogene Aufzeichnung vor; Anlage-5-Betriebe haben zusätzlich ihre Schlagbilanzen.",
+   "kriterien": [
+    "Auswertung aller Punkte § 8 Abs. 1 Z 1–7 aus den erfassten Maßnahmen und Stammdaten",
+    "Schlagbezogene Aufzeichnung und N-Bilanz je Schlag nach § 9 Abs. 6 (Kulturen > 0,3 ha)",
+    "Fehlende Angaben werden als Aufgabenliste angezeigt (z. B. 'Erntemenge Großfeld fehlt')",
+    "'Jahr abschließen': Druckansicht und CSV/JSON-Export",
+    "Erinnerung ab Jänner an die Frist 31. Jänner",
+    "Testfall mit dem Musterbetrieb und einem Anlage-5-Betrieb"
+   ],
+   "abhaengig": [
+    "MVP-14"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#11-betriebsbezogene-aufzeichnungen---8-napv--r1",
+    "docs/rechtsgrundlagen.md#12-verstärkte-aktionen-in-gebieten-nach-anlage-5---9-napv--r2"
+   ],
+   "prompt": "Setze MVP-15 aus docs/roadmap.md um: Baue die Jahresaufzeichnung nach § 8 Abs. 1 Z 1–7 NAPV und die Schlagbilanz nach § 9 Abs. 6 als Auswertung über die erfassten Maßnahmen, mit Liste fehlender Angaben, 'Jahr abschließen' (Druck, CSV, JSON) und Erinnerung an den 31. Jänner. Teste mit dem Musterbetrieb und einem Anlage-5-Fall.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "Düngebericht (§ 8, § 9 Abs. 6) druckfertig; Anfall aus dem Tierbestand folgt mit V1-06."
+   }
+  },
+  {
+   "id": "MVP-16",
+   "meilenstein": "MVP",
+   "bereich": "modul-pflanzenschutz",
+   "titel": "Modul Pflanzenschutz: Erfassung",
+   "ziel": "Jede Anwendung ist unverzüglich und vollständig nach Anhang DVO 2023/564 und Landesrecht erfasst.",
+   "kriterien": [
+    "Alle Pflichtfelder laut schema/massnahmen/pflanzenschutz.schema.json; Momentaufnahme von Name, Zulassungsnummer, Kultur, EPPO, Flächeneinheit",
+    "Tankmischung (mehrere Mittel)",
+    "BBCH-Auswahlhilfe mit Bildern/Beschreibung je Kulturgruppe (eigene Texte)",
+    "Uhrzeit wird abgefragt, wenn ein Mittel als bienengefährlich markiert ist",
+    "Zusatzfelder je Bundesland aus rules/psm (z. B. Tirol: Grund)",
+    "Verwendungsart Fläche / geschlossener Raum / Saatgut",
+    "Hinweis auf offene Einträge gemäß strengster Landesfrist (2 Tage)",
+    "Prüfung der Ausbildungsbescheinigung der Anwender:in (abgelaufen → Hinweis)"
+   ],
+   "abhaengig": [
+    "MVP-10",
+    "MVP-12",
+    "MVP-13"
+   ],
+   "quellen": [
+    "schema/massnahmen/pflanzenschutz.schema.json",
+    "docs/rechtsgrundlagen.md#2-pflanzenschutzmittel-bundes-pmg-eu-recht-landesgesetze"
+   ],
+   "prompt": "Setze MVP-16 aus docs/roadmap.md um: Baue module/pflanzenschutz für die Erfassung von PSM-Anwendungen mit allen Feldern aus Anhang DVO 2023/564 (inkl. Tankmischung, Momentaufnahme, BBCH-Hilfe, Uhrzeit bei bienengefährlichen Mitteln) und den Zusatzfeldern je Bundesland aus rules/psm. Texte selbst formulieren, nichts aus kommerziellen Produkten übernehmen.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.5.0",
+    "text": "Modul pflanzenschutz mit Prüfungen (Zulassung, Indikation, Aufwand, BBCH, Anwendungen, Wartezeit, Auflagen, Biene, Sachkunde, Geräteprüfung, ÖPUL)."
+   }
+  },
+  {
+   "id": "MVP-17",
+   "meilenstein": "MVP",
+   "bereich": "modul-pflanzenschutz",
+   "titel": "Modul Pflanzenschutz: Spritztagebuch und maschinenlesbarer Export",
+   "ziel": "Bei einer Kontrolle lassen sich die Aufzeichnungen sofort zeigen und elektronisch, maschinenlesbar übergeben (Pflicht für Anwendungen ab 1.1.2027).",
+   "kriterien": [
+    "Liste je Jahr, filterbar nach Schlag, Mittel, Person",
+    "CSV-Export mit dokumentierten Spalten (eine Zeile je Mittel und Schlag), UTF-8, Semikolon, ISO-Datum",
+    "JSON-Export nach export.schema.json",
+    "Druckansicht für die Kontrolle",
+    "Spaltenbeschreibung in docs/ (Datenformat ist Teil der Rechtskonformität)",
+    "Test: Export der Testdaten enthält alle Pflichtfelder"
+   ],
+   "abhaengig": [
+    "MVP-16",
+    "MVP-07"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#22-eu-rahmen"
+   ],
+   "prompt": "Setze MVP-17 aus docs/roadmap.md um: Baue das Spritztagebuch (Liste mit Filtern, Druckansicht) und den maschinenlesbaren Export als CSV (dokumentierte Spalten, UTF-8, ISO-Datum) und JSON. Dokumentiere das CSV-Format in docs/ und teste, dass alle Pflichtfelder aus Anhang DVO 2023/564 enthalten sind.",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.5.0",
+    "text": "Liste je Jahr und CSV-Export nach DVO (EU) 2023/564."
+   }
+  },
+  {
+   "id": "MVP-18",
+   "meilenstein": "MVP",
+   "bereich": "testdaten",
+   "titel": "Demo-Modus mit Musterbetrieb",
+   "ziel": "Interessierte und Testbetriebe können die App ohne eigene Daten ausprobieren.",
+   "kriterien": [
+    "'Demo starten' lädt testdaten/musterbetrieb.json in eine getrennte Demo-Datenbank",
+    "Deutlich sichtbarer Demo-Hinweis; Demo jederzeit beenden ohne Einfluss auf echte Daten",
+    "Testdaten um einen Anlage-5-Fall (schlagbezogene Aufzeichnung) erweitert",
+    "werkzeuge/pruefe_daten.py prüft alle Testdaten fehlerfrei"
+   ],
+   "abhaengig": [
+    "MVP-07",
+    "MVP-15",
+    "MVP-17"
+   ],
+   "quellen": [
+    "testdaten/musterbetrieb.json"
+   ],
+   "prompt": "Setze MVP-18 aus docs/roadmap.md um: Baue einen Demo-Modus, der testdaten/musterbetrieb.json in eine getrennte Demo-Datenbank lädt, und erweitere die Testdaten um einen fiktiven Anlage-5-Betrieb mit schlagbezogenen Aufzeichnungen. Alle Testdaten müssen werkzeuge/pruefe_daten.py bestehen."
+  },
+  {
+   "id": "MVP-19",
+   "meilenstein": "MVP",
+   "bereich": "qualitaet",
+   "titel": "Barrierearmut- und Sonnenlicht-Prüfung",
+   "ziel": "Die App ist mit Handschuhen, im Sonnenlicht und mit wenig IT-Erfahrung bedienbar.",
+   "kriterien": [
+    "Kontrast mindestens WCAG 2.2 AA, für Text möglichst AAA (7:1)",
+    "Alle Bedienelemente ≥ 48 px, ausreichend Abstand",
+    "Schrift lässt sich auf 200 % vergrößern ohne Funktionsverlust",
+    "Formulare mit Beschriftungen, Fehlermeldungen am Feld, Screenreader-tauglich",
+    "Prüfprotokoll unter docs/ mit gefundenen und behobenen Punkten"
+   ],
+   "abhaengig": [
+    "MVP-16",
+    "MVP-15"
+   ],
+   "quellen": [
+    "CLAUDE.md"
+   ],
+   "prompt": "Setze MVP-19 aus docs/roadmap.md um: Prüfe die gesamte App auf Barrierearmut und Sonnenlicht-Tauglichkeit (Kontrast, Touch-Ziele, Vergrößerung, Beschriftungen, Screenreader), behebe die gefundenen Punkte und lege ein Prüfprotokoll unter docs/ an."
+  },
+  {
+   "id": "MVP-20",
+   "meilenstein": "MVP",
+   "bereich": "release",
+   "titel": "Veröffentlichung auf GitHub Pages",
+   "ziel": "Die App ist öffentlich nutzbar, mit klaren Hinweisen zu Haftung, Datenschutz und Lizenz.",
+   "kriterien": [
+    "Lizenzvorschlag mit Vor- und Nachteilen (z. B. EUPL-1.2, AGPL-3.0, MIT) – Entscheidung trifft der Projektinhaber",
+    "Seiten 'Über', 'Haftungsausschluss (keine Rechtsberatung)' und 'Datenschutz (Daten bleiben am Gerät)'",
+    "Anleitung zum Veröffentlichen auf GitHub Pages; Service-Worker-Update funktioniert nach neuem Release",
+    "CONTRIBUTING.md (wie man mitarbeitet, Regeln pflegt, Testdaten nutzt)",
+    "Versionsnummer und 'Regeln geprüft am' in der App sichtbar"
+   ],
+   "abhaengig": [
+    "MVP-18",
+    "MVP-19"
+   ],
+   "quellen": [
+    "CLAUDE.md"
+   ],
+   "prompt": "Setze MVP-20 aus docs/roadmap.md um: Bereite die Veröffentlichung auf GitHub Pages vor: Lizenzvorschlag mit Abwägung (Entscheidung treffe ich), Seiten zu Haftungsausschluss und Datenschutz, CONTRIBUTING.md, sichtbare Versions- und Regelstand-Anzeige und eine Anleitung, wie Updates zuverlässig beim Service Worker ankommen."
+  },
+  {
+   "id": "MVP-21",
+   "meilenstein": "MVP",
+   "bereich": "qualitaet",
+   "titel": "Praxistest mit Testbetrieben",
+   "ziel": "Zwei bis drei echte Ackerbaubetriebe haben das MVP genutzt; die wichtigsten Rückmeldungen sind eingearbeitet oder als Issues erfasst.",
+   "kriterien": [
+    "Testplan mit Aufgaben (Ersteinrichtung, 5 Düngungen, 3 Spritzungen, Ernte, Jahresabschluss, Export, Sicherung)",
+    "Kurzer Feedbackbogen (Papier und digital), Beobachtungsnotizen",
+    "Auswertung unter docs/praxistest-mvp.md",
+    "Mindestens die gravierendsten Bedienprobleme behoben; der Rest als Issues"
+   ],
+   "abhaengig": [
+    "MVP-20"
+   ],
+   "quellen": [
+    "docs/funktionsumfang.md"
+   ],
+   "prompt": "Setze MVP-21 aus docs/roadmap.md um: Erstelle einen Testplan mit konkreten Aufgaben und einen kurzen Feedbackbogen für 2–3 Testbetriebe, sowie eine Vorlage docs/praxistest-mvp.md für die Auswertung. Nach dem Test gebe ich dir die Rückmeldungen zur Auswertung."
+  },
+  {
+   "id": "V1-01",
+   "meilenstein": "V1",
+   "bereich": "sync",
+   "titel": "Abgleich per Sync-Paket (Stufe 2)",
+   "ziel": "Zwei oder mehr Handys eines Hofes gleichen ihre Daten über eine Datei ab.",
+   "kriterien": [
+    "Sync-Paket nach export.schema.json (aenderungen, seit_hlc) über das Teilen-Menü",
+    "Einlesen: bekannte Änderungen überspringen, Anwendung in HLC-Reihenfolge, feldweise 'spätere Änderung gewinnt'",
+    "Konfliktliste 'Bitte prüfen' für gleichzeitige Änderungen desselben Felds und für Änderung gegen Löschung",
+    "Je Partnergerät gemerkter Stand, damit Pakete klein bleiben",
+    "Tests mit simulierten Geräten (inkl. doppeltem Einlesen)"
+   ],
+   "abhaengig": [
+    "MVP-20"
+   ],
+   "quellen": [
+    "docs/architektur.md#46-empfehlung-variante-a-in-stufen-ausbaubar"
+   ],
+   "prompt": "Setze V1-01 aus docs/roadmap.md um: Implementiere in core/sync den Abgleich per Sync-Paket wie in docs/architektur.md Abschnitt 4.6 beschrieben (feldweise Zusammenführung nach HLC, Konfliktliste, Stand je Partnergerät) mit Tests für mehrere simulierte Geräte."
+  },
+  {
+   "id": "V1-02",
+   "meilenstein": "V1",
+   "bereich": "stammdaten",
+   "titel": "Flächenimport (GeoJSON/Mehrfachantrag) und Kartenansicht",
+   "ziel": "Feldstücke und Schläge müssen nicht abgetippt werden.",
+   "kriterien": [
+    "Recherche: welche Exportformate eAMA für Flächen anbietet (Format, Felder, Nutzungsbedingungen)",
+    "Import von GeoJSON (und ggf. weiterem Format) mit Zuordnung zu Feldstück/Schlag und Vorschau",
+    "Export der Flächen als GeoJSON",
+    "Kartenansicht (Bibliothek eingecheckt unter vendor/); Hintergrundkarte nur online, App bleibt offline nutzbar"
+   ],
+   "abhaengig": [
+    "MVP-09"
+   ],
+   "quellen": [
+    "CLAUDE.md",
+    "schema/feldstueck.schema.json"
+   ],
+   "prompt": "Setze V1-02 aus docs/roadmap.md um: Recherchiere zuerst, in welchen Formaten eAMA Flächendaten exportiert, dann baue den Import (mindestens GeoJSON) für Feldstücke und Schläge mit Vorschau, den GeoJSON-Export und eine einfache Kartenansicht.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.3.0",
+    "text": "Import und Karte fertig; GeoJSON-Export der Flächen fehlt."
+   }
+  },
+  {
+   "id": "V1-03",
+   "meilenstein": "V1",
+   "bereich": "modul-tiere",
+   "titel": "Modul Tiere: Rinder-Bestandsverzeichnis",
+   "ziel": "Das Bestandsverzeichnis nach § 5 RKZV 2021 wird aus den Tierbewegungen geführt; die 7-Tage-Meldefrist wird überwacht.",
+   "kriterien": [
+    "Rinder anlegen (Ohrmarke, Geburt, Geschlecht, Rasse, Mutter), Geburt eines Kalbs in wenigen Schritten",
+    "Zu-/Abgänge, Schlachtung, Verendung, Alm als tierbewegung",
+    "Bestandsverzeichnis als Ansicht/Druck mit allen Feldern aus § 5 Abs. 2",
+    "Hinweis 'noch nicht an AMA gemeldet' bis zur Bestätigung, Frist 7 Tage",
+    "Aufbewahrung 4 Jahre in rules/rkzv"
+   ],
+   "abhaengig": [
+    "MVP-20"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#51-rinder--rinderkennzeichnungs-verordnung-2021-rkzv-2021--r16",
+    "schema/tier.schema.json",
+    "schema/massnahmen/tierbewegung.schema.json"
+   ],
+   "prompt": "Setze V1-03 aus docs/roadmap.md um: Baue module/tiere mit Rinder-Stammdaten, Tierbewegungen und dem Bestandsverzeichnis nach § 5 RKZV 2021 (Felder laut docs/rechtsgrundlagen.md 5.1), inkl. 7-Tage-Meldehinweis. Regelwerte in rules/rkzv."
+  },
+  {
+   "id": "V1-04",
+   "meilenstein": "V1",
+   "bereich": "modul-tiere",
+   "titel": "Modul Tiere: Bestandsregister Schweine, Schafe, Ziegen",
+   "ziel": "Das Bestandsregister nach § 19 TKZVO 2009 entsteht aus den Tierbewegungen.",
+   "kriterien": [
+    "Recherche § 6 TKZVO (Pflichtdaten Schweine ohne VIS-Zugang), Ergebnis in docs/rechtsgrundlagen.md",
+    "Tiergruppen mit Stückzahl; Zu- und Abgänge mit Partner, Transport, Begleitdokument",
+    "Schafe/Ziegen: Stichtagszählung 1. April",
+    "Register als Ansicht/Druck; Aufbewahrung 3 bzw. 7 Jahre in rules/tkzvo"
+   ],
+   "abhaengig": [
+    "V1-03"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#52-schweine-schafe-ziegen--tkzvo-2009--19--r17"
+   ],
+   "prompt": "Setze V1-04 aus docs/roadmap.md um: Recherchiere § 6 TKZVO 2009, ergänze docs/rechtsgrundlagen.md und baue das Bestandsregister für Schweine, Schafe und Ziegen (Gruppen, Zu-/Abgänge, Stichtag 1. April) mit Regelwerten in rules/tkzvo."
+  },
+  {
+   "id": "V1-05",
+   "meilenstein": "V1",
+   "bereich": "modul-tiere",
+   "titel": "Modul Tiere: Behandlungen und Wartezeiten",
+   "ziel": "Jede Behandlung ist am selben Tag eingetragen; Tiere in Wartezeit sind auf einen Blick erkennbar.",
+   "kriterien": [
+    "Behandlung mit Mittel, Menge, Anwendungsart, Diagnose, Tierarzt, Abgabebeleg-Nr.",
+    "Wartezeit-Ende automatisch je Produkt (Fleisch, Milch, Eier) aus den Betriebsmittel-Wartezeiten",
+    "Übersicht 'in Wartezeit' (Ampel) auf der Startseite",
+    "Restrecherche Art. 108 VO (EU) 2019/6 und § 12 Rückstandskontrollverordnung; Felder ggf. ergänzen",
+    "Aufbewahrung 5 Jahre"
+   ],
+   "abhaengig": [
+    "V1-03"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#4-tierarzneimittel-tamg-rückstandskontrolle",
+    "schema/massnahmen/tierbehandlung.schema.json"
+   ],
+   "prompt": "Setze V1-05 aus docs/roadmap.md um: Recherchiere die offenen Punkte zu Art. 108 VO (EU) 2019/6 und § 12 Rückstandskontrollverordnung, dann baue die Erfassung von Tierbehandlungen mit automatischer Wartezeitberechnung und einer Wartezeit-Übersicht auf der Startseite."
+  },
+  {
+   "id": "V1-06",
+   "meilenstein": "V1",
+   "bereich": "modul-duengung",
+   "titel": "Wirtschaftsdünger-Anfall aus dem Tierbestand",
+   "ziel": "Tierhaltende Betriebe erhalten § 8 Abs. 1 Z 2 NAPV (Anfall, Abgabe, Ausbringung) automatisch.",
+   "kriterien": [
+    "Durchschnittlicher Tierbestand aus Bestandsverzeichnis/-register",
+    "N-Anfall nach Anlage 4 aus rules/napv",
+    "Abgleich Anfall − Abgabe + Übernahme − Ausbringung, Hinweis bei großen Differenzen",
+    "Einbindung in die Jahresaufzeichnung (MVP-15)"
+   ],
+   "abhaengig": [
+    "V1-04",
+    "MVP-15"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#11-betriebsbezogene-aufzeichnungen---8-napv--r1"
+   ],
+   "prompt": "Setze V1-06 aus docs/roadmap.md um: Berechne den Wirtschaftsdünger-Anfall aus dem durchschnittlichen Tierbestand nach NAPV Anlage 4 (rules/napv) und binde Anfall, Abgabe, Übernahme und Ausbringung in die Jahresaufzeichnung nach § 8 Abs. 1 Z 2 ein."
+  },
+  {
+   "id": "V1-07",
+   "meilenstein": "V1",
+   "bereich": "modul-oepul",
+   "titel": "ÖPUL: Weidetagebuch",
+   "ziel": "Weidetage sind tagaktuell mit einem Tipp erfasst (Tierwohl Weide, Naturschutz mit Weideauflage).",
+   "kriterien": [
+    "Aktuelle ÖPUL-Vorgaben recherchiert (Quelle von 2023 prüfen), Ergebnis in docs/rechtsgrundlagen.md",
+    "'Heute auf Weide' mit Vorbelegung vom Vortag; Unterbrechung mit Grund",
+    "Ansicht je Fläche und Tiergruppe, Druck/Export",
+    "Modul nur aktiv, wenn die Maßnahme beim Betrieb gewählt ist"
+   ],
+   "abhaengig": [
+    "V1-03"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#3-öpul-2023-maßnahmenspezifische-aufzeichnungen",
+    "schema/massnahmen/weide.schema.json"
+   ],
+   "prompt": "Setze V1-07 aus docs/roadmap.md um: Prüfe die aktuellen ÖPUL-Vorgaben zum Weidetagebuch (unsere Quelle ist von 2023), aktualisiere docs/rechtsgrundlagen.md und baue module/oepul mit einem tagaktuellen Weidetagebuch, das mit einem Tipp vom Vortag fortgeschrieben werden kann."
+  },
+  {
+   "id": "V1-08",
+   "meilenstein": "V1",
+   "bereich": "modul-oepul",
+   "titel": "ÖPUL: Immergrün, bodennahe Ausbringung, Nutzungstermine",
+   "ziel": "Die ÖPUL-Aufzeichnungen entstehen weitgehend aus bereits erfassten Maßnahmen.",
+   "kriterien": [
+    "System Immergrün: Prüfansicht über alle Ackerschläge (Ernte Hauptfrucht, Anlage/Umbruch Zwischenfrucht, Anlage Folgekultur) mit Lücken",
+    "Bodennahe Ausbringung: Auswertung aus Düngungen mit Ausbringtechnik; Gülleseparation",
+    "Biodiversitätsflächen: 1./2. Nutzung",
+    "Aktualität der Vorgaben geprüft"
+   ],
+   "abhaengig": [
+    "V1-07",
+    "MVP-14"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#3-öpul-2023-maßnahmenspezifische-aufzeichnungen"
+   ],
+   "prompt": "Setze V1-08 aus docs/roadmap.md um: Baue in module/oepul Prüfansichten für System Immergrün, bodennahe Ausbringung/Gülleseparation und Nutzungstermine auf Biodiversitätsflächen, die aus den bereits erfassten Maßnahmen entstehen und Lücken anzeigen. Prüfe vorher die Aktualität der Vorgaben.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "Immergrün (Lücken) und bodennahe Ausbringung ausgewertet; Nutzungstermine entfallen laut BMLUK ab 2025."
+   }
+  },
+  {
+   "id": "V1-09",
+   "meilenstein": "V1",
+   "bereich": "core",
+   "titel": "Fristen- und Erinnerungszentrale",
+   "ziel": "Alle offenen Pflichten an einem Ort, ohne Server.",
+   "kriterien": [
+    "Sammelt Fristen aus allen Modulen über eine Kern-Schnittstelle (PSM 2 Tage, NAPV 14 Tage und 31. Jänner, Rinder 7 Tage, Geräteprüfung, Ausbildungsbescheinigung, Sicherung)",
+    "Anzeige auf der Startseite mit Zähler",
+    "Klärung, was ohne Server an Benachrichtigungen möglich ist (Notification API, Badging) – ehrlich dokumentiert",
+    "Fristen kommen aus /rules, nicht aus dem Code"
+   ],
+   "abhaengig": [
+    "V1-03",
+    "MVP-16"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#0-kurzüberblick"
+   ],
+   "prompt": "Setze V1-09 aus docs/roadmap.md um: Baue eine Fristenzentrale im Kern, bei der Module ihre offenen Pflichten melden (Fristen aus /rules), mit Anzeige auf der Startseite. Prüfe und dokumentiere ehrlich, welche Benachrichtigungen ohne Server auf Android und iOS möglich sind.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "Fristenkalender aus allen Modulen, Erinnerungen beim Öffnen der App; ohne Server keine Erinnerung bei geschlossener App."
+   }
+  },
+  {
+   "id": "V1-10",
+   "meilenstein": "V1",
+   "bereich": "stammdaten",
+   "titel": "Maschinen und Kontrollmappe Konditionalität",
+   "ziel": "Bei einer Vor-Ort-Kontrolle sind alle Unterlagen mit einem Tipp beisammen.",
+   "kriterien": [
+    "Maschinen mit Ausbringtechnik und PSM-Geräteprüfung (gültig bis)",
+    "Checkliste 'Kontrolle vorbereiten' nach den Unterlagen im AMA-Merkblatt (eigene Formulierung)",
+    "Export 'Kontrollmappe' (Druck/ZIP) mit Spritztagebuch, Düngeaufzeichnung, Bestandsverzeichnis, Behandlungen"
+   ],
+   "abhaengig": [
+    "V1-05",
+    "MVP-17"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#72-unterlagen-die-bei-einer-konditionalitätskontrolle-vorliegen-sollen--r5-s-8-f"
+   ],
+   "prompt": "Setze V1-10 aus docs/roadmap.md um: Ergänze die Maschinenverwaltung (Ausbringtechnik, Geräteprüfung) und baue eine Checkliste 'Kontrolle vorbereiten' sowie einen Export 'Kontrollmappe' mit allen Aufzeichnungen. Formuliere die Checkliste selbst, angelehnt an die Unterlagenliste in docs/rechtsgrundlagen.md 7.2.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "Maschinen mit Geräteprüfung; Kontrollmappe fehlt."
+   }
+  },
+  {
+   "id": "V1-11",
+   "meilenstein": "V1",
+   "bereich": "rules",
+   "titel": "Anbindung Pflanzenschutzmittelregister",
+   "ziel": "PSM werden aus dem amtlichen Register ausgewählt statt abgetippt; abgelaufene Zulassungen fallen auf.",
+   "kriterien": [
+    "Recherche: Datenzugang zum österreichischen PSM-Register, Format, Nutzungsbedingungen/Lizenz",
+    "Nur bei zulässiger Nutzung: Offline-Kopie als Katalog mit Stand-Datum, Suche nach Name/Zulassungsnummer",
+    "Warnung bei abgelaufener Zulassung",
+    "Ohne zulässige Datenquelle: Ergebnis dokumentieren, manuelle Eingabe bleibt"
+   ],
+   "abhaengig": [
+    "MVP-16"
+   ],
+   "quellen": [
+    "docs/funktionsumfang.md"
+   ],
+   "prompt": "Setze V1-11 aus docs/roadmap.md um: Recherchiere, ob und unter welchen Bedingungen die Daten des österreichischen Pflanzenschutzmittelregisters maschinell genutzt werden dürfen. Nur wenn das zulässig ist, baue einen Offline-Katalog mit Suche und Zulassungswarnung; sonst dokumentiere das Ergebnis.",
+   "stand": {
+    "status": "geprueft",
+    "version": "0.4.0",
+    "text": "Recherche abgeschlossen: Das Register ist keine offene Datenquelle (Nutzungsbedingungen BAES/AGES: Speichern in Datenbanken nur mit schriftlicher Zustimmung). Manuelle Eingabe mit Direktlink zum Registereintrag; Zulassungswarnung umgesetzt. Siehe docs/rechtsgrundlagen.md 2.5."
+   }
+  },
+  {
+   "id": "V1-12",
+   "meilenstein": "V1",
+   "bereich": "modul-lager",
+   "titel": "Biozide und Rückverfolgbarkeit (Lebensmittelsicherheit)",
+   "ziel": "Biozid-Anwendungen und Lieferungen sind dokumentiert, wie es die Konditionalität (GAB 5) erwartet.",
+   "kriterien": [
+    "Biozid-Maßnahme (Bezeichnung, Anwendungsbereich, Datum/Häufigkeit), auch als wiederkehrende Kontrolle",
+    "Eigenbeleg für Bezug und Abgabe (Datum, Produkt, Menge, Abnehmer/Lieferant)",
+    "Offene Recherche VO 852/2004 und 183/2005 Anhang I abgeschlossen"
+   ],
+   "abhaengig": [
+    "MVP-20"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#72-unterlagen-die-bei-einer-konditionalitätskontrolle-vorliegen-sollen--r5-s-8-f",
+    "schema/massnahmen/biozid.schema.json"
+   ],
+   "prompt": "Setze V1-12 aus docs/roadmap.md um: Recherchiere die offenen Punkte zu VO 852/2004 und 183/2005 (Anhang I), dann baue die Erfassung von Biozid-Anwendungen (auch wiederkehrend) und Eigenbelege für Bezug und Abgabe zur Rückverfolgbarkeit."
+  },
+  {
+   "id": "V1-13",
+   "meilenstein": "V1",
+   "bereich": "rules",
+   "titel": "Pflegeprozess für Rechtsregeln",
+   "ziel": "Rechtsänderungen werden zuverlässig erkannt und eingepflegt.",
+   "kriterien": [
+    "Jährliche Checkliste (NAPV, PSM je Land, RKZV, TKZVO, TAMG, ÖPUL, Konditionalität-Merkblatt)",
+    "werkzeuge/: Prüfung, dass jede Regeldatei Quelle, Stand und lückenlose Gültigkeit hat",
+    "Änderungsprotokoll der Regeln (CHANGELOG) und Anzeige 'Regeln geprüft am' in der App"
+   ],
+   "abhaengig": [
+    "MVP-11",
+    "MVP-12"
+   ],
+   "quellen": [
+    "CLAUDE.md"
+   ],
+   "prompt": "Setze V1-13 aus docs/roadmap.md um: Schreibe eine jährliche Prüf-Checkliste für alle Rechtsquellen, ein Werkzeug unter werkzeuge/, das alle Regeldateien auf Quelle, Stand und lückenlose Gültigkeit prüft, und ein CHANGELOG für Regeländerungen."
+  },
+  {
+   "id": "V2-01",
+   "meilenstein": "V2",
+   "bereich": "modul-bio",
+   "titel": "Modul Bio",
+   "ziel": "Biobetriebe führen die für die Bio-Kontrolle nötigen Aufzeichnungen.",
+   "kriterien": [
+    "Vorab geklärt mit Kontrollstelle/Bio Austria: Dokumentenliste und Aufbewahrungsfristen (DVO 2021/2119)",
+    "Zukauf von Betriebsmitteln mit Nachweis der Biotauglichkeit, Tierzukauf inkl. Genehmigung",
+    "Teil-Bio: Kennzeichnung der Schläge",
+    "Unterlagen für die Bio-Kontrolle als Export"
+   ],
+   "abhaengig": [
+    "V1-10"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#6-bio-verordnung-eu-2018848"
+   ],
+   "prompt": "Setze V2-01 aus docs/roadmap.md um: Fasse zuerst zusammen, welche Bio-Aufzeichnungen und Fristen noch ungeklärt sind (docs/rechtsgrundlagen.md Abschnitt 6) und formuliere Fragen an eine Kontrollstelle. Wenn ich die Antworten liefere, baue darauf das Modul module/bio."
+  },
+  {
+   "id": "V2-02",
+   "meilenstein": "V2",
+   "bereich": "sync",
+   "titel": "Automatischer Abgleich über WebDAV (Stufe 3)",
+   "ziel": "Wer eine Nextcloud oder ähnlichen Speicher hat, gleicht automatisch ab – ohne eigenen Server-Code.",
+   "kriterien": [
+    "Recherche: CORS-Verhalten gängiger WebDAV-Anbieter, Anmeldung ohne Passwort im Klartext",
+    "Transport-Adapter core/sync/webdav.js nutzt dieselben Sync-Pakete wie V1-01",
+    "Abgleich beim Öffnen und manuell; offline wird gepuffert",
+    "Optional: Bewertung CouchDB-Adapter als Prototyp"
+   ],
+   "abhaengig": [
+    "V1-01"
+   ],
+   "quellen": [
+    "docs/architektur.md#46-empfehlung-variante-a-in-stufen-ausbaubar"
+   ],
+   "prompt": "Setze V2-02 aus docs/roadmap.md um: Prüfe, ob WebDAV-Speicher wie Nextcloud aus dem Browser (CORS, Anmeldung) nutzbar sind, und baue bei positivem Ergebnis den Transport-Adapter core/sync/webdav.js, der dieselben Sync-Pakete wie der Dateiabgleich verwendet."
+  },
+  {
+   "id": "V2-03",
+   "meilenstein": "V2",
+   "bereich": "modul-lager",
+   "titel": "Lagerverwaltung",
+   "ziel": "Bestände an Dünger, PSM, Saatgut und Futter ergeben sich aus Zukauf und Maßnahmen.",
+   "kriterien": [
+    "Zugang (Lieferschein) und automatischer Abgang aus Maßnahmen",
+    "Bestandsliste mit Warnung bei negativem Bestand",
+    "Inventur mit Korrekturbuchung"
+   ],
+   "abhaengig": [
+    "MVP-20"
+   ],
+   "quellen": [
+    "docs/funktionsumfang.md"
+   ],
+   "prompt": "Setze V2-03 aus docs/roadmap.md um: Ergänze das Datenmodell um Lagerzugänge (Schema-Änderung mit Versionserhöhung) und baue eine Lagerverwaltung, deren Abgänge automatisch aus den erfassten Maßnahmen entstehen, inklusive Inventurkorrektur."
+  },
+  {
+   "id": "V2-04",
+   "meilenstein": "V2",
+   "bereich": "modul-duengung",
+   "titel": "Düngeplanung und Anbauplanung",
+   "ziel": "Planung vor der Saison, u. a. für ÖPUL Grundwasserschutz (Düngeplanung bis 28. Februar).",
+   "kriterien": [
+    "Geplante Maßnahmen (status 'geplant') je Schlag; Übernahme als erledigt mit einem Tipp",
+    "Düngebedarf je Schlag aus rules/napv",
+    "Fruchtfolgeübersicht je Feldstück über mehrere Jahre"
+   ],
+   "abhaengig": [
+    "MVP-15"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#3-öpul-2023-maßnahmenspezifische-aufzeichnungen"
+   ],
+   "prompt": "Setze V2-04 aus docs/roadmap.md um: Baue die Düngeplanung (geplante Maßnahmen je Schlag, Bedarf aus rules/napv, Übernahme als erledigt) und eine mehrjährige Fruchtfolgeübersicht je Feldstück.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "Düngeplanung je Schlag (N nach Anlage 3, P/K aus Bodenprobe); Anbauplanung fehlt."
+   }
+  },
+  {
+   "id": "V2-05",
+   "meilenstein": "V2",
+   "bereich": "core",
+   "titel": "Fotos und Belege anhängen",
+   "ziel": "Lieferscheine, Wiegescheine und Abgabebelege liegen direkt bei der Maßnahme.",
+   "kriterien": [
+    "Foto aufnehmen/auswählen, verkleinern, in IndexedDB speichern",
+    "Speicherplatzanzeige und Aufräumhilfe",
+    "Export optional mit Belegen (Dateigröße beachten)"
+   ],
+   "abhaengig": [
+    "MVP-20"
+   ],
+   "quellen": [
+    "docs/architektur.md#5-offene-entscheidungen"
+   ],
+   "prompt": "Setze V2-05 aus docs/roadmap.md um: Ermögliche das Anhängen von Fotos und Belegen an Maßnahmen (Aufnahme, Verkleinerung, Speicherung in IndexedDB, Speicherplatzanzeige) und einen optionalen Export mit Belegen.",
+   "stand": {
+    "status": "teilweise",
+    "version": "0.5.0",
+    "text": "Fotos an Feldnotizen; Belege an Maßnahmen fehlen."
+   }
+  },
+  {
+   "id": "V2-06",
+   "meilenstein": "V2",
+   "bereich": "core",
+   "titel": "Mehrere Betriebe und Lohnunternehmer",
+   "ziel": "Lohnunternehmer erfassen Maßnahmen für Kundenbetriebe und übergeben sie per Sync-Paket.",
+   "kriterien": [
+    "Betriebswechsel in der App",
+    "Export nur der Maßnahmen für einen Kundenbetrieb; Import beim Kunden ordnet Schläge zu",
+    "Rollen: wer darf was sehen/ändern (lokal)"
+   ],
+   "abhaengig": [
+    "V1-01"
+   ],
+   "quellen": [
+    "docs/architektur.md#23-bewusste-modellentscheidungen"
+   ],
+   "prompt": "Setze V2-06 aus docs/roadmap.md um: Ermögliche mehrere Betriebe in einer Installation und baue den Ablauf für Lohnunternehmer: Maßnahmen für einen Kundenbetrieb erfassen, als Sync-Paket übergeben und beim Kunden den eigenen Schlägen zuordnen."
+  },
+  {
+   "id": "V2-07",
+   "meilenstein": "V2",
+   "bereich": "modul-ackerbau",
+   "titel": "Bodenproben und Phosphat-Hinweis (GLÖZ 10)",
+   "ziel": "Bodenuntersuchungen sind gespeichert; die App warnt, wenn ein P-Nachweis nötig wird.",
+   "kriterien": [
+    "Bodenprobe je Schlag/Feldstück mit Datum und Werten",
+    "Hinweis, wenn zusätzlich zu Wirtschaftsdünger mehr als 100 kg P₂O₅/ha mineralisch gedüngt wird und keine Probe jünger als 5 Jahre vorliegt"
+   ],
+   "abhaengig": [
+    "MVP-14"
+   ],
+   "quellen": [
+    "docs/rechtsgrundlagen.md#71-eigene-aufzeichnungspflichten-aus-glöz"
+   ],
+   "prompt": "Setze V2-07 aus docs/roadmap.md um: Ergänze Bodenproben im Datenmodell (Schema-Änderung) und baue Erfassung sowie den GLÖZ-10-Hinweis (mehr als 100 kg P₂O₅/ha mineralisch zusätzlich zu Wirtschaftsdünger ohne Bodenprobe jünger als 5 Jahre).",
+   "stand": {
+    "status": "erledigt",
+    "version": "0.5.0",
+    "text": "Modul boden: Gehaltsklassen, Karte, CSV-Import, Hinweis Probe älter als 5 Jahre (GLÖZ 10)."
+   }
+  },
+  {
+   "id": "V2-08",
+   "meilenstein": "V2",
+   "bereich": "auswertung",
+   "titel": "Auswertungen: Kosten, Arbeitszeit, Deckungsbeitrag",
+   "ziel": "Einfache betriebswirtschaftliche Auswertungen aus vorhandenen Daten.",
+   "kriterien": [
+    "Preise an Betriebsmitteln, Arbeitszeit an Maßnahmen (optional)",
+    "Kosten je Schlag und Kultur; einfacher Deckungsbeitrag mit Erlös",
+    "Keine Pflichtfelder – alles freiwillig"
+   ],
+   "abhaengig": [
+    "V2-03"
+   ],
+   "quellen": [
+    "docs/funktionsumfang.md"
+   ],
+   "prompt": "Setze V2-08 aus docs/roadmap.md um: Ergänze freiwillige Preis- und Arbeitszeitangaben und baue eine einfache Auswertung der Kosten je Schlag und Kultur sowie einen einfachen Deckungsbeitrag."
+  },
+  {
+   "id": "V2-09",
+   "meilenstein": "V2",
+   "bereich": "export",
+   "titel": "Export für Precision Farming (ISOXML/Shape)",
+   "ziel": "Schlaggrenzen und Aufträge können an Traktorterminals übergeben werden.",
+   "kriterien": [
+    "Recherche: offene Spezifikation/Lizenz von ISOXML (ISO 11783-10), Mindestumfang",
+    "Export der Schlaggrenzen; optional Auftrag mit Aufwandmenge"
+   ],
+   "abhaengig": [
+    "V1-02"
+   ],
+   "quellen": [
+    "docs/funktionsumfang.md"
+   ],
+   "prompt": "Setze V2-09 aus docs/roadmap.md um: Recherchiere, welcher Mindestumfang von ISOXML (ISO 11783-10) bzw. Shapefile für den Export von Schlaggrenzen nötig und lizenzrechtlich unproblematisch ist, und baue den Export der Schlaggrenzen."
+  }
+ ]
+}

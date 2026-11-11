@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/kultur.schema.json",
+  "title": "Kultur",
+  "description": "Katalogeintrag einer Kulturart. Ohne betrieb_id = mitgelieferter globaler Katalog; mit betrieb_id = eigener Eintrag des Betriebs.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kategorie": {
+      "enum": [
+        "getreide",
+        "mais",
+        "oelfrucht",
+        "leguminose",
+        "hackfrucht",
+        "gemuese",
+        "feldfutter",
+        "gruenland",
+        "zwischenfrucht",
+        "dauerkultur",
+        "brache",
+        "landschaftselement",
+        "sonstige"
+      ]
+    },
+    "eppo_code": {
+      "type": "string",
+      "pattern": "^[0-9A-Z]{5,6}$",
+      "description": "EPPO-Code, sofern zutreffend (PSM-Aufzeichnung)"
+    },
+    "mfa_code": {
+      "type": "string",
+      "description": "Code der Schlagnutzungsart (SNAR) laut Mehrfachantrag/INVEKOS, z. B. '138' = Winterweichweizen"
+    },
+    "napv_kulturgruppe": {
+      "type": "string",
+      "description": "Verweis auf die Kulturgruppe in /rules/napv (N-Bedarf je Ertragslage)"
+    },
+    "amtlicher_name": {
+      "type": "string",
+      "description": "Bezeichnung laut INVEKOS (Großbuchstaben)"
+    }
+  },
+  "required": [
+    "name",
+    "kategorie"
+  ],
+  "unevaluatedProperties": false
+}

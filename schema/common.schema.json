@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/common.schema.json",
+  "title": "AGRARDOK+ – gemeinsame Bausteine",
+  "description": "Wiederverwendbare Definitionen für alle Entitäten. Jede Entität bindet 'basis' über allOf ein.",
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "description": "Weltweit eindeutige ID, offline am Gerät erzeugt (UUID).",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "datum": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "uhrzeit": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "zeitpunkt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 mit Zeitzone, z. B. 2026-04-20T07:30:00+02:00"
+    },
+    "hlc": {
+      "type": "string",
+      "description": "Hybrid Logical Clock für die Synchronisation: <UTC-Zeit>-<Zähler>-<Geräte-ID-Kurzform>. Lexikografisch sortierbar.",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z-[0-9]{4}-[0-9a-f]{8}$"
+    },
+    "jahr": {
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "flaeche_ha": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Fläche in Hektar"
+    },
+    "bundesland": {
+      "type": "string",
+      "enum": ["B", "K", "NOE", "OOE", "S", "ST", "T", "V", "W"],
+      "description": "Burgenland, Kärnten, Niederösterreich, Oberösterreich, Salzburg, Steiermark, Tirol, Vorarlberg, Wien – bestimmt u. a. das anzuwendende Landes-Pflanzenschutzrecht."
+    },
+    "betriebsnummer": {
+      "type": "string",
+      "pattern": "^[0-9]{7}$",
+      "description": "LFBIS-Betriebsnummer, 7 Ziffern (WKO-Rundschreiben Tiertransport März 2024; offizielle Formatbeschreibung von Statistik Austria noch nicht gefunden)."
+    },
+    "einheit": {
+      "type": "string",
+      "enum": ["g", "kg", "dt", "t", "ml", "l", "m3", "stk"]
+    },
+    "einheit_je_flaeche": {
+      "type": "string",
+      "enum": ["kg_je_ha", "dt_je_ha", "t_je_ha", "l_je_ha", "m3_je_ha", "stk_je_ha", "kg_je_m2", "l_je_m2", "l_je_m3", "kg_je_t_saatgut", "l_je_t_saatgut"]
+    },
+    "menge": {
+      "type": "object",
+      "properties": {
+        "wert": { "type": "number", "minimum": 0 },
+        "einheit": { "$ref": "#/$defs/einheit" }
+      },
+      "required": ["wert", "einheit"],
+      "additionalProperties": false
+    },
+    "aufwand": {
+      "type": "object",
+      "description": "Menge je Flächen-, Raum- oder Saatguteinheit.",
+      "properties": {
+        "wert": { "type": "number", "minimum": 0 },
+        "einheit": { "$ref": "#/$defs/einheit_je_flaeche" }
+      },
+      "required": ["wert", "einheit"],
+      "additionalProperties": false
+    },
+    "adresse": {
+      "type": "object",
+      "properties": {
+        "strasse": { "type": "string" },
+        "plz": { "type": "string", "pattern": "^[0-9]{4}$" },
+        "ort": { "type": "string" },
+        "land": { "type": "string", "default": "AT" }
+      },
+      "additionalProperties": false
+    },
+    "geometrie": {
+      "type": "object",
+      "description": "GeoJSON-Geometrie (WGS84, [Länge, Breite]). Import/Export als GeoJSON-Feature.",
+      "properties": {
+        "type": { "enum": ["Polygon", "MultiPolygon"] },
+        "coordinates": { "type": "array", "minItems": 1 }
+      },
+      "required": ["type", "coordinates"]
+    },
+    "basis": {
+      "type": "object",
+      "description": "Felder, die jeder Datensatz hat. Sie machen spätere Synchronisation möglich, ohne das Modell zu ändern.",
+      "properties": {
+        "id": { "$ref": "#/$defs/uuid" },
+        "betrieb_id": { "$ref": "#/$defs/uuid", "description": "Zugehöriger Betrieb. Fehlt nur bei globalen Katalogeinträgen (z. B. Kulturen)." },
+        "erstellt_am": { "$ref": "#/$defs/zeitpunkt" },
+        "erstellt_von": { "$ref": "#/$defs/uuid", "description": "Person-ID" },
+        "geaendert_am": { "$ref": "#/$defs/zeitpunkt" },
+        "geaendert_von": { "$ref": "#/$defs/uuid", "description": "Person-ID" },
+        "geraet_id": { "$ref": "#/$defs/uuid", "description": "Gerät, auf dem zuletzt geändert wurde" },
+        "hlc": { "$ref": "#/$defs/hlc" },
+        "rev": { "type": "integer", "minimum": 1, "description": "Wird bei jeder Änderung um 1 erhöht" },
+        "geloescht": { "type": "boolean", "default": false, "description": "Löschmarke (Tombstone). Datensätze werden für die Synchronisation nie physisch gelöscht." },
+        "notiz": { "type": "string" }
+      },
+      "required": ["id", "erstellt_am", "geaendert_am", "rev"]
+    }
+  }
+}

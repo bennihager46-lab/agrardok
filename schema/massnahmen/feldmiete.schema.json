@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/feldmiete.schema.json",
+  "title": "Details: Feldmiete",
+  "description": "NAPV § 9 Abs. 7: Datum der Anlage (= datum), Schlag, Datum der Räumung (= datum_ende), jeweils binnen 14 Tagen.",
+  "type": "object",
+  "properties": {
+    "betriebsmittel_id": { "$ref": "../common.schema.json#/$defs/uuid" },
+    "menge": { "$ref": "../common.schema.json#/$defs/menge" }
+  },
+  "additionalProperties": false
+}

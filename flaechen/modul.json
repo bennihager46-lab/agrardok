@@ -1,0 +1,12 @@
+{
+  "id": "flaechen",
+  "name": "Flächen",
+  "version": "0.3.0",
+  "beschreibung": "Feldstücke und Schläge je Antragsjahr mit Kultur, Vorfrucht, Boden, Hangneigung und Gewässernähe; Kartenansicht; Import aus dem eAMA-GIS-Export (Shapefile/ZIP) und GeoJSON.",
+  "schreibt": ["feldstueck", "schlag", "kultur"],
+  "liest": ["betrieb", "feldstueck", "schlag", "kultur"],
+  "regeln": ["kulturen", "import/eama-gis", "napv/aufzeichnungspflicht"],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["flaechen", "feldstueck", "schlag", "flaechen-import"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "betriebsmittel",
+  "name": "Betriebsmittel",
+  "version": "0.4.0",
+  "beschreibung": "Dünger (mineralisch, Wirtschaftsdünger inkl. Übernahme laut Düngerabgabevertrag), Pflanzenschutzmittel (Zulassung, Fristen, Wirkstoffe, Indikationen, Auflagen), Saatgut, Tierarzneimittel mit Wartezeiten; Düngervorlagen; zuletzt verwendete oben.",
+  "schreibt": ["betriebsmittel"],
+  "liest": ["betrieb", "betriebsmittel", "massnahme", "kultur"],
+  "regeln": ["betriebsmittel/duenger-vorlagen", "kulturen"],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["betriebsmittel", "betriebsmittel-neu", "betriebsmittel-eintrag"]
+}

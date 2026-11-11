@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/aussaat.schema.json",
+  "title": "Details: Aussaat / Anbau",
+  "description": "Anbaudatum (NAPV § 9 Abs. 6 Z 4; ÖPUL Immergrün: Anlage Zwischenfrucht bzw. Folgekultur).",
+  "type": "object",
+  "properties": {
+    "kultur_id": {
+      "$ref": "../common.schema.json#/$defs/uuid"
+    },
+    "kultur_name": {
+      "type": "string"
+    },
+    "zwischenfrucht": {
+      "type": "boolean",
+      "default": false
+    },
+    "sorte": {
+      "type": "string"
+    },
+    "saatgut_betriebsmittel_id": {
+      "$ref": "../common.schema.json#/$defs/uuid"
+    },
+    "saatmenge": {
+      "$ref": "../common.schema.json#/$defs/aufwand"
+    },
+    "begruenung_variante": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 7,
+      "description": "ÖPUL Zwischenfruchtanbau: Begrünungsvariante laut Mehrfachantrag"
+    },
+    "untersaat": {
+      "type": "boolean"
+    },
+    "mischungspartner": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Anzahl der Mischungspartner (ÖPUL-Begrünung)"
+    }
+  },
+  "required": [
+    "kultur_id",
+    "kultur_name"
+  ],
+  "additionalProperties": false
+}

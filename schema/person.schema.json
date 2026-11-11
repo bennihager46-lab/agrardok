@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/person.schema.json",
+  "title": "Person",
+  "description": "Person am oder für den Betrieb: Familie, Mitarbeitende, Lohnunternehmer, Tierärztin/Tierarzt.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "rolle": {
+      "enum": [
+        "betriebsleitung",
+        "familie",
+        "mitarbeit",
+        "lohnunternehmer",
+        "tierarzt",
+        "sonstige"
+      ]
+    },
+    "telefon": {
+      "type": "string"
+    },
+    "adresse": {
+      "$ref": "common.schema.json#/$defs/adresse"
+    },
+    "betriebsnummer": {
+      "$ref": "common.schema.json#/$defs/betriebsnummer",
+      "description": "Bei Lohnunternehmern bzw. Partnerbetrieben"
+    },
+    "psm_ausbildungsbescheinigung": {
+      "type": "object",
+      "description": "Sachkundeausweis für berufliche PSM-Verwender (Ausbildungsbescheinigung), bei Kontrollen vorzulegen. Nummer und Ablaufdatum gehören zusammen.",
+      "properties": {
+        "nummer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "bundesland": {
+          "$ref": "common.schema.json#/$defs/bundesland"
+        },
+        "gueltig_bis": {
+          "$ref": "common.schema.json#/$defs/datum"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "nummer",
+        "gueltig_bis"
+      ]
+    },
+    "aktiv": {
+      "type": "boolean",
+      "default": true
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "name",
+    "rolle"
+  ],
+  "unevaluatedProperties": false
+}

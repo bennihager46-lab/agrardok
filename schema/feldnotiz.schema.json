@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/feldnotiz.schema.json",
+  "title": "Feldnotiz",
+  "description": "Beobachtung bei einer Feldbegehung: Text, Fotos, GPS-Position; automatisch dem Schlag zugeordnet, in dem die Position liegt.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "zeitpunkt": {
+      "$ref": "common.schema.json#/$defs/zeitpunkt"
+    },
+    "kategorie": {
+      "enum": [
+        "beobachtung",
+        "unkraut",
+        "krankheit",
+        "schaedling",
+        "wild",
+        "schaden",
+        "bestand",
+        "sonstiges"
+      ]
+    },
+    "text": {
+      "type": "string"
+    },
+    "position": {
+      "type": "object",
+      "properties": {
+        "breite": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "laenge": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "genauigkeit_m": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "breite",
+        "laenge"
+      ],
+      "additionalProperties": false
+    },
+    "schlag_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "feldstueck_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "anhang_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      }
+    },
+    "erledigt": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "zeitpunkt"
+  ],
+  "unevaluatedProperties": false
+}

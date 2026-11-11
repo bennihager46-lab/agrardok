@@ -1,0 +1,12 @@
+{
+  "id": "oepul",
+  "name": "ÖPUL",
+  "version": "0.5.0",
+  "beschreibung": "Zeigt nur die ÖPUL-Maßnahmen des Betriebs: Zwischenfruchtanbau (Variante, Begrünungszeitraum, Umbruch), System Immergrün (Lücken ohne Begrünung), bodennahe Ausbringung, Grundwasserschutz; Fristenkalender aus allen Modulen mit lokalen Erinnerungen.",
+  "massnahmen_arten": [],
+  "liest": ["betrieb", "schlag", "feldstueck", "kultur", "massnahme"],
+  "regeln": ["oepul/massnahmen", "oepul/begruenung"],
+  "aktiv_wenn": "oepul",
+  "einstieg": "index.js",
+  "routen": ["oepul", "fristen"]
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/bodenprobe.schema.json",
+  "title": "Bodenprobe",
+  "description": "Ergebnis einer Bodenuntersuchung. Gehalte in mg Reinnährstoff je 1.000 g Feinboden (CAL bzw. CaCl2) wie in den Richtlinien für die sachgerechte Düngung; Gehaltsklassen werden daraus berechnet (Momentaufnahme).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "feldstueck_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "schlag_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "datum": {
+      "$ref": "common.schema.json#/$defs/datum",
+      "description": "Tag der Probenahme"
+    },
+    "labor": {
+      "type": "string"
+    },
+    "probennummer": {
+      "type": "string"
+    },
+    "tiefe_cm": {
+      "type": "string",
+      "description": "z. B. 0–30 oder 0–10"
+    },
+    "nutzung": {
+      "enum": [
+        "acker",
+        "gruenland"
+      ]
+    },
+    "bodenschwere": {
+      "enum": [
+        "leicht",
+        "mittel",
+        "schwer"
+      ],
+      "description": "Tongehalt < 15 / 15–25 / > 25 %"
+    },
+    "ton_prozent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "ph": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 14
+    },
+    "p_mg_kg": {
+      "type": "number",
+      "minimum": 0,
+      "description": "mg P/1.000 g (CAL)"
+    },
+    "k_mg_kg": {
+      "type": "number",
+      "minimum": 0,
+      "description": "mg K/1.000 g (CAL)"
+    },
+    "mg_mg_kg": {
+      "type": "number",
+      "minimum": 0,
+      "description": "mg Mg/1.000 g"
+    },
+    "humus_prozent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "nmin_kg_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "gehaltsklassen": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        "k": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        "mg": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "anhang_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      }
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "feldstueck_id",
+    "datum"
+  ],
+  "unevaluatedProperties": false
+}

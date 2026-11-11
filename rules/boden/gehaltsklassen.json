@@ -1,0 +1,244 @@
+{
+ "name": "boden/gehaltsklassen",
+ "titel": "Einstufung von Bodenuntersuchungen und Richtwerte für die P- und K-Düngung",
+ "quelle": "https://www.bmluk.gv.at/dam/jcr:6e638ac4-6dd2-441d-8e51-9304966230cf/Richtlinien%20f%C3%BCr%20die%20sachgerechte%20D%C3%BCngung%20im%20Ackerbau%20und%20Gr%C3%BCnland_akt.pdf",
+ "quelle_text": "BML (Hg.): Richtlinien für die sachgerechte Düngung im Ackerbau und Grünland, 8. Auflage, aktualisierte Version 2023, Stand 18.02.2025 – Tabellen 7, 8, 14, 16, 17, 42, 43 (auszugsweise, mit Quellenangabe)",
+ "gueltig_ab": "2025-02-18",
+ "gueltig_bis": null,
+ "stand": "2026-11-11",
+ "status": "fachempfehlung",
+ "hinweise": [
+  "Fachliche Richtlinie, keine Rechtsvorschrift. Werte in mg Reinnährstoff je 1.000 g Feinboden (P, K: CAL-Extrakt nach ÖNORM L 1087; Mg: CaCl2 nach ÖNORM L 1093); pH in CaCl2.",
+  "Vereinfachung der App bei den Korrekturfaktoren (Tabelle 43): Klasse C wird nicht in C1/C2 unterteilt (Faktor 1), Klasse D ergibt 0 – der Faktor 0,5 für D1 (wasserlöslicher P unter dem Mindestgehalt, > 15 % Ton) und die Erleichterungen bei schweren Böden werden nur als Hinweis angezeigt.",
+  "Für die Klassen C, D und E ist eine Nährstoffzufuhr durch hofeigene Wirtschaftsdünger in Höhe des Pflanzenentzugs tolerierbar (Richtlinie S. 91)."
+ ],
+ "werte": {
+  "klassen_text": {
+   "A": "sehr niedrig",
+   "B": "niedrig",
+   "C": "ausreichend",
+   "D": "hoch",
+   "E": "sehr hoch"
+  },
+  "phosphor": {
+   "acker": [
+    26,
+    47,
+    112,
+    175
+   ],
+   "gruenland": [
+    26,
+    47,
+    69,
+    175
+   ],
+   "$comment": "Untergrenzen der Klassen B, C, D, E in mg P/1.000 g (Tabelle 14): A < 26, B 26–46, C 47–111 (Grünland 47–68), D 112–174 (69–174), E > 174"
+  },
+  "kalium": {
+   "acker": {
+    "leicht": [
+     50,
+     88,
+     179,
+     292
+    ],
+    "mittel": [
+     66,
+     113,
+     213,
+     333
+    ],
+    "schwer": [
+     83,
+     138,
+     246,
+     375
+    ]
+   },
+   "gruenland": [
+    50,
+    88,
+    171,
+    333
+   ],
+   "$comment": "Tabelle 16, Bodenschwere nach Tongehalt < 15 / 15–25 / > 25 %"
+  },
+  "magnesium": {
+   "leicht": [
+    0,
+    50,
+    76,
+    151
+   ],
+   "mittel": [
+    30,
+    56,
+    106,
+    191
+   ],
+   "schwer": [
+    40,
+    76,
+    136,
+    221
+   ],
+   "$comment": "Tabelle 17; bei leichten Böden gibt es keine Klasse A"
+  },
+  "ph_reaktion": [
+   {
+    "bis": 4.1,
+    "text": "stark sauer"
+   },
+   {
+    "bis": 5.5,
+    "text": "sauer"
+   },
+   {
+    "bis": 6.5,
+    "text": "schwach sauer"
+   },
+   {
+    "bis": 7.2,
+    "text": "neutral"
+   },
+   {
+    "bis": 8.0,
+    "text": "alkalisch"
+   },
+   {
+    "bis": 14,
+    "text": "stark alkalisch"
+   }
+  ],
+  "ph_ziel": {
+   "acker_hafer_roggen_kartoffel": {
+    "leicht": 5.0,
+    "mittel": 5.5,
+    "schwer": 6.0
+   },
+   "acker_uebrige": {
+    "leicht": 5.5,
+    "mittel": 6.0,
+    "schwer": 6.5
+   },
+   "gruenland": {
+    "leicht": 5.0,
+    "mittel": 5.5,
+    "schwer": 6.0
+   }
+  },
+  "ph_ziel_text": "Tabelle 8: Acker „über“ dem Wert, Grünland „um“ den Wert",
+  "korrekturfaktor": {
+   "A": 1.5,
+   "B": 1.25,
+   "C": 1.0,
+   "D": 0,
+   "E": 0
+  },
+  "richtwerte_klasse_c": {
+   "$comment": "Tabelle 42, kg P2O5 bzw. K2O je ha und Jahr; Schlüssel = Zeilen aus rules/napv/duengung.json",
+   "weizen_rp_ab14": [
+    55,
+    80
+   ],
+   "weizen_rp_unter14": [
+    55,
+    80
+   ],
+   "durum": [
+    55,
+    80
+   ],
+   "roggen": [
+    55,
+    80
+   ],
+   "dinkel": [
+    55,
+    80
+   ],
+   "winterfuttergerste": [
+    55,
+    80
+   ],
+   "winterbraugerste": [
+    55,
+    80
+   ],
+   "triticale": [
+    55,
+    80
+   ],
+   "sommerfuttergerste": [
+    55,
+    80
+   ],
+   "sommerbraugerste": [
+    55,
+    80
+   ],
+   "hafer": [
+    55,
+    80
+   ],
+   "koernermais": [
+    85,
+    200
+   ],
+   "silomais": [
+    90,
+    225
+   ],
+   "zuckerruebe": [
+    85,
+    320
+   ],
+   "futterruebe": [
+    85,
+    320
+   ],
+   "kartoffel": [
+    65,
+    200
+   ],
+   "fruehkartoffel": [
+    60,
+    180
+   ],
+   "koernerhirse": [
+    85,
+    210
+   ],
+   "silohirse": [
+    95,
+    375
+   ],
+   "leguminosen": [
+    65,
+    100
+   ],
+   "raps": [
+    75,
+    200
+   ],
+   "sonnenblume": [
+    65,
+    200
+   ],
+   "oelkuerbis": [
+    50,
+    180
+   ],
+   "zwischenfrucht_mit_leguminosen": [
+    25,
+    80
+   ],
+   "zwischenfrucht_ohne_leguminosen": [
+    25,
+    80
+   ]
+  },
+  "leguminosen_hinweis": "Für Soja/Erbse/Ackerbohne nennt Tabelle 42 eigene Werte (Erbse 65/100, Ackerbohne 65/120, Soja 65/90); die App nimmt Erbse."
+ }
+}

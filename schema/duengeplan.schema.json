@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/duengeplan.schema.json",
+  "title": "Düngeplan",
+  "description": "Düngeplanung je Schlag und Jahr nach NAPV Anlage 3 (Obergrenze jahreswirksamer N je Kultur und Ertragslage, abzüglich Vorfruchtwirkung, Bewässerung, ggf. Nmin). Werte sind eine Momentaufnahme der Berechnung; 'regeln' nennt die Regeldatei samt Stand.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "schlag_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "jahr": {
+      "$ref": "common.schema.json#/$defs/jahr"
+    },
+    "napv_kultur": {
+      "type": "string",
+      "description": "Zeile aus rules/napv/duengung.json (obergrenzen_acker bzw. obergrenzen_gruenland)"
+    },
+    "ertragslage": {
+      "enum": [
+        "niedrig",
+        "mittel",
+        "hoch",
+        "hoch_1",
+        "hoch_2",
+        "hoch_3"
+      ],
+      "description": "Acker: niedrig/mittel/hoch_1–3; Grünland und Ackerfutter: niedrig/mittel/hoch"
+    },
+    "erwarteter_ertrag_t_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "anlage5": {
+      "type": "boolean",
+      "description": "Gebiet nach Anlage 5 NAPV (strengere Tabelle 2)"
+    },
+    "obergrenze_kg_n_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "vorfrucht_wirkung": {
+      "type": "string",
+      "description": "Zeile aus rules/napv/duengung.json vorfruchtwirkung"
+    },
+    "vorfrucht_kg_n_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bewaesserung_kg_n_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "nmin_kg_n_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "n_bedarf_kg_ha": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Höchstens zulässige jahreswirksame N-Düngung"
+    },
+    "p2o5_empfehlung_kg_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "k2o_empfehlung_kg_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bodenprobe_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "regeln": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_/-]+@[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "leguminosen_ausnahme": {
+      "type": "boolean",
+      "description": "Soja/Erbse/Bohne: nicht beimpftes Saatgut, mangelhafter Knöllchenbesatz oder erstmaliger Anbau"
+    },
+    "gunstlage": {
+      "type": "boolean",
+      "description": "Grünland/Ackerfutter: intensiv genutzte Gunstlage (höherer Wert laut Anlage 3 Abschnitt VI)"
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "schlag_id",
+    "jahr"
+  ],
+  "unevaluatedProperties": false
+}

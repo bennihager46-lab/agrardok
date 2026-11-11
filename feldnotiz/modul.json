@@ -1,0 +1,12 @@
+{
+  "id": "feldnotiz",
+  "name": "Feldnotiz",
+  "version": "0.5.0",
+  "beschreibung": "Feldbegehung: GPS-Position mit automatischer Zuordnung zum Schlag, in dem man steht; Fotos (verkleinert, lokal gespeichert); Text oder Spracheingabe (Web Speech API, Rückfall Tippen); offen/erledigt.",
+  "schreibt": ["feldnotiz", "anhang"],
+  "liest": ["betrieb", "schlag", "feldstueck", "kultur"],
+  "regeln": [],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["feldnotizen", "feldnotiz"]
+}

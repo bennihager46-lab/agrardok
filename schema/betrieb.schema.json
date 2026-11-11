@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/betrieb.schema.json",
+  "title": "Betrieb",
+  "description": "Landwirtschaftlicher Betrieb. Wurzel aller anderen Datensätze (betrieb_id).",
+  "type": "object",
+  "allOf": [
+    { "$ref": "common.schema.json#/$defs/basis" },
+    {
+      "$comment": "Biobetriebe und Betriebe in Umstellung brauchen eine Kontrollstelle.",
+      "if": { "properties": { "bewirtschaftung": { "enum": ["bio", "umstellung"] } }, "required": ["bewirtschaftung"] },
+      "then": { "required": ["bio_kontrollstelle"] }
+    }
+  ],
+  "properties": {
+    "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "betriebsnummer": { "$ref": "common.schema.json#/$defs/betriebsnummer" },
+    "vis_registriernummer": { "type": "string", "description": "Registriernummer im Veterinärinformationssystem (Tierhaltung)" },
+    "adresse": { "$ref": "common.schema.json#/$defs/adresse" },
+    "bundesland": { "$ref": "common.schema.json#/$defs/bundesland" },
+    "bewirtschafter": {
+      "type": "object",
+      "description": "Wer den Betrieb führt (Antragsteller:in im Mehrfachantrag): Einzelperson, Ehegemeinschaft, Personengemeinschaft oder juristische Person.",
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "rechtsform": { "enum": ["einzelperson", "ehegemeinschaft", "personengemeinschaft", "juristische_person"] },
+        "person_id": { "$ref": "common.schema.json#/$defs/uuid", "description": "Optional: Verweis auf die Person am Betrieb" }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "bewirtschaftung": { "enum": ["konventionell", "bio", "umstellung"] },
+    "bio_kontrollstelle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Code und/oder Name der Bio-Kontrollstelle, z. B. 'AT-BIO-401 BIOS'"
+    },
+    "napv_gebiet_anlage5": {
+      "type": "boolean",
+      "description": "Hauptbetriebssitz in einem Gebiet nach Anlage 5 NAPV (verstärkte Aktionen, schlagbezogene Aufzeichnungen). Fehlt = unbekannt."
+    },
+    "oepul_massnahmen": {
+      "type": "array",
+      "description": "Codes der ÖPUL-Maßnahmen aus rules/oepul/massnahmen.json, an denen der Betrieb teilnimmt.",
+      "items": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+      "uniqueItems": true
+    }
+  },
+  "required": ["betrieb_id", "name", "bundesland"],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,599 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/betriebsmittel.schema.json",
+  "title": "Betriebsmittel",
+  "description": "Dünger, Pflanzenschutzmittel, Saatgut, Futtermittel, Tierarzneimittel, Biozide. Artspezifische Angaben in eigenen Unterobjekten. Seit 0.4: Fristen und Indikationen bei PSM, Übernahme-Angaben bei Wirtschaftsdünger.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    },
+    {
+      "$comment": "PSM brauchen die Zulassungsnummer (Anhang DVO (EU) 2023/564).",
+      "if": {
+        "properties": {
+          "art": {
+            "const": "psm"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "required": [
+          "psm"
+        ]
+      }
+    },
+    {
+      "$comment": "Dünger brauchen Nährstoffgehalte für die NAPV-Berechnung.",
+      "if": {
+        "properties": {
+          "art": {
+            "enum": [
+              "mineralduenger",
+              "wirtschaftsduenger",
+              "organischer_duenger"
+            ]
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "required": [
+          "duenger"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "art": {
+      "enum": [
+        "mineralduenger",
+        "wirtschaftsduenger",
+        "organischer_duenger",
+        "psm",
+        "saatgut",
+        "futtermittel",
+        "tierarzneimittel",
+        "biozid",
+        "sonstiges"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hersteller": {
+      "type": "string",
+      "description": "Hersteller bzw. Zulassungsinhaber"
+    },
+    "lieferant": {
+      "type": "string",
+      "description": "Bezugsquelle (Lagerhaus, Händler, Tierarzt …)"
+    },
+    "grundeinheit": {
+      "$ref": "common.schema.json#/$defs/einheit"
+    },
+    "bio_tauglich": {
+      "type": "boolean",
+      "description": "Laut Betriebsmittelkatalog/Nachweis für Biobetriebe zulässig"
+    },
+    "aktiv": {
+      "type": "boolean",
+      "default": true,
+      "description": "false = wird nicht mehr verwendet; bleibt für frühere Aufzeichnungen erhalten"
+    },
+    "vorlage": {
+      "type": "string",
+      "description": "ID der Vorlage aus rules/betriebsmittel/duenger-vorlagen.json, aus der der Eintrag erstellt wurde"
+    },
+    "duenger": {
+      "type": "object",
+      "properties": {
+        "bezug": {
+          "enum": [
+            "prozent",
+            "kg_je_m3",
+            "kg_je_t"
+          ],
+          "description": "Worauf sich die Nährstoffgehalte beziehen"
+        },
+        "n_gesamt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "nh4_n": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Ammonium-N (v. a. bei Gülle/Gärrest; Grundlage für jahreswirksames N)"
+        },
+        "p2o5": {
+          "type": "number",
+          "minimum": 0
+        },
+        "k2o": {
+          "type": "number",
+          "minimum": 0
+        },
+        "s": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Schwefel als S"
+        },
+        "mgo": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cao": {
+          "type": "number",
+          "minimum": 0
+        },
+        "trockenmasse_prozent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "dichte_kg_je_l": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Für Flüssigdünger, deren Gehalt in % angegeben ist und die in l ausgebracht werden (z. B. AHL)"
+        },
+        "gehalte_quelle": {
+          "enum": [
+            "deklaration",
+            "analyse",
+            "richtwert",
+            "schaetzung"
+          ],
+          "description": "Woher die Gehalte stammen: Sackaufdruck/Lieferschein, Laboranalyse, Richtwert (z. B. Richtlinien für die sachgerechte Düngung), Schätzung"
+        },
+        "analyse_datum": {
+          "$ref": "common.schema.json#/$defs/datum"
+        },
+        "herkunft": {
+          "enum": [
+            "eigen",
+            "zukauf",
+            "uebernahme"
+          ],
+          "description": "Bei Wirtschaftsdünger: am Betrieb angefallen, zugekauft oder übernommen (NAPV § 8 Abs. 1 Z 2)"
+        },
+        "tierart_quelle": {
+          "type": "string",
+          "description": "z. B. Rind, Schwein – für Anfallswerte laut NAPV Anlage 4"
+        },
+        "uebernahme": {
+          "type": "object",
+          "description": "Angaben aus dem Düngerabgabevertrag bzw. Lieferschein, wenn Wirtschaftsdünger von einem anderen Betrieb übernommen wird. Nachweise 7 Jahre aufbewahren (NAPV § 9 Abs. 3 für Anlage-5-Gebiete).",
+          "properties": {
+            "partner_name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Abgebender Betrieb"
+            },
+            "partner_betriebsnummer": {
+              "$ref": "common.schema.json#/$defs/betriebsnummer"
+            },
+            "partner_adresse": {
+              "type": "string"
+            },
+            "vertrag_datum": {
+              "$ref": "common.schema.json#/$defs/datum"
+            },
+            "zeitraum_von": {
+              "$ref": "common.schema.json#/$defs/datum"
+            },
+            "zeitraum_bis": {
+              "$ref": "common.schema.json#/$defs/datum"
+            },
+            "menge": {
+              "$ref": "common.schema.json#/$defs/menge",
+              "description": "Vereinbarte bzw. übernommene Gesamtmenge"
+            },
+            "n_kg": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Stickstoff gesamt in der übernommenen Menge (kg N)"
+            },
+            "p2o5_kg": {
+              "type": "number",
+              "minimum": 0
+            },
+            "beleg": {
+              "type": "string",
+              "description": "Vertrags- oder Lieferscheinnummer"
+            }
+          },
+          "required": [
+            "partner_name"
+          ],
+          "additionalProperties": false
+        },
+        "napv_typ": {
+          "enum": [
+            "mineralisch",
+            "rinderguelle",
+            "schweineguelle",
+            "huehnerguelle",
+            "jauche",
+            "biogasguelle_rind",
+            "biogasguelle_schwein",
+            "stallmist",
+            "rottemist",
+            "kompost",
+            "huehnertrockenkot"
+          ],
+          "description": "Düngerart für Löslichkeit, Ausbringungsverluste und Jahreswirksamkeit (rules/napv/duengung.json, § 1 Z 8, 9, 14 NAPV)"
+        }
+      },
+      "required": [
+        "bezug",
+        "n_gesamt"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "herkunft": {
+                "const": "uebernahme"
+              }
+            },
+            "required": [
+              "herkunft"
+            ]
+          },
+          "then": {
+            "required": [
+              "uebernahme"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "psm": {
+      "type": "object",
+      "description": "Angaben aus dem Pflanzenschutzmittelregister des BAES bzw. vom Etikett, von Hand übernommen (das Register ist keine offene Datenquelle, siehe docs/rechtsgrundlagen.md 2.5).",
+      "properties": {
+        "zulassungsnummer": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Pflanzenschutzmittelregister-Nummer, z. B. 3067-0"
+        },
+        "funktion": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "z. B. Herbizid, Fungizid, Insektizid"
+        },
+        "formulierung": {
+          "type": "string",
+          "description": "z. B. EC, SC, WG"
+        },
+        "wirkstoffe": {
+          "type": "array",
+          "items": {
+            "$comment": "Bis 0.3 nur der Name als Text; beide Formen bleiben gültig.",
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "gehalt": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "einheit": {
+                    "type": "string",
+                    "description": "z. B. g/l, g/kg, %"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "zulassung_gueltig_bis": {
+          "$ref": "common.schema.json#/$defs/datum"
+        },
+        "abverkauf_bis": {
+          "$ref": "common.schema.json#/$defs/datum",
+          "description": "Abverkaufsfrist (Handel)"
+        },
+        "aufbrauch_bis": {
+          "$ref": "common.schema.json#/$defs/datum",
+          "description": "Aufbrauchfrist: bis dahin darf das Mittel noch verwendet werden"
+        },
+        "bienengefaehrlich": {
+          "type": "boolean",
+          "description": "Dann Uhrzeit (Beginn/Ende) aufzeichnen"
+        },
+        "geringes_risiko": {
+          "type": "boolean",
+          "description": "Pflanzenschutzmittel mit geringem Risiko (Art. 47 VO (EG) 1107/2009)"
+        },
+        "gefahrenhinweise": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "H-Sätze, z. B. H411"
+        },
+        "auflagen": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "art": {
+                "enum": [
+                  "gewaesser",
+                  "nichtzielflaeche",
+                  "bienen",
+                  "anwenderschutz",
+                  "grundwasser",
+                  "sonstige"
+                ]
+              },
+              "code": {
+                "type": "string",
+                "description": "z. B. SPe 3"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "abstand_m": {
+                "type": "number",
+                "minimum": 0
+              },
+              "abdriftminderung_prozent": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99,
+                "description": "Abstand gilt bei Geräten dieser Abdriftminderungsklasse"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "indikationen": {
+          "type": "array",
+          "description": "Für den Betrieb wichtige zugelassene Anwendungen",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nr": {
+                "type": "string"
+              },
+              "kulturen": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Wie im Register, z. B. „Winterweichweizen (TRZAW)“"
+              },
+              "eppo_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[0-9A-Z]{5}$"
+                },
+                "description": "Aus „kulturen“ gelesen"
+              },
+              "schaderreger": {
+                "type": "string"
+              },
+              "aufwand": {
+                "$ref": "common.schema.json#/$defs/aufwand",
+                "description": "Höchste zugelassene Aufwandmenge je Anwendung"
+              },
+              "wasser_l_je_ha_von": {
+                "type": "number",
+                "minimum": 0
+              },
+              "wasser_l_je_ha_bis": {
+                "type": "number",
+                "minimum": 0
+              },
+              "max_anwendungen": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "abstand_tage": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Mindestabstand zwischen Anwendungen"
+              },
+              "bbch_von": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              },
+              "bbch_bis": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              },
+              "wartezeit_tage": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Tage zwischen letzter Anwendung und Ernte"
+              },
+              "wartezeit_hinweis": {
+                "type": "string",
+                "description": "Wenn keine Tageszahl gilt, z. B. „F – durch Anwendungszeitpunkt abgedeckt“"
+              },
+              "notiz": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kulturen"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "register_stand": {
+          "$ref": "common.schema.json#/$defs/datum",
+          "description": "Datum, an dem die Angaben im Register nachgesehen wurden"
+        }
+      },
+      "required": [
+        "zulassungsnummer"
+      ],
+      "additionalProperties": false
+    },
+    "tierarzneimittel": {
+      "type": "object",
+      "properties": {
+        "zulassungsnummer": {
+          "type": "string"
+        },
+        "wirkstoffe": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "darreichungsform": {
+          "type": "string",
+          "description": "z. B. Injektionslösung, Euterinjektor, Bolus"
+        },
+        "anwendungsart": {
+          "type": "string",
+          "description": "z. B. intramuskulär, intramammär, oral"
+        },
+        "verschreibungspflichtig": {
+          "type": "boolean"
+        },
+        "wartezeiten": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tierart": {
+                "type": "string"
+              },
+              "produkt": {
+                "enum": [
+                  "fleisch",
+                  "milch",
+                  "eier",
+                  "honig"
+                ],
+                "description": "„fleisch“ = essbare Gewebe"
+              },
+              "tage": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "produkt",
+              "tage"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "biozid": {
+      "type": "object",
+      "properties": {
+        "registriernummer": {
+          "type": "string"
+        },
+        "produktart": {
+          "type": "string",
+          "description": "z. B. Rodentizid, Desinfektionsmittel"
+        }
+      },
+      "additionalProperties": false
+    },
+    "saatgut": {
+      "type": "object",
+      "properties": {
+        "kultur_id": {
+          "$ref": "common.schema.json#/$defs/uuid"
+        },
+        "sorte": {
+          "type": "string"
+        },
+        "kategorie": {
+          "enum": [
+            "basis",
+            "zertifiziert",
+            "nachbau",
+            "standard",
+            "sonstige"
+          ],
+          "description": "Basissaatgut, Z-Saatgut, Nachbau (eigenes Erntegut), Standardsaatgut (Gemüse)"
+        },
+        "bio": {
+          "type": "boolean",
+          "description": "Saatgut aus biologischer Erzeugung"
+        },
+        "gebeizt": {
+          "type": "boolean"
+        },
+        "beizmittel": {
+          "type": "string",
+          "description": "Name und ggf. Zulassungsnummer der Beize"
+        },
+        "tkg_g": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Tausendkorngewicht in g"
+        },
+        "keimfaehigkeit_prozent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "partie": {
+          "type": "string",
+          "description": "Partie- bzw. Etikettennummer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "futtermittel": {
+      "type": "object",
+      "properties": {
+        "lieferant": {
+          "type": "string"
+        },
+        "enthaelt_tierische_proteine": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "art",
+    "name"
+  ],
+  "unevaluatedProperties": false
+}

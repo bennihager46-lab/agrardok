@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/pflanzenschutz.schema.json",
+  "title": "Details: Pflanzenschutz",
+  "description": "Aufzeichnung nach Art. 67 VO (EG) 1107/2009 und Anhang DVO (EU) 2023/564 (Feldliste laut AMA-Merkblatt Konditionalität, Stand 10/2026). Datum/Uhrzeit, Schläge und Anwender:in stehen in der Maßnahme. Tirol verlangt zusätzlich 'grund'.",
+  "type": "object",
+  "properties": {
+    "verwendungsart": {
+      "enum": [
+        "flaeche",
+        "geschlossener_raum",
+        "saatgut"
+      ],
+      "description": "Behandlung von Oberflächen / geschlossenen Räumen / Saatgut bzw. Pflanzgut"
+    },
+    "mittel": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Mehrere Einträge bei Tankmischung",
+      "items": {
+        "type": "object",
+        "properties": {
+          "betriebsmittel_id": {
+            "$ref": "../common.schema.json#/$defs/uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Momentaufnahme: Bezeichnung des Mittels"
+          },
+          "zulassungsnummer": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Momentaufnahme"
+          },
+          "aufwand": {
+            "$ref": "../common.schema.json#/$defs/aufwand"
+          },
+          "charge": {
+            "type": "string",
+            "description": "Sofern erforderlich"
+          },
+          "wartezeit_tage": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "name",
+          "zulassungsnummer",
+          "aufwand"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "behandelte_flaeche_ha": {
+      "$ref": "../common.schema.json#/$defs/flaeche_ha"
+    },
+    "behandelte_menge": {
+      "$ref": "../common.schema.json#/$defs/menge",
+      "description": "Bei Saatgut oder Räumen (t, m3 …)"
+    },
+    "invekos_flaeche_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Momentaufnahme der Flächeneinheiten aus dem Beihilfeantrag"
+    },
+    "kultur_name": {
+      "type": "string",
+      "description": "Momentaufnahme: Kulturpflanze oder Einsatzort"
+    },
+    "eppo_code": {
+      "type": "string",
+      "description": "Sofern zutreffend"
+    },
+    "bbch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 99,
+      "description": "Sofern relevant (ab 2027 kontrollrelevant, wenn die Zulassung BBCH vorgibt)"
+    },
+    "grund": {
+      "type": "string",
+      "description": "Schaderreger/Grund der Behandlung (Pflicht in Tirol, sonst empfohlen)"
+    },
+    "wartezeit_ende": {
+      "$ref": "../common.schema.json#/$defs/datum",
+      "description": "Berechnetes Ende der Wartezeit bis zur Ernte (Hinweis)"
+    },
+    "wasser_l_je_ha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "indikation_nr": {
+      "type": "string",
+      "description": "Nummer der Indikation im Register (Momentaufnahme)"
+    },
+    "uhrzeit_ende": {
+      "$ref": "../common.schema.json#/$defs/uhrzeit",
+      "description": "Bei bienengefährlichen Mitteln (Tirol: Beginn und Ende)"
+    }
+  },
+  "required": [
+    "verwendungsart",
+    "mittel",
+    "kultur_name"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verwendungsart": {
+            "const": "flaeche"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "behandelte_flaeche_ha"
+        ]
+      },
+      "else": {
+        "required": [
+          "behandelte_menge"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

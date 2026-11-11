@@ -1,0 +1,624 @@
+{
+ "name": "kulturen",
+ "titel": "Kulturkatalog (Schlagnutzungsarten laut INVEKOS)",
+ "quelle": "https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_schlaege_2026_1_polygon",
+ "gueltig_ab": "2026-01-01",
+ "gueltig_bis": null,
+ "stand": "2026-11-11",
+ "status": "amtliche_erlaeuterung",
+ "hinweise": [
+  "Codes (mfa_code) und amtliche Bezeichnungen aus einer Stichprobe von 2.400 Schlägen in 8 Regionen (INVEKOS Schläge 2026-1, OGC API der AMA/LFRZ), abgerufen am 11.11.2026. UNVOLLSTÄNDIG: seltene Nutzungsarten fehlen; unbekannte Codes legt der Import als betriebseigene Kultur an.",
+  "'name' ist eine automatisch lesbar gemachte Schreibweise der amtlichen Bezeichnung.",
+  "'kategorie' ist eine eigene Einteilung der App (u. a. für den NAPV-Hinweis Grünland/Ackerfutter), keine amtliche Zuordnung.",
+  "'eppo_code' nur bei wenigen Hauptkulturen, aus Fachwissen – vor Verwendung in PSM-Aufzeichnungen gegen gd.eppo.int prüfen.",
+  "Die id ist fest (aus dem Code abgeleitet), damit Kulturen auf allen Geräten gleich heißen. Niemals ändern."
+ ],
+ "werte": [
+  {
+   "id": "05000000-0000-4000-8000-000000000105",
+   "mfa_code": "105",
+   "name": "Körnermais",
+   "amtlicher_name": "KÖRNERMAIS",
+   "kategorie": "mais",
+   "eppo_code": "ZEAMX"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000106",
+   "mfa_code": "106",
+   "name": "Mais Corn-Cob-Mix (CCM)",
+   "amtlicher_name": "MAIS CORN-COB-MIX (CCM)",
+   "kategorie": "mais"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000109",
+   "mfa_code": "109",
+   "name": "Silomais",
+   "amtlicher_name": "SILOMAIS",
+   "kategorie": "mais",
+   "eppo_code": "ZEAMX"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000110",
+   "mfa_code": "110",
+   "name": "Wintergerste",
+   "amtlicher_name": "WINTERGERSTE",
+   "kategorie": "getreide",
+   "eppo_code": "HORVW"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000111",
+   "mfa_code": "111",
+   "name": "Sommergerste",
+   "amtlicher_name": "SOMMERGERSTE",
+   "kategorie": "getreide",
+   "eppo_code": "HORVS"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000112",
+   "mfa_code": "112",
+   "name": "Winterhafer",
+   "amtlicher_name": "WINTERHAFER",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000114",
+   "mfa_code": "114",
+   "name": "Sommermenggetreide",
+   "amtlicher_name": "SOMMERMENGGETREIDE",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000115",
+   "mfa_code": "115",
+   "name": "Erbsen - Getreide Gemenge",
+   "amtlicher_name": "ERBSEN - GETREIDE GEMENGE",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000116",
+   "mfa_code": "116",
+   "name": "Wintertriticale",
+   "amtlicher_name": "WINTERTRITICALE",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000118",
+   "mfa_code": "118",
+   "name": "Hirse",
+   "amtlicher_name": "HIRSE",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000138",
+   "mfa_code": "138",
+   "name": "Winterweichweizen",
+   "amtlicher_name": "WINTERWEICHWEIZEN",
+   "kategorie": "getreide",
+   "eppo_code": "TRZAW"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000142",
+   "mfa_code": "142",
+   "name": "Winterroggen",
+   "amtlicher_name": "WINTERROGGEN",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000145",
+   "mfa_code": "145",
+   "name": "Winterdinkel (Spelz)",
+   "amtlicher_name": "WINTERDINKEL (SPELZ)",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000155",
+   "mfa_code": "155",
+   "name": "Sommerhafer",
+   "amtlicher_name": "SOMMERHAFER",
+   "kategorie": "getreide",
+   "eppo_code": "AVESA"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000157",
+   "mfa_code": "157",
+   "name": "Sommertriticale",
+   "amtlicher_name": "SOMMERTRITICALE",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000165",
+   "mfa_code": "165",
+   "name": "Winterhartweizen (Durum)",
+   "amtlicher_name": "WINTERHARTWEIZEN (DURUM)",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000166",
+   "mfa_code": "166",
+   "name": "Sommerhartweizen (Durum)",
+   "amtlicher_name": "SOMMERHARTWEIZEN (DURUM)",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000173",
+   "mfa_code": "173",
+   "name": "Saatmaisvermehrung",
+   "amtlicher_name": "SAATMAISVERMEHRUNG",
+   "kategorie": "mais"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000181",
+   "mfa_code": "181",
+   "name": "Sommergerste (Herbstanbau)",
+   "amtlicher_name": "SOMMERGERSTE (HERBSTANBAU)",
+   "kategorie": "getreide"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000206",
+   "mfa_code": "206",
+   "name": "Ackerbohnen - Getreide Gemenge",
+   "amtlicher_name": "ACKERBOHNEN - GETREIDE GEMENGE",
+   "kategorie": "leguminose"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000211",
+   "mfa_code": "211",
+   "name": "Winterackerbohnen",
+   "amtlicher_name": "WINTERACKERBOHNEN",
+   "kategorie": "leguminose"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000213",
+   "mfa_code": "213",
+   "name": "Winterkörnererbsen",
+   "amtlicher_name": "WINTERKÖRNERERBSEN",
+   "kategorie": "leguminose"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000214",
+   "mfa_code": "214",
+   "name": "Sommerkörnererbsen",
+   "amtlicher_name": "SOMMERKÖRNERERBSEN",
+   "kategorie": "leguminose"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000301",
+   "mfa_code": "301",
+   "name": "Winterraps",
+   "amtlicher_name": "WINTERRAPS",
+   "kategorie": "oelfrucht",
+   "eppo_code": "BRSNW"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000307",
+   "mfa_code": "307",
+   "name": "Sonnenblumen",
+   "amtlicher_name": "SONNENBLUMEN",
+   "kategorie": "oelfrucht",
+   "eppo_code": "HELAN"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000308",
+   "mfa_code": "308",
+   "name": "Sojabohnen",
+   "amtlicher_name": "SOJABOHNEN",
+   "kategorie": "leguminose",
+   "eppo_code": "GLXMA"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000310",
+   "mfa_code": "310",
+   "name": "Öllein (nicht zur Fasergewinnung)",
+   "amtlicher_name": "ÖLLEIN (NICHT ZUR FASERGEWINNUNG)",
+   "kategorie": "oelfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000359",
+   "mfa_code": "359",
+   "name": "GLÖZ Feldgehölz / Baum- / Gebüschgruppe",
+   "amtlicher_name": "GLÖZ FELDGEHÖLZ / BAUM- / GEBÜSCHGRUPPE",
+   "kategorie": "landschaftselement"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000360",
+   "mfa_code": "360",
+   "name": "GLÖZ Hecke / Ufergehölz",
+   "amtlicher_name": "GLÖZ HECKE / UFERGEHÖLZ",
+   "kategorie": "landschaftselement"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000361",
+   "mfa_code": "361",
+   "name": "GLÖZ Rain / Böschung / Trockensteinmauer",
+   "amtlicher_name": "GLÖZ RAIN / BÖSCHUNG / TROCKENSTEINMAUER",
+   "kategorie": "landschaftselement"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000362",
+   "mfa_code": "362",
+   "name": "GLÖZ Graben / Uferrandstreifen",
+   "amtlicher_name": "GLÖZ GRABEN / UFERRANDSTREIFEN",
+   "kategorie": "landschaftselement"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000365",
+   "mfa_code": "365",
+   "name": "GLÖZ Teich / Tümpel",
+   "amtlicher_name": "GLÖZ TEICH / TÜMPEL",
+   "kategorie": "landschaftselement"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000366",
+   "mfa_code": "366",
+   "name": "LSE Mehrnutzenhecke",
+   "amtlicher_name": "LSE MEHRNUTZENHECKE",
+   "kategorie": "landschaftselement"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000513",
+   "mfa_code": "513",
+   "name": "Frühkartoffeln",
+   "amtlicher_name": "FRÜHKARTOFFELN",
+   "kategorie": "hackfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000520",
+   "mfa_code": "520",
+   "name": "Frühkartoffeln / Feldgemüse",
+   "amtlicher_name": "FRÜHKARTOFFELN / FELDGEMÜSE",
+   "kategorie": "hackfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000524",
+   "mfa_code": "524",
+   "name": "Speisekartoffeln",
+   "amtlicher_name": "SPEISEKARTOFFELN",
+   "kategorie": "hackfrucht",
+   "eppo_code": "SOLTU"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000525",
+   "mfa_code": "525",
+   "name": "Speiseindustriekartoffeln",
+   "amtlicher_name": "SPEISEINDUSTRIEKARTOFFELN",
+   "kategorie": "hackfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000526",
+   "mfa_code": "526",
+   "name": "Speisekartoffeln / Feldgemüse",
+   "amtlicher_name": "SPEISEKARTOFFELN / FELDGEMÜSE",
+   "kategorie": "hackfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000527",
+   "mfa_code": "527",
+   "name": "Saatkartoffeln",
+   "amtlicher_name": "SAATKARTOFFELN",
+   "kategorie": "hackfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000538",
+   "mfa_code": "538",
+   "name": "Heilpflanzen",
+   "amtlicher_name": "HEILPFLANZEN",
+   "kategorie": "sonstige"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000625",
+   "mfa_code": "625",
+   "name": "Winterwicken",
+   "amtlicher_name": "WINTERWICKEN",
+   "kategorie": "leguminose"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000633",
+   "mfa_code": "633",
+   "name": "Klee",
+   "amtlicher_name": "KLEE",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000634",
+   "mfa_code": "634",
+   "name": "Kleegras",
+   "amtlicher_name": "KLEEGRAS",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000635",
+   "mfa_code": "635",
+   "name": "Luzerne",
+   "amtlicher_name": "LUZERNE",
+   "kategorie": "feldfutter",
+   "eppo_code": "MEDSA"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000636",
+   "mfa_code": "636",
+   "name": "Wechselwiese",
+   "amtlicher_name": "WECHSELWIESE",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000637",
+   "mfa_code": "637",
+   "name": "Futtergräser",
+   "amtlicher_name": "FUTTERGRÄSER",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000638",
+   "mfa_code": "638",
+   "name": "Wicken - Getreide Gemenge",
+   "amtlicher_name": "WICKEN - GETREIDE GEMENGE",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000642",
+   "mfa_code": "642",
+   "name": "Ackerweide",
+   "amtlicher_name": "ACKERWEIDE",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000651",
+   "mfa_code": "651",
+   "name": "Zuckerrüben",
+   "amtlicher_name": "ZUCKERRÜBEN",
+   "kategorie": "hackfrucht",
+   "eppo_code": "BEAVA"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000653",
+   "mfa_code": "653",
+   "name": "Feldgemüse ohne Ernte",
+   "amtlicher_name": "FELDGEMÜSE OHNE ERNTE",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000658",
+   "mfa_code": "658",
+   "name": "Hanf",
+   "amtlicher_name": "HANF",
+   "kategorie": "sonstige"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000661",
+   "mfa_code": "661",
+   "name": "Sonstige Ackerflächen",
+   "amtlicher_name": "SONSTIGE ACKERFLÄCHEN",
+   "kategorie": "sonstige"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000679",
+   "mfa_code": "679",
+   "name": "Sonstiges Feldfutter",
+   "amtlicher_name": "SONSTIGES FELDFUTTER",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000681",
+   "mfa_code": "681",
+   "name": "Grünschnittroggen",
+   "amtlicher_name": "GRÜNSCHNITTROGGEN",
+   "kategorie": "feldfutter"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000686",
+   "mfa_code": "686",
+   "name": "Elefantengras (Chinaschilf, Miscanthus sinensis)",
+   "amtlicher_name": "ELEFANTENGRAS (CHINASCHILF, MISCANTHUS SINENSIS)",
+   "kategorie": "sonstige"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000694",
+   "mfa_code": "694",
+   "name": "Feldgemüse mehrkulturig",
+   "amtlicher_name": "FELDGEMÜSE MEHRKULTURIG",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000696",
+   "mfa_code": "696",
+   "name": "Feldgemüse einkulturig",
+   "amtlicher_name": "FELDGEMÜSE EINKULTURIG",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000697",
+   "mfa_code": "697",
+   "name": "Feldgemüse Verarbeitung einkulturig",
+   "amtlicher_name": "FELDGEMÜSE VERARBEITUNG EINKULTURIG",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000698",
+   "mfa_code": "698",
+   "name": "Feldgemüse Verarbeitung mehrkulturig",
+   "amtlicher_name": "FELDGEMÜSE VERARBEITUNG MEHRKULTURIG",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000699",
+   "mfa_code": "699",
+   "name": "Feldgemüse Frischmarkt und Verarbeitung mehrkulturig",
+   "amtlicher_name": "FELDGEMÜSE FRISCHMARKT UND VERARBEITUNG MEHRKULTURIG",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000701",
+   "mfa_code": "701",
+   "name": "Einmähdige Wiese",
+   "amtlicher_name": "EINMÄHDIGE WIESE",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000704",
+   "mfa_code": "704",
+   "name": "Streuwiese",
+   "amtlicher_name": "STREUWIESE",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000707",
+   "mfa_code": "707",
+   "name": "Hutweide",
+   "amtlicher_name": "HUTWEIDE",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000708",
+   "mfa_code": "708",
+   "name": "Bergmähder",
+   "amtlicher_name": "BERGMÄHDER",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000710",
+   "mfa_code": "710",
+   "name": "Sonstige Grünlandflächen",
+   "amtlicher_name": "SONSTIGE GRÜNLANDFLÄCHEN",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000715",
+   "mfa_code": "715",
+   "name": "Dauerweide",
+   "amtlicher_name": "DAUERWEIDE",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000716",
+   "mfa_code": "716",
+   "name": "Mähwiese/-Weide zwei Nutzungen",
+   "amtlicher_name": "MÄHWIESE/-WEIDE ZWEI NUTZUNGEN",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000717",
+   "mfa_code": "717",
+   "name": "Mähwiese/-Weide drei und mehr Nutzungen",
+   "amtlicher_name": "MÄHWIESE/-WEIDE DREI UND MEHR NUTZUNGEN",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000721",
+   "mfa_code": "721",
+   "name": "Grünlandbrache",
+   "amtlicher_name": "GRÜNLANDBRACHE",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000723",
+   "mfa_code": "723",
+   "name": "Sonstige Hutweideflächen",
+   "amtlicher_name": "SONSTIGE HUTWEIDEFLÄCHEN",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000751",
+   "mfa_code": "751",
+   "name": "Ölkürbisse",
+   "amtlicher_name": "ÖLKÜRBISSE",
+   "kategorie": "oelfrucht"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000755",
+   "mfa_code": "755",
+   "name": "Erdbeeren",
+   "amtlicher_name": "ERDBEEREN",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000771",
+   "mfa_code": "771",
+   "name": "Grünbrache",
+   "amtlicher_name": "GRÜNBRACHE",
+   "kategorie": "brache"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000817",
+   "mfa_code": "817",
+   "name": "Tafeläpfel",
+   "amtlicher_name": "TAFELÄPFEL",
+   "kategorie": "dauerkultur"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000832",
+   "mfa_code": "832",
+   "name": "Holunder",
+   "amtlicher_name": "HOLUNDER",
+   "kategorie": "dauerkultur"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000837",
+   "mfa_code": "837",
+   "name": "Blumen und Zierpflanzen im Gewächshaus",
+   "amtlicher_name": "BLUMEN UND ZIERPFLANZEN IM GEWÄCHSHAUS",
+   "kategorie": "sonstige"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000838",
+   "mfa_code": "838",
+   "name": "Blumen und Zierpflanzen im Folientunnel",
+   "amtlicher_name": "BLUMEN UND ZIERPFLANZEN IM FOLIENTUNNEL",
+   "kategorie": "sonstige"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000839",
+   "mfa_code": "839",
+   "name": "Gemüse im Gewächshaus",
+   "amtlicher_name": "GEMÜSE IM GEWÄCHSHAUS",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000840",
+   "mfa_code": "840",
+   "name": "Gemüse im Folientunnel",
+   "amtlicher_name": "GEMÜSE IM FOLIENTUNNEL",
+   "kategorie": "gemuese"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000852",
+   "mfa_code": "852",
+   "name": "Obst im Folientunnel",
+   "amtlicher_name": "OBST IM FOLIENTUNNEL",
+   "kategorie": "dauerkultur"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000854",
+   "mfa_code": "854",
+   "name": "Walnüsse",
+   "amtlicher_name": "WALNÜSSE",
+   "kategorie": "dauerkultur"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000863",
+   "mfa_code": "863",
+   "name": "Energieholz ohne Robinie",
+   "amtlicher_name": "ENERGIEHOLZ OHNE ROBINIE",
+   "kategorie": "dauerkultur"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000901",
+   "mfa_code": "901",
+   "name": "Wein",
+   "amtlicher_name": "WEIN",
+   "kategorie": "dauerkultur",
+   "eppo_code": "VITVI"
+  },
+  {
+   "id": "05000000-0000-4000-8000-000000000992",
+   "mfa_code": "992",
+   "name": "Almweidefläche",
+   "amtlicher_name": "ALMWEIDEFLÄCHE",
+   "kategorie": "gruenland"
+  },
+  {
+   "id": "05000000-0000-4000-8000-100000000001",
+   "name": "Begrünung / Zwischenfrucht (Mischung)",
+   "kategorie": "zwischenfrucht"
+  }
+ ]
+}

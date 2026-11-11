@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/pflege.schema.json",
+  "title": "Details: Pflege",
+  "description": "Pflegemaßnahmen ohne Dünger/PSM: Striegeln, Hacken, Walzen, Mulchen/Häckseln, Mähen, Nachsaat …",
+  "type": "object",
+  "properties": {
+    "verfahren": {
+      "enum": [
+        "striegeln",
+        "hacken",
+        "walzen",
+        "mulchen",
+        "haeckseln",
+        "maehen",
+        "nachsaat",
+        "abschleppen",
+        "sonstiges"
+      ]
+    },
+    "beschreibung": {
+      "type": "string"
+    },
+    "behandelte_flaeche_ha": {
+      "$ref": "../common.schema.json#/$defs/flaeche_ha"
+    }
+  },
+  "required": [
+    "verfahren"
+  ],
+  "additionalProperties": false
+}

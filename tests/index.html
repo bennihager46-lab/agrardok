@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AGRARDOK+ – Tests</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 1rem; line-height: 1.4; }
+    ol { padding-left: 1.5rem; }
+    li { white-space: pre-wrap; margin: 0.2rem 0; }
+    .ok { color: #0f5f13; }
+    .fehler { color: #a00000; font-weight: 600; }
+    .summe { font-size: 1.3rem; font-weight: 700; padding: 0.5rem 0.75rem; border-radius: 0.5rem; }
+    .summe.ok { background: #e3f1e4; }
+    .summe.fehler { background: #ffe5e5; }
+  </style>
+</head>
+<body>
+  <h1>AGRARDOK+ – Tests</h1>
+  <p>Die Tests verwenden eigene, temporäre Datenbanken. Ihre App-Daten bleiben unberührt.</p>
+  <div id="ausgabe"></div>
+  <script type="module">
+    import { ausfuehren } from "./runner.js";
+    import "./ids.test.js";
+    import "./db.test.js";
+    import "./daten.test.js";
+    import "./sicherung.test.js";
+    import "./validierung.test.js";
+    import "./stammdaten.test.js";
+    import "./geo.test.js";
+    import "./flaechen.test.js";
+    import "./duengung.test.js";
+    import "./pflanzenschutz.test.js";
+    import "./oepul.test.js";
+    ausfuehren(document.getElementById("ausgabe"));
+  </script>
+</body>
+</html>

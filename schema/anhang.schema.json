@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/anhang.schema.json",
+  "title": "Anhang",
+  "description": "Foto oder Beleg, lokal gespeichert als Data-URL (komprimiert), damit er offline verfügbar ist und im JSON-Export mitkommt.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "typ": {
+      "enum": [
+        "foto",
+        "beleg"
+      ]
+    },
+    "mime_type": {
+      "enum": [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "daten": {
+      "type": "string",
+      "pattern": "^data:image/(jpeg|png|webp);base64,"
+    },
+    "breite": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "hoehe": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "dateiname": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "typ",
+    "mime_type",
+    "daten"
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/bewaesserung.schema.json",
+  "title": "Details: Bewässerung",
+  "description": "Datum, Menge und zugeführtes N (NAPV § 8 Abs. 1 Z 4, § 9 Abs. 6 Z 3).",
+  "type": "object",
+  "properties": {
+    "menge_mm": { "type": "number", "minimum": 0, "description": "1 mm = 10 m³/ha" },
+    "nitrat_mg_je_l": { "type": "number", "minimum": 0 },
+    "n_kg_je_ha": { "type": "number", "minimum": 0, "description": "Berechnet nach NAPV Anlage 3 Abschnitt IV" },
+    "wasserentnahme_m3": { "type": "number", "minimum": 0, "description": "Für Aufzeichnungen zur Wasserentnahme (Konditionalität)" }
+  },
+  "required": ["menge_mm"],
+  "additionalProperties": false
+}

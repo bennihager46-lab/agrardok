@@ -1,0 +1,12 @@
+{
+  "id": "schlagkartei",
+  "name": "Schlagkartei",
+  "version": "0.5.0",
+  "beschreibung": "Maßnahmen je Schlag: Bodenbearbeitung, Aussaat (inkl. ÖPUL-Begrünungsvariante), Pflege, Ernte mit Ertrag, Feuchte und Rohprotein, Bewässerung mit N aus dem Wasser. Schnellerfassung für mehrere Schläge, Zeitachse je Schlag, Jahresübersicht je Kultur.",
+  "massnahmen_arten": ["bodenbearbeitung", "aussaat", "pflege", "ernte", "bewaesserung"],
+  "liest": ["betrieb", "schlag", "feldstueck", "kultur", "betriebsmittel", "person", "maschine", "massnahme", "feldnotiz", "bodenprobe"],
+  "regeln": ["oepul/begruenung", "kulturen"],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["aufzeichnen", "massnahme-erfassen", "schlagkartei", "jahresuebersicht"]
+}

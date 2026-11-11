@@ -1,0 +1,30 @@
+{
+  "name": "napv/aufzeichnungspflicht",
+  "titel": "NAPV – wann betriebsbezogene Aufzeichnungen Pflicht sind (§ 8 Abs. 2, § 9 Abs. 5)",
+  "quelle": "https://www.jusline.at/gesetz/napv/paragraf/8",
+  "quelle_weitere": ["https://www.jusline.at/gesetz/napv/paragraf/9", "docs/rechtsgrundlagen.md#11-betriebsbezogene-aufzeichnungen---8-napv--r1"],
+  "gueltig_ab": "2023-01-01",
+  "gueltig_bis": null,
+  "stand": "2026-11-11",
+  "status": "geprueft",
+  "hinweise": [
+    "Am Normtext (JUSLINE-Konsolidierung) geprüft, siehe docs/rechtsgrundlagen.md Abschnitt 1. Vor Veröffentlichung im RIS gegenprüfen.",
+    "Almflächen und Gemeinschaftsweiden zählen nicht zur LN für die 15-ha-Grenze.",
+    "Ackerfutter = Kulturen der Kategorie 'feldfutter' im Kulturkatalog (eigene Einteilung der App)."
+  ],
+  "werte": {
+    "allgemein": {
+      "ausnahme_ln_bis_ha": 15,
+      "ausnahme_nur_wenn_gemuese_unter_ha": 2,
+      "ausnahme_gruenland_ackerfutter_anteil_ueber": 0.9
+    },
+    "anlage5": {
+      "pflicht_ab_ln_ha": 5,
+      "pflicht_ab_gemuese_ha": 2,
+      "nur_wenn_gruenland_ackerfutter_anteil_unter": 0.9,
+      "schlagbezogen_ab_acker_ha": 5,
+      "schlagbezogen_ab_gemuese_ha": 2,
+      "schlagbezogen_kultur_ab_ha": 0.3
+    }
+  }
+}

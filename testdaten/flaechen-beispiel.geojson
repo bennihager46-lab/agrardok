@@ -1,0 +1,249 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "fs_kennung": 900000001,
+    "snar_code": "138",
+    "snar_bezeichnung": "WINTERWEICHWEIZEN",
+    "sl_flaeche_brutto_ha": 3.5,
+    "kz_bio_oepul_jn": "N"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.724028,
+       48.2958733
+      ],
+      [
+       16.7287417,
+       48.295736
+      ],
+      [
+       16.7288006,
+       48.2966346
+      ],
+      [
+       16.7240867,
+       48.296772
+      ],
+      [
+       16.724028,
+       48.2958733
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "fs_kennung": 900000001,
+    "snar_code": "308",
+    "snar_bezeichnung": "SOJABOHNEN",
+    "sl_flaeche_brutto_ha": 2.5,
+    "kz_bio_oepul_jn": "N"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.7240867,
+       48.296772
+      ],
+      [
+       16.7274538,
+       48.2966739
+      ],
+      [
+       16.7275126,
+       48.2975726
+      ],
+      [
+       16.7241455,
+       48.2976706
+      ],
+      [
+       16.7240867,
+       48.296772
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "fs_kennung": 900000002,
+    "snar_code": "105",
+    "snar_bezeichnung": "KÖRNERMAIS",
+    "sl_flaeche_brutto_ha": 3.909999,
+    "kz_bio_oepul_jn": "N"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.7238517,
+       48.2931773
+      ],
+      [
+       16.7278919,
+       48.2930596
+      ],
+      [
+       16.7279703,
+       48.2942578
+      ],
+      [
+       16.72393,
+       48.2943755
+      ],
+      [
+       16.7238517,
+       48.2931773
+      ]
+     ],
+     [
+      [
+       16.7259188,
+       48.2938374
+      ],
+      [
+       16.7259365,
+       48.294107
+      ],
+      [
+       16.7263405,
+       48.2940952
+      ],
+      [
+       16.7263228,
+       48.2938256
+      ],
+      [
+       16.7259188,
+       48.2938374
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "fs_kennung": 900000002,
+    "snar_code": "359",
+    "snar_bezeichnung": "GLÖZ FELDGEHÖLZ / BAUM- / GEBÜSCHGRUPPE",
+    "sl_flaeche_brutto_ha": 0.09,
+    "kz_bio_oepul_jn": "N"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.7259188,
+       48.2938374
+      ],
+      [
+       16.7263228,
+       48.2938256
+      ],
+      [
+       16.7263405,
+       48.2940952
+      ],
+      [
+       16.7259365,
+       48.294107
+      ],
+      [
+       16.7259188,
+       48.2938374
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "fs_kennung": 900000003,
+    "snar_code": "716",
+    "snar_bezeichnung": "MÄHWIESE/-WEIDE ZWEI NUTZUNGEN",
+    "sl_flaeche_brutto_ha": 2.2,
+    "kz_bio_oepul_jn": "J"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.7307619,
+       48.2956771
+      ],
+      [
+       16.7334555,
+       48.2955985
+      ],
+      [
+       16.7335203,
+       48.296587
+      ],
+      [
+       16.7308267,
+       48.2966656
+      ],
+      [
+       16.7307619,
+       48.2956771
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "fs_kennung": 900000003,
+    "snar_code": "999",
+    "snar_bezeichnung": "VERSUCHSFLÄCHE (FIKTIV)",
+    "sl_flaeche_brutto_ha": 0.4,
+    "kz_bio_oepul_jn": "J"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.7308267,
+       48.2966656
+      ],
+      [
+       16.7335203,
+       48.296587
+      ],
+      [
+       16.7335321,
+       48.2967667
+      ],
+      [
+       16.7308385,
+       48.2968453
+      ],
+      [
+       16.7308267,
+       48.2966656
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

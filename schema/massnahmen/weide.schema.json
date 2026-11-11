@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/weide.schema.json",
+  "title": "Details: Weide (Weidetagebuch)",
+  "description": "ÖPUL Tierwohl Weide / Naturschutz mit Weideauflage: welche Tiere, welche Fläche, Beginn/Ende (Maßnahme: datum, datum_ende). Tiere optional über tier_ids der Maßnahme.",
+  "type": "object",
+  "properties": {
+    "tierkategorie": { "type": "string", "description": "z. B. Milchkühe, Jungvieh, Mutterkühe" },
+    "anzahl_tiere": { "type": "integer", "minimum": 1 },
+    "unterbrechungen": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "datum": { "$ref": "../common.schema.json#/$defs/datum" },
+          "grund": { "enum": ["krankheit", "geburt", "extremwetter", "sonstiges"] },
+          "notiz": { "type": "string" }
+        },
+        "required": ["datum", "grund"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["tierkategorie", "anzahl_tiere"],
+  "additionalProperties": false
+}

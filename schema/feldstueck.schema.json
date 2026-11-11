@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/feldstueck.schema.json",
+  "title": "Feldstück",
+  "description": "Zusammenhängende Fläche einer Nutzungsart, wie im Mehrfachantrag. Bleibt über Jahre bestehen; die jährliche Einteilung erfolgt über Schläge.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "nummer": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Feldstücknummer laut Mehrfachantrag"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Hofübliche Bezeichnung, z. B. 'Hausacker'"
+    },
+    "nutzungsart": {
+      "enum": [
+        "acker",
+        "gruenland",
+        "dauerkultur",
+        "alm",
+        "sonstige"
+      ],
+      "description": "Feldstücknutzungsart (vereinfacht). INVEKOS-Codes: A→acker, G→gruenland, WI/S→dauerkultur, L→alm, GA→sonstige."
+    },
+    "flaeche_ha": {
+      "$ref": "common.schema.json#/$defs/flaeche_ha"
+    },
+    "katastralgemeinde": {
+      "type": "string"
+    },
+    "geometrie": {
+      "$ref": "common.schema.json#/$defs/geometrie"
+    },
+    "gueltig_ab_jahr": {
+      "$ref": "common.schema.json#/$defs/jahr"
+    },
+    "gueltig_bis_jahr": {
+      "$ref": "common.schema.json#/$defs/jahr"
+    },
+    "bodenart": {
+      "enum": [
+        "sand",
+        "lehmiger_sand",
+        "sandiger_lehm",
+        "lehm",
+        "schluffiger_lehm",
+        "schluff",
+        "toniger_lehm",
+        "lehmiger_ton",
+        "ton",
+        "moor"
+      ],
+      "description": "Bodenart (Fingerprobe, Bodenuntersuchung oder eBOD)."
+    },
+    "bodenschwere": {
+      "enum": [
+        "leicht",
+        "mittel",
+        "schwer"
+      ],
+      "description": "Bodenschwere laut Bodenuntersuchung bzw. Richtlinien für die sachgerechte Düngung."
+    },
+    "hangneigung_prozent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Durchschnittliche Hangneigung in Prozent."
+    },
+    "grenzt_an_gewaesser": {
+      "type": "boolean",
+      "description": "Grenzt an ein Oberflächengewässer (Bach, Graben, Teich) – relevant für Abstandsauflagen bei Düngung und Pflanzenschutz."
+    },
+    "gewaesser_abstand_m": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Kleinster Abstand zum nächsten Oberflächengewässer in Metern (0 = grenzt an)."
+    },
+    "invekos": {
+      "type": "object",
+      "description": "Kennungen aus dem INVEKOS/eAMA-Import (zum Wiedererkennen beim nächsten Import).",
+      "properties": {
+        "fs_kennung": {
+          "type": "string"
+        },
+        "fnar_code": {
+          "type": "string"
+        },
+        "fnar_bezeichnung": {
+          "type": "string"
+        },
+        "importiert_am": {
+          "$ref": "common.schema.json#/$defs/zeitpunkt"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "name",
+    "nutzungsart",
+    "flaeche_ha"
+  ],
+  "unevaluatedProperties": false
+}

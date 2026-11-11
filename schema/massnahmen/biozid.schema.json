@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/biozid.schema.json",
+  "title": "Details: Biozid-Anwendung",
+  "description": "Mindestangaben laut AMA-Merkblatt Konditionalität (Lebensmittelsicherheit): Bezeichnung, Anwendungsbereich, Datum bzw. Häufigkeit.",
+  "type": "object",
+  "properties": {
+    "betriebsmittel_id": { "$ref": "../common.schema.json#/$defs/uuid" },
+    "produkt_name": { "type": "string", "minLength": 1 },
+    "anwendungsbereich": { "type": "string", "minLength": 1, "description": "z. B. Getreidelager, Futtermittellager" },
+    "haeufigkeit": { "type": "string", "description": "z. B. 'wöchentlich' bei Köderstationen" },
+    "menge": { "$ref": "../common.schema.json#/$defs/menge" }
+  },
+  "required": ["produkt_name", "anwendungsbereich"],
+  "additionalProperties": false
+}

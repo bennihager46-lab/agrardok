@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/duengung.schema.json",
+  "title": "Details: Düngung",
+  "description": "NAPV § 8/§ 9: Art und Menge des Düngers, jahreswirksame N-Menge, Datum (Datum steht in der Maßnahme).",
+  "type": "object",
+  "properties": {
+    "betriebsmittel_id": {
+      "$ref": "../common.schema.json#/$defs/uuid"
+    },
+    "duenger_name": {
+      "type": "string",
+      "description": "Momentaufnahme des Namens"
+    },
+    "duenger_art": {
+      "enum": [
+        "mineralduenger",
+        "wirtschaftsduenger",
+        "organischer_duenger"
+      ]
+    },
+    "aufwand": {
+      "$ref": "../common.schema.json#/$defs/aufwand"
+    },
+    "behandelte_flaeche_ha": {
+      "$ref": "../common.schema.json#/$defs/flaeche_ha",
+      "description": "Fehlt = ganze Schlagfläche"
+    },
+    "ausbringtechnik": {
+      "enum": [
+        "breitverteiler",
+        "schleppschlauch",
+        "schleppschuh",
+        "injektor",
+        "streuer",
+        "sonstige"
+      ]
+    },
+    "naehrstoffe_kg_je_ha": {
+      "type": "object",
+      "description": "Berechnet aus Aufwand × Gehalt; n_jahreswirksam mit Faktoren aus /rules/napv.",
+      "properties": {
+        "n_gesamt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "n_jahreswirksam": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p2o5": {
+          "type": "number",
+          "minimum": 0
+        },
+        "k2o": {
+          "type": "number",
+          "minimum": 0
+        },
+        "n_nach_stall_lager": {
+          "type": "number",
+          "minimum": 0,
+          "description": "N nach Abzug der Stall- und Lagerverluste (für die 170-kg-Grenze)"
+        },
+        "n_leichtloeslich": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Nitrat-, Ammonium- und Carbamid-N (für Gabenteilung und 60-kg-Grenze)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "n_loeslichkeit": {
+      "enum": [
+        "leichtloeslich",
+        "langsamloeslich"
+      ],
+      "description": "Einstufung nach § 1 Z 8/9 NAPV"
+    },
+    "menge_gesamt": {
+      "$ref": "../common.schema.json#/$defs/menge"
+    }
+  },
+  "required": [
+    "betriebsmittel_id",
+    "duenger_name",
+    "duenger_art",
+    "aufwand"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,249 @@
+{
+  "name": "betriebsmittel/duenger-vorlagen",
+  "titel": "Vorlagen für gängige Düngertypen (generische Bezeichnungen, keine Markennamen)",
+  "quelle": "Eigene Zusammenstellung: Nenngehalte aus der Typbezeichnung (z. B. „NPK 15-15-15“ = je 15 Masse-% N, P₂O₅, K₂O) bzw. aus der chemischen Zusammensetzung der Reinsubstanz",
+  "quelle_weitere": [
+    "docs/rechtsgrundlagen.md#1-nitrat-aktionsprogramm-verordnung-napv"
+  ],
+  "gueltig_ab": "2026-01-01",
+  "gueltig_bis": null,
+  "stand": "2026-11-11",
+  "status": "eigene_zusammenstellung",
+  "hinweise": [
+    "Nur Startwerte zum schnellen Anlegen. Maßgeblich ist die Deklaration auf Sack bzw. Lieferschein – Werte vor dem Speichern prüfen.",
+    "Mineraldünger: Gehalte in Masse-% (bezug „prozent“). Der Stickstoff aus Mineraldünger ist voll jahreswirksam; die Faktoren für Wirtschaftsdünger folgen mit den NAPV-Regeldateien (Roadmap MVP-11).",
+    "Dichte von AHL ist ein Näherungswert (je nach Produkt etwa 1,28–1,32 kg/l); nötig, wenn in Litern ausgebracht wird.",
+    "Wirtschaftsdünger: bewusst OHNE Gehalte. Die Werte schwanken stark (Fütterung, Verdünnung, Lagerung). Bitte Laboranalyse oder die Richtwerte der „Richtlinien für die sachgerechte Düngung“ verwenden; mitgelieferte Richtwerte folgen mit MVP-11."
+  ],
+  "werte": [
+    {
+      "id": "kas27",
+      "art": "mineralduenger",
+      "name": "Kalkammonsalpeter 27 % N",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 27,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "harnstoff46",
+      "art": "mineralduenger",
+      "name": "Harnstoff 46 % N",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 46,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "ahl28",
+      "art": "mineralduenger",
+      "name": "Ammonnitrat-Harnstoff-Lösung (AHL) 28 % N",
+      "grundeinheit": "l",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 28,
+        "dichte_kg_je_l": 1.28,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "ammonsulfat",
+      "art": "mineralduenger",
+      "name": "Ammonsulfat 21 % N + 24 % S",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 21,
+        "s": 24,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "ass26",
+      "art": "mineralduenger",
+      "name": "Ammonsulfatsalpeter 26 % N + 13 % S",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 26,
+        "s": 13,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "dap",
+      "art": "mineralduenger",
+      "name": "Diammonphosphat (DAP) 18-46-0",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 18,
+        "p2o5": 46,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "superphosphat18",
+      "art": "mineralduenger",
+      "name": "Superphosphat 18 % P₂O₅",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 0,
+        "p2o5": 18,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "triplesuper46",
+      "art": "mineralduenger",
+      "name": "Triple-Superphosphat 46 % P₂O₅",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 0,
+        "p2o5": 46,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "kali40",
+      "art": "mineralduenger",
+      "name": "Kalisalz 40 % K₂O",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 0,
+        "k2o": 40,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "kali60",
+      "art": "mineralduenger",
+      "name": "Kaliumchlorid 60 % K₂O",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 0,
+        "k2o": 60,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "kaliumsulfat",
+      "art": "mineralduenger",
+      "name": "Kaliumsulfat 50 % K₂O + 18 % S",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 0,
+        "k2o": 50,
+        "s": 18,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "npk151515",
+      "art": "mineralduenger",
+      "name": "Volldünger NPK 15-15-15",
+      "grundeinheit": "kg",
+      "duenger": {
+        "bezug": "prozent",
+        "n_gesamt": 15,
+        "p2o5": 15,
+        "k2o": 15,
+        "gehalte_quelle": "deklaration",
+        "napv_typ": "mineralisch"
+      }
+    },
+    {
+      "id": "rinderguelle",
+      "art": "wirtschaftsduenger",
+      "name": "Rindergülle",
+      "grundeinheit": "m3",
+      "duenger": {
+        "bezug": "kg_je_m3",
+        "tierart_quelle": "Rind",
+        "napv_typ": "rinderguelle"
+      }
+    },
+    {
+      "id": "schweineguelle",
+      "art": "wirtschaftsduenger",
+      "name": "Schweinegülle",
+      "grundeinheit": "m3",
+      "duenger": {
+        "bezug": "kg_je_m3",
+        "tierart_quelle": "Schwein",
+        "napv_typ": "schweineguelle"
+      }
+    },
+    {
+      "id": "jauche",
+      "art": "wirtschaftsduenger",
+      "name": "Jauche",
+      "grundeinheit": "m3",
+      "duenger": {
+        "bezug": "kg_je_m3",
+        "napv_typ": "jauche"
+      }
+    },
+    {
+      "id": "rindermist",
+      "art": "wirtschaftsduenger",
+      "name": "Rindermist (Stallmist)",
+      "grundeinheit": "t",
+      "duenger": {
+        "bezug": "kg_je_t",
+        "tierart_quelle": "Rind",
+        "napv_typ": "stallmist"
+      }
+    },
+    {
+      "id": "gefluegelmist",
+      "art": "wirtschaftsduenger",
+      "name": "Geflügelmist",
+      "grundeinheit": "t",
+      "duenger": {
+        "bezug": "kg_je_t",
+        "tierart_quelle": "Geflügel",
+        "napv_typ": "huehnertrockenkot"
+      }
+    },
+    {
+      "id": "gaerrest",
+      "art": "organischer_duenger",
+      "name": "Gärrest (Biogasgülle)",
+      "grundeinheit": "m3",
+      "duenger": {
+        "bezug": "kg_je_m3"
+      }
+    },
+    {
+      "id": "kompost",
+      "art": "organischer_duenger",
+      "name": "Kompost",
+      "grundeinheit": "t",
+      "duenger": {
+        "bezug": "kg_je_t",
+        "napv_typ": "kompost"
+      }
+    }
+  ]
+}

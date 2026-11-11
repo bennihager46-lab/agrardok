@@ -1,0 +1,375 @@
+/* AGRARDOK+ – Basis-Gestaltung
+   Ziele: im Sonnenlicht lesbar (hoher Kontrast, helles Design), mit Handschuhen bedienbar
+   (Touch-Ziele ≥ 48 px, Navigation unten im Daumenbereich), große Grundschrift. */
+
+:root {
+  --hintergrund: #ffffff;
+  --flaeche: #f3f5f3;
+  --text: #111111;            /* 18,9:1 auf Weiß */
+  --text-leise: #3d3d3d;      /* 10,9:1 */
+  --primaer: #1b5e20;         /* Weiß darauf 7,9:1 */
+  --primaer-dunkel: #0f3d13;
+  --primaer-hell: #e3f1e4;
+  --rand: #5f6b5f;
+  --fokus: #000000;
+  --fokus-hinterlegt: #ffd60a;
+  --warnung-text: #5c3300;
+  --warnung-grund: #fff1d6;
+  --fehler-text: #8b0000;
+  --fehler-grund: #ffe5e5;
+  --erfolg-text: #0f3d13;
+  --erfolg-grund: #e3f1e4;
+  --nav-hoehe: 4.25rem;
+  --radius: 0.75rem;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 112.5%; /* 18 px bei Standardeinstellung, skaliert mit der Systemschrift */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--hintergrund);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  /* Platz für die feste Navigation unten, inkl. iPhone-Home-Leiste */
+  padding-bottom: calc(var(--nav-hoehe) + env(safe-area-inset-bottom) + 1rem);
+}
+
+h1 { font-size: 1.6rem; line-height: 1.2; margin: 0.5rem 0 1rem; }
+h2 { font-size: 1.2rem; margin: 0 0 0.75rem; }
+p { margin: 0 0 0.75rem; }
+a { color: var(--primaer); }
+
+:focus-visible {
+  outline: 3px solid var(--fokus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--fokus-hinterlegt);
+}
+
+.sprunglink {
+  position: absolute; left: 0.5rem; top: -4rem;
+  background: var(--fokus-hinterlegt); color: var(--text); padding: 0.75rem 1rem; z-index: 100;
+}
+.sprunglink:focus { top: 0.5rem; }
+
+.versteckt {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Kopf ---------- */
+.kopf {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;
+  padding: calc(0.6rem + env(safe-area-inset-top)) 1rem 0.6rem;
+  background: var(--primaer); color: #fff;
+}
+.kopf-titel { font-weight: 700; font-size: 1.1rem; }
+.abzeichen {
+  background: #fff; color: var(--primaer-dunkel); border-radius: 999px;
+  padding: 0.15rem 0.75rem; font-size: 0.85rem; font-weight: 600;
+}
+
+/* ---------- Inhalt ---------- */
+main { display: block; max-width: 40rem; margin: 0 auto; padding: 0.5rem 1rem 1rem; overflow-wrap: break-word; }
+main:focus { outline: none; }
+.einleitung { color: var(--text-leise); }
+.laden { color: var(--text-leise); padding: 2rem 0; }
+.klein { font-size: 0.85rem; color: var(--text-leise); }
+.kennung { overflow-wrap: anywhere; }
+
+/* Programmatischer Fokus (Überschrift nach Seitenwechsel, für Screenreader) ohne sichtbaren Rahmen */
+[tabindex="-1"]:focus { outline: none; box-shadow: none; }
+
+.karte {
+  background: var(--flaeche);
+  border: 1px solid #cfd6cf;
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin: 0 0 1rem;
+}
+.karte > :last-child { margin-bottom: 0; }
+
+.zahlenliste { display: grid; grid-template-columns: 1fr auto; gap: 0.35rem 1rem; margin: 0; }
+.zahlenliste dt { color: var(--text-leise); }
+.zahlenliste dd { margin: 0; font-weight: 700; text-align: right; }
+
+.hinweis { border-radius: var(--radius); padding: 0.75rem 1rem; border-left: 0.4rem solid; }
+.hinweis-warnung { background: var(--warnung-grund); color: var(--warnung-text); }
+.hinweis-info { background: #e8eef5; color: #10263d; }
+.hinweis-fehler { background: var(--fehler-grund); color: var(--fehler-text); }
+.hinweis-erfolg { background: var(--erfolg-grund); color: var(--erfolg-text); }
+.hinweis ul { margin: 0.25rem 0 0; padding-left: 1.25rem; }
+
+/* ---------- Knöpfe ---------- */
+.knopf {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; min-height: 3.25rem; /* ≈ 58 px */
+  margin: 0 0 0.75rem; padding: 0.6rem 1rem;
+  font: inherit; font-weight: 700; text-align: center; text-decoration: none;
+  color: #fff; background: var(--primaer);
+  border: 2px solid var(--primaer); border-radius: var(--radius);
+  cursor: pointer; touch-action: manipulation; user-select: none;
+}
+.knopf:active { background: var(--primaer-dunkel); }
+.knopf:disabled { opacity: 0.6; cursor: wait; }
+.knopf-zweit { background: #fff; color: var(--primaer); }
+.knopf-zweit:active { background: var(--primaer-hell); }
+.knopf-gefahr { background: #fff; color: var(--fehler-text); border-color: var(--fehler-text); }
+.knopf-klein { width: auto; min-height: 3rem; margin: 0; }
+/* nebeneinander, wenn Platz ist – sonst untereinander (kleine Handys, große Systemschrift) */
+.knopfreihe { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.75rem; }
+.knopfreihe .knopf { margin: 0; }
+
+/* ---------- Tabelle ---------- */
+/* Rahmen verhindert, dass eine breite Tabelle die ganze Seite verbreitert (Handy würde herauszoomen) */
+.tabelle-rahmen { max-width: 100%; overflow-x: auto; margin: 0 0 0.75rem; }
+.tabelle { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.tabelle caption { text-align: left; font-weight: 700; padding-bottom: 0.5rem; overflow-wrap: anywhere; }
+.tabelle th, .tabelle td { padding: 0.4rem 0.3rem; border-bottom: 1px solid #cfd6cf; text-align: right; }
+.tabelle th[scope="row"], .tabelle thead th:first-child { text-align: left; }
+
+/* ---------- Navigation unten (Daumenbereich) ---------- */
+.navigation {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: #fff; border-top: 2px solid var(--rand);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.navigation a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem;
+  min-width: 0; min-height: var(--nav-hoehe);
+  color: var(--text-leise); text-decoration: none; font-weight: 600;
+  /* passt „Einstellungen“ auch auf 320 px breite Handys */
+  font-size: min(0.8rem, 3.4vw);
+  border-top: 0.3rem solid transparent;
+}
+.navigation svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
+.navigation a[aria-current="page"] {
+  color: var(--primaer-dunkel); background: var(--primaer-hell); border-top-color: var(--primaer);
+}
+
+/* ---------- Meldungen und Update-Leiste ---------- */
+.meldungen {
+  position: fixed; left: 0.75rem; right: 0.75rem; z-index: 60;
+  bottom: calc(var(--nav-hoehe) + env(safe-area-inset-bottom) + 0.75rem);
+  display: grid; gap: 0.5rem; pointer-events: none;
+}
+.meldung {
+  max-width: 40rem; margin: 0 auto; width: 100%;
+  padding: 0.85rem 1rem; border-radius: var(--radius);
+  background: var(--text); color: #fff; font-weight: 600;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.25);
+}
+.meldung-fehler { background: var(--fehler-text); }
+.meldung-erfolg { background: var(--primaer-dunkel); }
+.meldung-warnung { background: var(--warnung-text); }
+
+.update-leiste {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  padding: 0.6rem 1rem; background: var(--warnung-grund); color: var(--warnung-text); font-weight: 600;
+}
+.update-leiste[hidden] { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .knopf, .navigation a { transition: background-color 0.1s; }
+}
+
+/* ---------- Allgemein ---------- */
+[hidden] { display: none !important; }
+h3 { font-size: 1.05rem; margin: 1rem 0 0.5rem; }
+.liste-schlicht { margin: 0 0 0.75rem; padding-left: 1.25rem; }
+.liste-schlicht li { margin: 0.2rem 0; }
+/* Bezeichnung über dem Wert – vermeidet Wortbrüche wie „Betriebsnumm-er“ auf schmalen Handys */
+.angaben { display: grid; grid-template-columns: 1fr; margin: 0 0 0.75rem; }
+.angaben dt { color: var(--text-leise); font-size: 0.85rem; margin-top: 0.6rem; }
+.angaben dt:first-child { margin-top: 0; }
+.angaben dd { margin: 0; font-weight: 600; overflow-wrap: break-word; }
+@media (min-width: 34rem) {
+  .angaben { grid-template-columns: minmax(10rem, 35%) 1fr; gap: 0.4rem 1rem; }
+  .angaben dt { margin-top: 0; font-size: 1rem; }
+}
+
+/* ---------- Formulare ---------- */
+.formular { margin-bottom: 1rem; }
+.abschnitt { border: 0; padding: 0; margin: 0 0 1.5rem; min-width: 0; }
+.abschnitt > legend { font-size: 1.2rem; font-weight: 700; padding: 0; margin-bottom: 0.75rem; }
+.feld { margin: 0 0 1.1rem; border: 0; padding: 0; min-width: 0; }
+.feld > label, .feld > legend { display: block; font-weight: 700; margin-bottom: 0.3rem; padding: 0; }
+.pflicht { color: var(--fehler-text); }
+.feld-hilfe { font-size: 0.9rem; color: var(--text-leise); margin: 0 0 0.4rem; }
+.feld-fehler { color: var(--fehler-text); font-weight: 700; margin: 0.35rem 0 0; }
+.feld-fehler::before { content: "⚠ "; }
+
+.feld input:not([type=checkbox]):not([type=radio]), .feld select {
+  display: block; width: 100%; min-height: 3.25rem;
+  padding: 0.6rem 0.75rem; font: inherit; color: var(--text);
+  background: #fff; border: 2px solid var(--rand); border-radius: 0.5rem;
+}
+.feld select { appearance: auto; }
+.feld input:focus, .feld select:focus { border-color: var(--primaer); }
+.hat-fehler input:not([type=checkbox]):not([type=radio]), .hat-fehler select { border-color: var(--fehler-text); border-width: 3px; background: var(--fehler-grund); }
+.feldreihe { display: grid; grid-template-columns: minmax(5.5rem, 1fr) 2.5fr; gap: 0.75rem; }
+
+.fehler-uebersicht { margin-bottom: 1rem; }
+.fehler-uebersicht:focus { outline: 3px solid var(--fokus); }
+
+/* Große Auswahlknöpfe (Radio) und Checkbox-Zeilen */
+.knopfauswahl-optionen { display: grid; gap: 0.5rem; }
+.option {
+  display: flex; align-items: center; gap: 0.75rem;
+  min-height: 3.25rem; padding: 0.5rem 0.75rem;
+  background: #fff; border: 2px solid var(--rand); border-radius: 0.5rem; cursor: pointer;
+}
+.option input { width: 1.5rem; height: 1.5rem; flex: none; accent-color: var(--primaer); margin: 0; }
+.option span { display: flex; flex-direction: column; }
+.option small { color: var(--text-leise); font-size: 0.85rem; }
+.option:has(input:checked) { border-color: var(--primaer); background: var(--primaer-hell); }
+.option:has(input:focus-visible) { outline: 3px solid var(--fokus); outline-offset: 2px; }
+.mehrfachauswahl .option { margin-bottom: 0.4rem; }
+.auswahlgruppe h3 { margin-top: 0.75rem; }
+
+/* ---------- Personenliste und Status ---------- */
+.personenliste { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.6rem; }
+.personenkarte {
+  display: flex; flex-direction: column; gap: 0.15rem;
+  padding: 0.8rem 1rem; border: 2px solid #cfd6cf; border-radius: var(--radius);
+  background: var(--flaeche); color: var(--text); text-decoration: none; min-height: 3.25rem;
+}
+.personenkarte strong { font-size: 1.05rem; }
+.status { display: inline-block; align-self: flex-start; margin-top: 0.3rem; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
+.status-ok { background: var(--erfolg-grund); color: var(--erfolg-text); }
+.status-warnung { background: var(--warnung-grund); color: var(--warnung-text); }
+.status-fehler { background: var(--fehler-grund); color: var(--fehler-text); }
+.status-neutral { background: #eceeec; color: var(--text-leise); }
+.status-warnung::before, .status-fehler::before { content: "⚠ "; }
+
+/* ---------- Flächen ---------- */
+.jahreswahl { display: grid; grid-template-columns: 3.25rem 1fr 3.25rem; align-items: center; gap: 0.5rem; margin: 0 0 1rem; text-align: center; font-size: 1.2rem; }
+.jahreswahl .knopf { width: 100%; padding: 0; }
+.summe-zeile { font-weight: 700; margin: 1rem 0 0.5rem; }
+.flaechenliste { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.75rem; }
+.feldstueck-eintrag { border: 2px solid #cfd6cf; border-radius: var(--radius); background: var(--flaeche); padding: 0.75rem; }
+.feldstueck-eintrag > .knopf { margin: 0.5rem 0 0; }
+.feldstueck-kopf { display: flex; flex-direction: column; gap: 0.1rem; color: var(--text); text-decoration: none; min-height: 2.75rem; }
+.feldstueck-kopf strong { font-size: 1.05rem; }
+.schlagliste { list-style: none; margin: 0.5rem 0 0; padding: 0; display: grid; gap: 0.4rem; }
+.schlagliste a, .schlagliste li > div {
+  display: grid; grid-template-columns: 1fr auto; gap: 0.1rem 0.75rem; align-items: center;
+  min-height: 3rem; padding: 0.5rem 0.75rem; background: #fff; border: 1px solid #cfd6cf; border-radius: 0.5rem;
+  color: var(--text); text-decoration: none;
+}
+.schlagliste small { grid-column: 1 / -1; color: var(--text-leise); }
+.schlagliste .status { margin: 0 0 0 0.4rem; }
+
+.karte-bereich { margin: 0 0 1rem; }
+/* isolation: Leaflets z-Index-Werte (bis 1000) bleiben in der Karte und überdecken nicht die Navigation */
+.karte-rahmen { position: relative; isolation: isolate; z-index: 0; height: min(60vh, 28rem); border: 2px solid var(--rand); border-radius: var(--radius); overflow: hidden; }
+.karte-hinweis {
+  position: absolute; left: 0.5rem; right: 0.5rem; bottom: 1.75rem; z-index: 1000; margin: 0;
+  padding: 0.5rem 0.75rem; border-radius: 0.5rem; background: var(--warnung-grund); color: var(--warnung-text); font-weight: 600; font-size: 0.9rem;
+}
+/* Leaflet-Bedienelemente groß genug für Finger */
+.leaflet-touch .leaflet-bar a { width: 44px; height: 44px; line-height: 44px; font-size: 22px; }
+.leaflet-control-layers-toggle { width: 44px !important; height: 44px !important; }
+.leaflet-control-layers label { font-size: 1rem; padding: 0.35rem 0; }
+
+.zuordnung { margin-bottom: 1rem; }
+.zuordnungsliste { display: grid; gap: 0.6rem; }
+.zuordnungszeile { display: grid; gap: 0.2rem; }
+.zuordnungszeile label { font-weight: 600; font-size: 0.95rem; }
+.zuordnungszeile select { width: 100%; min-height: 3rem; font: inherit; border: 2px solid var(--rand); border-radius: 0.5rem; background: #fff; padding: 0 0.5rem; }
+@media (min-width: 34rem) { .zuordnungszeile { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+/* ---------- Betriebsmittel und allgemeine Formular-Ergänzungen ---------- */
+.feld textarea {
+  display: block; width: 100%; min-height: 5rem; padding: 0.6rem 0.75rem; font: inherit; color: var(--text);
+  background: #fff; border: 2px solid var(--rand); border-radius: 0.5rem; resize: vertical;
+}
+.feld textarea:focus { border-color: var(--primaer); }
+.hat-fehler textarea { border-color: var(--fehler-text); border-width: 3px; background: var(--fehler-grund); }
+/* Mehrere kurze Zahlenfelder nebeneinander (N, P₂O₅, K₂O …), am Handy zwei je Zeile */
+.feldraster { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 0 0.75rem; }
+.wiederholung-liste { display: grid; gap: 0.75rem; margin-bottom: 0.75rem; }
+.wiederholung-zeile { border: 2px solid #cfd6cf; border-radius: var(--radius); background: var(--flaeche); padding: 0.75rem; min-width: 0; }
+.wiederholung-kopf { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.wiederholung-zeile .feld:last-child { margin-bottom: 0; }
+details.mehr { border: 2px solid #cfd6cf; border-radius: var(--radius); margin: 0 0 1.25rem; background: #fff; }
+details.mehr > summary {
+  cursor: pointer; font-weight: 700; padding: 0.85rem 1rem; min-height: 3.25rem; list-style-position: inside;
+}
+details.mehr[open] > summary { border-bottom: 1px solid #cfd6cf; margin-bottom: 0.75rem; }
+details.mehr > :not(summary) { margin-left: 0.85rem; margin-right: 0.85rem; }
+.gruppenwahl { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.gruppenwahl a {
+  display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.3rem 0.9rem;
+  border: 2px solid var(--primaer); border-radius: 999px; color: var(--primaer); text-decoration: none; font-weight: 700; background: #fff;
+}
+.gruppenwahl a[aria-current="page"] { background: var(--primaer); color: #fff; }
+.suchfeld input { display: block; width: 100%; min-height: 3.25rem; padding: 0.6rem 0.75rem; font: inherit; border: 2px solid var(--rand); border-radius: 0.5rem; }
+.personenkarte small { color: var(--text-leise); }
+.quellenhinweis { font-size: 0.95rem; }
+.quellenhinweis a { font-weight: 700; overflow-wrap: anywhere; }
+
+/* ---------- Rückfrage (Bestätigungsdialog) ---------- */
+.rueckfrage {
+  width: min(32rem, calc(100vw - 2rem)); max-width: none; padding: 1.25rem; border: 3px solid var(--text);
+  border-radius: var(--radius); background: #fff; color: var(--text);
+}
+.rueckfrage::backdrop { background: rgb(0 0 0 / 0.55); }
+.rueckfrage-frage { font-size: 1.15rem; font-weight: 700; margin: 0 0 0.75rem; }
+.rueckfrage .knopfreihe { margin-top: 1rem; }
+.knopf-gefahr-voll { background: var(--fehler-text); border-color: var(--fehler-text); color: #fff; }
+
+/* ---------- Schlagauswahl, Zeitachse, Warnungen ---------- */
+.schlagwahl-kopf { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.schlagwahl-kopf h3 { margin: 0.75rem 0 0.4rem; }
+.schlagwahl-summe { font-weight: 700; margin: 0.5rem 0 0; }
+.zeitachse { list-style: none; margin: 0 0 1rem; padding: 0; border-left: 4px solid var(--primaer); }
+.zeitachse > li { position: relative; margin: 0 0 0.6rem 0.9rem; }
+.zeitachse > li::before { content: ""; position: absolute; left: -1.35rem; top: 1.1rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--primaer); border: 2px solid #fff; }
+.zeitachse a, .zeitachse .eintrag {
+  display: flex; flex-direction: column; gap: 0.1rem; padding: 0.6rem 0.85rem; border: 2px solid #cfd6cf; border-radius: var(--radius);
+  background: var(--flaeche); color: var(--text); text-decoration: none; min-height: 3rem;
+}
+.zeitachse small { color: var(--text-leise); }
+.warnliste { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.5rem; }
+.warnliste li { border-radius: var(--radius); padding: 0.7rem 0.9rem; border-left: 0.4rem solid; }
+.warnliste .stufe-fehler { background: var(--fehler-grund); color: var(--fehler-text); }
+.warnliste .stufe-warnung { background: var(--warnung-grund); color: var(--warnung-text); }
+.warnliste .stufe-info { background: #e8eef5; color: #10263d; }
+.warnliste .quelle { display: block; font-size: 0.85rem; margin-top: 0.25rem; }
+.warnliste label { display: flex; gap: 0.6rem; align-items: center; margin-top: 0.4rem; font-weight: 700; min-height: 2.75rem; }
+.warnliste input[type=checkbox] { width: 1.5rem; height: 1.5rem; accent-color: var(--primaer); }
+.rechnung { width: 100%; border-collapse: collapse; margin: 0 0 1rem; }
+.rechnung td, .rechnung th { padding: 0.45rem 0.4rem; border-bottom: 1px solid #cfd6cf; text-align: left; vertical-align: top; }
+.rechnung td.zahl, .rechnung th.zahl { text-align: right; white-space: nowrap; }
+.rechnung tr.summe td { font-weight: 700; border-top: 2px solid var(--text); }
+.kachelwahl { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 0.6rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
+.kachelwahl a {
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start; min-height: 4.5rem; padding: 0.7rem 0.9rem;
+  border: 2px solid var(--primaer); border-radius: var(--radius); background: #fff; color: var(--primaer-dunkel); font-weight: 700; text-decoration: none;
+}
+.kachelwahl a small { font-weight: 400; color: var(--text-leise); }
+.kachelwahl a:active { background: var(--primaer-hell); }
+@media print {
+  .navigation, .kopf, .knopfreihe, .knopf, .update-leiste, .meldungen, .nicht-drucken { display: none !important; }
+  body { padding: 0; }
+  .karte { break-inside: avoid; border: 1px solid #999; }
+}
+.karte-leise { opacity: 0.92; }
+.klasse { font-weight: 700; white-space: nowrap; }
+.klasse-A { color: #b00020; } .klasse-B { color: #ef6c00; } .klasse-C { color: #2e7d32; } .klasse-D { color: #1565c0; } .klasse-E { color: #4a148c; }
+.fotoliste { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 0.6rem; margin: 0.75rem 0; }
+.foto { margin: 0; display: grid; gap: 0.3rem; }
+.foto img { width: 100%; height: 9rem; object-fit: cover; border-radius: 0.5rem; border: 2px solid #cfd6cf; }
+.notiz-eintrag { display: grid; grid-template-columns: 1fr; }
+.notiz-bild-klein { width: 100%; max-height: 10rem; object-fit: cover; border-radius: 0.5rem; margin-bottom: 0.4rem; }
+.rechnung { font-size: 0.95rem; }
+.rechnung td:first-child { overflow-wrap: anywhere; }
+@media (max-width: 22rem) { .rechnung td, .rechnung th { padding: 0.4rem 0.2rem; } }

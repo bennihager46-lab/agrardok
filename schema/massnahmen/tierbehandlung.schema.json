@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/tierbehandlung.schema.json",
+  "title": "Details: Tierbehandlung",
+  "description": "Zeitpunkt und Art der Behandlung, Mittel, Wartezeit (TAMG, Rückstandskontrollverordnung; AMA-Merkblatt Konditionalität). Eintrag am Tag der Behandlung, 5 Jahre aufbewahren.",
+  "type": "object",
+  "properties": {
+    "betriebsmittel_id": { "$ref": "../common.schema.json#/$defs/uuid" },
+    "mittel_name": { "type": "string", "minLength": 1, "description": "Momentaufnahme" },
+    "zulassungsnummer": { "type": "string" },
+    "menge": { "$ref": "../common.schema.json#/$defs/menge" },
+    "anwendungsart": { "enum": ["oral", "injektion", "intramammaer", "aeusserlich", "ueber_futter_wasser", "sonstige"] },
+    "diagnose": { "type": "string" },
+    "behandlungsdauer_tage": { "type": "integer", "minimum": 1 },
+    "durch_tierarzt": { "type": "boolean", "description": "true = Tierärztin/Tierarzt hat behandelt (Eintrag kann durch Abgabebeleg erfolgt sein)" },
+    "tierarzt_person_id": { "$ref": "../common.schema.json#/$defs/uuid" },
+    "abgabebeleg_nr": { "type": "string" },
+    "wartezeit_ende": {
+      "type": "object",
+      "properties": {
+        "fleisch": { "$ref": "../common.schema.json#/$defs/datum" },
+        "milch": { "$ref": "../common.schema.json#/$defs/datum" },
+        "eier": { "$ref": "../common.schema.json#/$defs/datum" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["mittel_name", "anwendungsart"],
+  "additionalProperties": false
+}

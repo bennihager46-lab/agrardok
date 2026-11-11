@@ -1,0 +1,94 @@
+{
+  "format": "agrardok-export",
+  "schema_version": "0.5",
+  "erstellt_am": "2026-11-11T12:00:00+01:00",
+  "geraet_id": "0a000000-0000-4000-8000-000000000002",
+  "betrieb_id": "11000000-0000-4000-8000-000000000001",
+  "daten": {
+    "betriebe": [
+      {
+        "id": "11000000-0000-4000-8000-000000000001",
+        "betrieb_id": "11000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-02-10T09:00:00+01:00",
+        "erstellt_von": "12000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-10T09:00:00+01:00",
+        "geaendert_von": "12000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000002",
+        "rev": 1,
+        "name": "Biohof Sonnleiten (fiktiv)",
+        "betriebsnummer": "9999997",
+        "adresse": {
+          "strasse": "Sonnleiten 5",
+          "plz": "9998",
+          "ort": "Bergdorf",
+          "land": "AT"
+        },
+        "bundesland": "T",
+        "bewirtschafter": {
+          "name": "Maria Beispiel",
+          "rechtsform": "einzelperson",
+          "person_id": "12000000-0000-4000-8000-000000000001"
+        },
+        "bewirtschaftung": "bio",
+        "bio_kontrollstelle": "AT-BIO-999 Beispiel-Kontrollstelle (fiktiv)",
+        "napv_gebiet_anlage5": false,
+        "oepul_massnahmen": [
+          "bio",
+          "heuwirtschaft",
+          "tierwohl_weide",
+          "almbewirtschaftung"
+        ],
+        "notiz": "Fiktiver Bio-Grünlandbetrieb in Tirol. Testfälle: Bio + Kontrollstelle, Tiroler PSM-Recht, abgelaufener Sachkundeausweis."
+      }
+    ],
+    "personen": [
+      {
+        "id": "12000000-0000-4000-8000-000000000001",
+        "betrieb_id": "11000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-02-10T09:00:00+01:00",
+        "erstellt_von": "12000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-10T09:00:00+01:00",
+        "geaendert_von": "12000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000002",
+        "rev": 1,
+        "name": "Maria Beispiel",
+        "rolle": "betriebsleitung",
+        "telefon": "+43 000 0000002",
+        "aktiv": true,
+        "psm_ausbildungsbescheinigung": {
+          "nummer": "T-FIKTIV-789",
+          "bundesland": "T",
+          "gueltig_bis": "2025-06-30"
+        },
+        "notiz": "Sachkundeausweis abgelaufen (Testfall)."
+      },
+      {
+        "id": "12000000-0000-4000-8000-000000000002",
+        "betrieb_id": "11000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-02-10T09:00:00+01:00",
+        "erstellt_von": "12000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-10T09:00:00+01:00",
+        "geaendert_von": "12000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000002",
+        "rev": 1,
+        "name": "Lukas Beispiel",
+        "rolle": "mitarbeit",
+        "aktiv": true
+      },
+      {
+        "id": "12000000-0000-4000-8000-000000000003",
+        "betrieb_id": "11000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-02-10T09:00:00+01:00",
+        "erstellt_von": "12000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-10T09:00:00+01:00",
+        "geaendert_von": "12000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000002",
+        "rev": 1,
+        "name": "Franz Beispiel",
+        "rolle": "familie",
+        "aktiv": false,
+        "notiz": "Altbauer, nicht mehr am Betrieb (Testfall ehemalig)."
+      }
+    ]
+  }
+}

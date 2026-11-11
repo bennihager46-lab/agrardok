@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahme.schema.json",
+  "title": "Maßnahme",
+  "description": "Alles, was am Betrieb passiert, ist eine Maßnahme: Düngung, Pflanzenschutz, Aussaat, Ernte, Weide, Tierbehandlung, Tierbewegung … Gemeinsame Felder stehen hier, artspezifische Angaben in 'details' (eigenes Schema je Art unter massnahmen/). Rechtlich relevante Stammdaten (z. B. Zulassungsnummer, Kulturname) werden in 'details' als Momentaufnahme kopiert, damit die Aufzeichnung auch nach Änderung der Stammdaten stimmt.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "duengung"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/duengung.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "pflanzenschutz"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/pflanzenschutz.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "aussaat"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/aussaat.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "ernte"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/ernte.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "bodenbearbeitung"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/bodenbearbeitung.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "bewaesserung"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/bewaesserung.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "weide"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/weide.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "tierbehandlung"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/tierbehandlung.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "tierbewegung"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/tierbewegung.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "biozid"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/biozid.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "feldmiete"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/feldmiete.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "const": "pflege"
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "properties": {
+          "details": {
+            "$ref": "massnahmen/pflege.schema.json"
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Flächenmaßnahmen brauchen mindestens einen Schlag, Tiermaßnahmen mindestens ein Tier bzw. eine Gruppe.",
+      "if": {
+        "properties": {
+          "art": {
+            "enum": [
+              "duengung",
+              "aussaat",
+              "ernte",
+              "bodenbearbeitung",
+              "bewaesserung",
+              "weide",
+              "feldmiete",
+              "pflege"
+            ]
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "required": [
+          "schlag_ids"
+        ],
+        "properties": {
+          "schlag_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Pflanzenschutz und Biozide: entweder Schläge oder ein Ort (Lager, Gewächshaus, Saatgut).",
+      "if": {
+        "properties": {
+          "art": {
+            "enum": [
+              "pflanzenschutz",
+              "biozid"
+            ]
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "anyOf": [
+          {
+            "required": [
+              "schlag_ids"
+            ],
+            "properties": {
+              "schlag_ids": {
+                "minItems": 1
+              }
+            }
+          },
+          {
+            "required": [
+              "ort"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "art": {
+            "enum": [
+              "tierbehandlung",
+              "tierbewegung"
+            ]
+          }
+        },
+        "required": [
+          "art"
+        ]
+      },
+      "then": {
+        "required": [
+          "tier_ids"
+        ],
+        "properties": {
+          "tier_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "art": {
+      "enum": [
+        "duengung",
+        "pflanzenschutz",
+        "aussaat",
+        "ernte",
+        "bodenbearbeitung",
+        "bewaesserung",
+        "weide",
+        "tierbehandlung",
+        "tierbewegung",
+        "biozid",
+        "feldmiete",
+        "pflege",
+        "sonstiges"
+      ]
+    },
+    "modul": {
+      "type": "string",
+      "description": "Modul, das den Datensatz angelegt hat (z. B. 'duengung'). Nur informativ."
+    },
+    "status": {
+      "enum": [
+        "geplant",
+        "erledigt"
+      ],
+      "default": "erledigt"
+    },
+    "datum": {
+      "$ref": "common.schema.json#/$defs/datum",
+      "description": "Tag der Durchführung bzw. Beginn"
+    },
+    "uhrzeit_start": {
+      "$ref": "common.schema.json#/$defs/uhrzeit"
+    },
+    "datum_ende": {
+      "$ref": "common.schema.json#/$defs/datum",
+      "description": "Bei Zeiträumen (Weide, Feldmiete)"
+    },
+    "uhrzeit_ende": {
+      "$ref": "common.schema.json#/$defs/uhrzeit"
+    },
+    "schlag_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      },
+      "uniqueItems": true
+    },
+    "tier_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      },
+      "uniqueItems": true
+    },
+    "person_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      },
+      "uniqueItems": true,
+      "description": "Durchgeführt von (Anwender:in)"
+    },
+    "maschine_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      },
+      "uniqueItems": true
+    },
+    "ort": {
+      "type": "string",
+      "description": "Für Maßnahmen ohne Schlag, z. B. Lager, Stall, Gewächshaus"
+    },
+    "regeln": {
+      "type": "array",
+      "description": "Verwendete Regeldateien aus /rules samt Version, z. B. 'napv@2023-01-01' – macht Berechnungen nachvollziehbar.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_/-]+@[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "anhang_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/uuid"
+      },
+      "description": "Fotos, Belege (Lieferschein, Wiegeschein, Abgabebeleg)"
+    },
+    "details": {
+      "type": "object"
+    },
+    "bestaetigungen": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Codes von Warnungen, die bei der Erfassung ausdrücklich bestätigt wurden (z. B. 'napv_boden_zustand'), damit nachvollziehbar ist, was geprüft wurde."
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "art",
+    "datum",
+    "details"
+  ],
+  "unevaluatedProperties": false
+}

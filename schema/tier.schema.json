@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/tier.schema.json",
+  "title": "Tier",
+  "description": "Einzeltier (z. B. Rind mit Ohrmarke) oder Tiergruppe (z. B. Mastschweine eines Abteils). Zu- und Abgänge sind Maßnahmen der Art 'tierbewegung'; der Bestand wird daraus berechnet.",
+  "type": "object",
+  "allOf": [{ "$ref": "common.schema.json#/$defs/basis" }],
+  "properties": {
+    "erfassung": { "enum": ["einzeltier", "gruppe"] },
+    "tierart": { "enum": ["rind", "schwein", "schaf", "ziege", "pferd", "gefluegel", "sonstige"] },
+    "nutzung": { "enum": ["milch", "mutterkuh", "mast", "zucht", "aufzucht", "sonstige"] },
+    "ohrmarke": { "type": "string", "pattern": "^[A-Z]{2}[0-9 ]{6,15}$", "description": "Einzeltierkennzeichen inkl. Ländercode" },
+    "name": { "type": "string", "description": "Rufname oder Gruppenbezeichnung" },
+    "geburtsdatum": { "$ref": "common.schema.json#/$defs/datum" },
+    "geschlecht": { "enum": ["weiblich", "maennlich", "maennlich_kastriert"] },
+    "rasse": { "type": "string" },
+    "mutter_id": { "$ref": "common.schema.json#/$defs/uuid" },
+    "mutter_ohrmarke": { "type": "string" },
+    "urspruengliche_ohrmarke": { "type": "string", "description": "Bei Tieren aus Drittländern" },
+    "stall": { "type": "string" }
+  },
+  "required": ["betrieb_id", "erfassung", "tierart"],
+  "$comment": "if/then: Für Rinder als Einzeltier sind ohrmarke, geburtsdatum, geschlecht und rasse Pflicht (§ 5 Abs. 2 RKZV 2021).",
+  "if": {
+    "properties": { "erfassung": { "const": "einzeltier" }, "tierart": { "const": "rind" } },
+    "required": ["erfassung", "tierart"]
+  },
+  "then": { "required": ["ohrmarke", "geburtsdatum", "geschlecht", "rasse"] },
+  "unevaluatedProperties": false
+}

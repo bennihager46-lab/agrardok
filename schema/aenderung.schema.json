@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/aenderung.schema.json",
+  "title": "Änderung (Änderungsprotokoll)",
+  "description": "Ein Eintrag im unveränderlichen Änderungsprotokoll. Jede Speicherung erzeugt einen Eintrag; Synchronisation = Austausch dieser Einträge. Dient zugleich als Nachweis, wer wann was geändert hat.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "hlc": {
+      "$ref": "common.schema.json#/$defs/hlc"
+    },
+    "geraet_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "person_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "betrieb_id": {
+      "$ref": "common.schema.json#/$defs/uuid",
+      "description": "Fehlt bei globalen Katalogeinträgen (z. B. Kulturen)"
+    },
+    "entitaet": {
+      "enum": [
+        "betrieb",
+        "person",
+        "feldstueck",
+        "schlag",
+        "kultur",
+        "tier",
+        "betriebsmittel",
+        "maschine",
+        "massnahme",
+        "duengeplan",
+        "bodenprobe",
+        "feldnotiz",
+        "anhang"
+      ]
+    },
+    "datensatz_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "operation": {
+      "enum": [
+        "anlegen",
+        "aendern",
+        "loeschen"
+      ]
+    },
+    "felder": {
+      "type": "object",
+      "description": "Bei 'anlegen' der vollständige Datensatz, bei 'aendern' nur die geänderten Felder (Feldname → neuer Wert), bei 'loeschen' leer."
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    }
+  },
+  "required": [
+    "id",
+    "hlc",
+    "geraet_id",
+    "entitaet",
+    "datensatz_id",
+    "operation",
+    "felder",
+    "schema_version"
+  ],
+  "additionalProperties": false
+}

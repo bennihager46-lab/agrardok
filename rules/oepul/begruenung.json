@@ -1,0 +1,128 @@
+{
+ "name": "oepul/begruenung",
+ "titel": "ÖPUL 2023 – Begrünung von Ackerflächen: Zwischenfruchtanbau (Varianten 1–7) und System Immergrün",
+ "quelle": "https://www.ama.at/fachliche-informationen/oepul/aktuelles/2026/terminueberblick-zu-der-oepul-massnahme-begruenung-von-ackerflaechen-zwischenfruchtanbau",
+ "quelle_weitere": [
+  "https://www.ama.at/fachliche-informationen/oepul/aktuelles/2026/frueheste-umbruchstermine-von-zwischenfruechten",
+  "https://ooe.lko.at/begr%C3%BCnung-von-ackerfl%C3%A4chen-im-%C3%B6pul+2400+4430170",
+  "docs/rechtsgrundlagen.md#3-öpul-2023-maßnahmenspezifische-aufzeichnungen"
+ ],
+ "gueltig_ab": "2025-01-01",
+ "gueltig_bis": null,
+ "stand": "2026-11-11",
+ "status": "amtliche_erlaeuterung",
+ "hinweise": [
+  "Varianten laut AMA-Terminüberblick vom 22.07.2026 (Antragsjahr 2026). Variante 1 seit 2025: Anlage bis 10.08., frühestens nach 70 Tagen, nicht vor 15.09.",
+  "System Immergrün laut LK OÖ (09.06.2026); maßgeblich ist das AMA-Maßnahmeninformationsblatt.",
+  "ÖPUL ist eine freiwillige Förderverpflichtung, keine allgemeine Rechtspflicht. Hinweis, keine Förderberatung."
+ ],
+ "werte": {
+  "varianten": [
+   {
+    "nr": 1,
+    "anlage_bis": "08-10",
+    "ende": {
+     "tage_nach_anlage": 70,
+     "nicht_vor": "09-15"
+    },
+    "bedingung": "mind. 5 insektenblütige Mischungspartner aus mind. 2 Pflanzenfamilien; Befahrungsverbot bis einschließlich 14.09.; danach Hauptkultur im Herbst",
+    "mischungspartner_min": 5
+   },
+   {
+    "nr": 2,
+    "anlage_bis": "08-05",
+    "ende": {
+     "datum": "02-15"
+    },
+    "bedingung": "mind. 7 Mischungspartner aus mind. 3 Pflanzenfamilien",
+    "mischungspartner_min": 7
+   },
+   {
+    "nr": 3,
+    "anlage_bis": "08-20",
+    "ende": {
+     "datum": "11-15"
+    },
+    "bedingung": "mind. 3 Mischungspartner aus mind. 2 Pflanzenfamilien",
+    "mischungspartner_min": 3
+   },
+   {
+    "nr": 4,
+    "anlage_bis": "08-31",
+    "ende": {
+     "datum": "02-15"
+    },
+    "bedingung": "mind. 3 Mischungspartner aus mind. 2 Pflanzenfamilien",
+    "mischungspartner_min": 3
+   },
+   {
+    "nr": 5,
+    "anlage_bis": "09-20",
+    "ende": {
+     "datum": "03-01"
+    },
+    "bedingung": "mind. 3 Mischungspartner aus mind. 2 Pflanzenfamilien",
+    "mischungspartner_min": 3
+   },
+   {
+    "nr": 6,
+    "anlage_bis": "10-15",
+    "ende": {
+     "datum": "03-21"
+    },
+    "bedingung": "winterharte Kulturen: Grünschnittroggen, Pannonische Wicke, Zottelwicke, Winterackerbohne, Wintererbse, Winterrübsen (inkl. Perko) oder Mischungen"
+   },
+   {
+    "nr": 7,
+    "anlage_bis": "09-15",
+    "ende": {
+     "datum": "01-31"
+    },
+    "bedingung": "Begleitsaat in Winterraps, mind. 3 Mischungspartner aus mind. 2 Pflanzenfamilien; kein Herbizid nach dem Vierblattstadium des Rapses",
+    "mischungspartner_min": 3,
+    "psm_erlaubt": true
+   }
+  ],
+  "antragsfristen": [
+   {
+    "varianten": [
+     1,
+     2,
+     3
+    ],
+    "bis": "08-31"
+   },
+   {
+    "varianten": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "bis": "09-30"
+   }
+  ],
+  "verbote_im_begruenungszeitraum": {
+   "mineralischer_n": "Keine mineralischen Stickstoffdünger vom Anlegen bis zum Ende des Begrünungszeitraums (Wirtschaftsdünger und N-freie Grunddünger erlaubt).",
+   "psm": "Keine Pflanzenschutzmittel (auch kein Schneckenkorn) vom Anlegen bis zum Ende des Begrünungszeitraums – ausgenommen Variante 7.",
+   "bodenbearbeitung": "Keine Bodenbearbeitung bis zum Umbruchstermin (Ausnahmen: Strip-Till, Tiefenlockerung unter Erhalt der Begrünung).",
+   "pflege": "Häckseln/Mahd ohne Abtransport bei Variante 1 nicht bis 14.09., bei Varianten 2–6 erst nach dem 31. Oktober."
+  },
+  "pflege_erlaubt_ab": {
+   "1": "09-15",
+   "2": "11-01",
+   "3": "11-01",
+   "4": "11-01",
+   "5": "11-01",
+   "6": "11-01"
+  },
+  "immergruen": {
+   "max_tage_ernte_bis_zwischenfrucht": 30,
+   "max_tage_umbruch_bis_hauptfrucht": 30,
+   "max_tage_ernte_bis_hauptfrucht": 50,
+   "min_anteil_begruent": 0.85,
+   "min_anlagedauer_zwischenfrucht_tage": 42,
+   "text": "Mind. 85 % der Ackerfläche ganzjährig begrünt. Höchstens 30 Tage zwischen Ernte der Hauptfrucht und Anlage der Zwischenfrucht, 30 Tage zwischen Umbruch und Anbau der Hauptfrucht, 50 Tage zwischen Ernte und Anbau der nächsten Hauptfrucht. Laufende schlagbezogene Aufzeichnungen (1.1.–31.12.)."
+  }
+ }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/ernte.schema.json",
+  "title": "Details: Ernte",
+  "description": "Erntedatum, Erntemenge mit Beleg und Ertragslage (NAPV § 8 Abs. 1 Z 6, § 9 Abs. 6 Z 4–5).",
+  "type": "object",
+  "properties": {
+    "kultur_id": {
+      "$ref": "../common.schema.json#/$defs/uuid"
+    },
+    "kultur_name": {
+      "type": "string"
+    },
+    "hauptfrucht": {
+      "type": "boolean",
+      "default": true
+    },
+    "menge": {
+      "$ref": "../common.schema.json#/$defs/menge"
+    },
+    "ertrag": {
+      "$ref": "../common.schema.json#/$defs/aufwand",
+      "description": "Ertrag je ha, z. B. t_je_ha"
+    },
+    "beleg": {
+      "enum": [
+        "wiegeschein",
+        "silovolumen",
+        "schaetzung",
+        "sonstiger"
+      ]
+    },
+    "ertragslage": {
+      "enum": [
+        "niedrig",
+        "mittel",
+        "hoch_1",
+        "hoch_2",
+        "hoch_3"
+      ],
+      "description": "Ertragslage laut NAPV Anlage 3 (Stufen noch zu verifizieren)"
+    },
+    "schnitt_nr": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Bei Grünland/Feldfutter"
+    },
+    "feuchte_prozent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Kornfeuchte bei der Ernte"
+    },
+    "rohprotein_prozent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 60,
+      "description": "Rohprotein in % TM (für den N-Entzug bei Weizen/Braugerste, NAPV Anlage 3 Abschnitt V)"
+    }
+  },
+  "required": [
+    "kultur_name"
+  ],
+  "additionalProperties": false
+}

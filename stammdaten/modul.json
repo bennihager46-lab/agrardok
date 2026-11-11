@@ -1,0 +1,12 @@
+{
+  "id": "stammdaten",
+  "name": "Betrieb",
+  "version": "0.2.0",
+  "beschreibung": "Betriebsdaten, Personen am Betrieb (inkl. Sachkundeausweis Pflanzenschutz); später Flächen, Betriebsmittel, Maschinen.",
+  "schreibt": ["betrieb", "person"],
+  "liest": ["betrieb", "person"],
+  "regeln": ["oepul/massnahmen", "bio/kontrollstellen"],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["betrieb", "betrieb-bearbeiten", "personen", "person"]
+}

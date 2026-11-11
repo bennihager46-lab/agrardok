@@ -1,0 +1,59 @@
+{
+  "name": "oepul/massnahmen",
+  "titel": "ÖPUL 2023 – Maßnahmenkatalog",
+  "quelle": "https://www.bmluk.gv.at/themen/landwirtschaft/gemeinsame-agrarpolitik-foerderungen/nationaler-strategieplan/oepul-landingpage.html",
+  "quelle_weitere": [
+    "https://www.bmluk.gv.at/themen/landwirtschaft/gemeinsame-agrarpolitik-foerderungen/nationaler-strategieplan/oepul-landingpage/oepul-subsites/aenderungen2025.html",
+    "docs/rechtsgrundlagen.md#3-öpul-2023-maßnahmenspezifische-aufzeichnungen"
+  ],
+  "gueltig_ab": "2023-01-01",
+  "gueltig_bis": null,
+  "stand": "2026-11-11",
+  "status": "amtliche_erlaeuterung",
+  "hinweise": [
+    "Namen und Anzahl (26) laut BMLUK-Seite, abgerufen am 11.11.2026; die Seite nennt kein Datum.",
+    "gueltig_bis ist offen: Programmperiode GAP 2023–2027, eine Verlängerung ist möglich. Bei Ende der Periode Datum eintragen.",
+    "Abkürzungen ('kurz') sind nur für UBB und BIO amtlich belegt.",
+    "'gruppe' ist eine eigene Einteilung für die Anzeige in der App, keine amtliche Zuordnung.",
+    "'aufzeichnungen' = laut LK NÖ (2023) gibt es maßnahmenspezifische Aufzeichnungspflichten; vor Umsetzung der ÖPUL-Module (V1-07/V1-08) aktuell prüfen. Die Dokumentation der Nutzungstermine auf Grünland-Biodiversitätsflächen entfällt laut BMLUK ab 2025."
+  ],
+  "werte": [
+    { "code": "ubb", "kurz": "UBB", "name": "Umweltgerechte und biodiversitätsfördernde Bewirtschaftung", "gruppe": "allgemein", "aufzeichnungen": false },
+    { "code": "bio", "kurz": "BIO", "name": "Biologische Wirtschaftsweise", "gruppe": "allgemein", "aufzeichnungen": false },
+    { "code": "einschraenkung_ertragssteigernder_betriebsmittel", "name": "Einschränkung ertragssteigernder Betriebsmittel", "gruppe": "allgemein", "aufzeichnungen": false },
+    { "code": "naturschutz", "name": "Naturschutz", "gruppe": "allgemein", "aufzeichnungen": true },
+    { "code": "ergebnisorientierte_bewirtschaftung", "name": "Ergebnisorientierte Bewirtschaftung", "gruppe": "allgemein", "aufzeichnungen": false },
+    { "code": "natura_2000", "name": "Natura 2000 und andere Schutzgebiete", "gruppe": "allgemein", "aufzeichnungen": false },
+    { "code": "wasserrahmenrichtlinie", "name": "Wasserrahmenrichtlinie", "gruppe": "allgemein", "aufzeichnungen": false },
+    { "code": "bodennahe_ausbringung", "name": "Bodennahe Ausbringung flüssiger Wirtschaftsdünger und Gülleseparation", "gruppe": "allgemein", "aufzeichnungen": true },
+
+    { "code": "begruenung_zwischenfruchtanbau", "name": "Begrünung – Zwischenfruchtanbau", "gruppe": "acker", "aufzeichnungen": false },
+    { "code": "begruenung_system_immergruen", "name": "Begrünung – System Immergrün", "gruppe": "acker", "aufzeichnungen": true },
+    { "code": "erosionsschutz_acker", "name": "Erosionsschutz Acker", "gruppe": "acker", "aufzeichnungen": false },
+    { "code": "grundwasserschutz_acker", "name": "Vorbeugender Grundwasserschutz – Acker", "gruppe": "acker", "aufzeichnungen": true },
+    { "code": "nichtproduktive_ackerflaechen", "name": "Nichtproduktive Ackerflächen und Agroforststreifen", "gruppe": "acker", "aufzeichnungen": false },
+
+    { "code": "heuwirtschaft", "name": "Heuwirtschaft", "gruppe": "gruenland", "aufzeichnungen": false },
+    { "code": "bergmaehder", "name": "Bewirtschaftung von Bergmähdern", "gruppe": "gruenland", "aufzeichnungen": false },
+    { "code": "almbewirtschaftung", "name": "Almbewirtschaftung", "gruppe": "gruenland", "aufzeichnungen": false },
+    { "code": "humuserhalt_gruenland", "name": "Humuserhalt und Bodenschutz auf umbruchsfähigem Grünland", "gruppe": "gruenland", "aufzeichnungen": true },
+
+    { "code": "erosionsschutz_wein_obst_hopfen", "name": "Erosionsschutz Wein/Obst/Hopfen", "gruppe": "dauerkulturen", "aufzeichnungen": true },
+    { "code": "insektizidverzicht_wein_obst_hopfen", "name": "Insektizidverzicht Wein/Obst/Hopfen", "gruppe": "dauerkulturen", "aufzeichnungen": false },
+    { "code": "herbizidverzicht_wein_obst_hopfen", "name": "Herbizidverzicht Wein/Obst/Hopfen", "gruppe": "dauerkulturen", "aufzeichnungen": false },
+    { "code": "nuetzlinge_geschuetzter_anbau", "name": "Einsatz von Nützlingen im geschützten Anbau", "gruppe": "dauerkulturen", "aufzeichnungen": true },
+
+    { "code": "gefaehrdete_nutztierrassen", "name": "Erhaltung gefährdeter Nutztierrassen", "gruppe": "tiere", "aufzeichnungen": false },
+    { "code": "tierwohl_behirtung", "name": "Tierwohl – Behirtung", "gruppe": "tiere", "aufzeichnungen": false },
+    { "code": "tierwohl_weide", "name": "Tierwohl – Weide", "gruppe": "tiere", "aufzeichnungen": true },
+    { "code": "tierwohl_stallhaltung_rinder", "name": "Tierwohl – Stallhaltung Rinder", "gruppe": "tiere", "aufzeichnungen": true },
+    { "code": "tierwohl_schweinehaltung", "name": "Tierwohl – Schweinehaltung", "gruppe": "tiere", "aufzeichnungen": true }
+  ],
+  "gruppen": {
+    "allgemein": "Allgemein",
+    "acker": "Acker",
+    "gruenland": "Grünland",
+    "dauerkulturen": "Wein, Obst, Hopfen, geschützter Anbau",
+    "tiere": "Tiere"
+  }
+}

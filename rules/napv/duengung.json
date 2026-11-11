@@ -1,0 +1,1840 @@
+{
+ "name": "napv/duengung",
+ "titel": "NAPV – Sperrfristen, Ausbringung, Obergrenzen, jahreswirksamer Stickstoff, Entzug",
+ "quelle": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20012132",
+ "quelle_weitere": [
+  "https://data.bka.gv.at/ris/api/v2.6/Bundesrecht?Applikation=BrKons&Titel=Nitrat-Aktionsprogramm",
+  "docs/rechtsgrundlagen.md#1-nitrat-aktionsprogramm-verordnung-napv"
+ ],
+ "gueltig_ab": "2025-01-01",
+ "gueltig_bis": null,
+ "stand": "2026-11-11",
+ "status": "geprueft",
+ "hinweise": [
+  "Aus der amtlichen RIS-Fassung (BGBl. II Nr. 495/2022 idF BGBl. II Nr. 198/2024, zuletzt aktualisiert 16.10.2024) von Hand übertragen; Erzeuger: werkzeuge/erzeuge_napv_regeln.py.",
+  "gueltig_ab = Inkrafttreten der jüngsten berücksichtigten Fassung (§ 2 seit 01.01.2025). Die Tabellen der Anlage 3 gelten seit 11.07.2024.",
+  "Nicht übernommen: Wein (Anlage 3 Tabelle 1 Zeilen „Triebwachstum“), Gemüse (Tabelle 3, Abschnitt II), Sämereienvermehrung; Anlage 5 (Gemeindeliste) – der Betrieb gibt selbst an, ob er im Gebiet liegt.",
+  "Die Bestätigung des Bodenzustands (§ 4) fragt die App von 1. November bis 31. März ab – das ist eine Vereinfachung der App; das Verbot gilt ganzjährig.",
+  "Hinweis, keine Rechtsauskunft. Strengere Vorgaben in Schutz- und Schongebieten (§§ 34, 35 WRG) und im ÖPUL bleiben unberührt."
+ ],
+ "werte": {
+  "quellen": {
+   "s1_z8": {
+    "text": "§ 1 Z 8 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40263399/NOR40263399.html"
+   },
+   "s1_z14": {
+    "text": "§ 1 Z 14 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40263399/NOR40263399.html"
+   },
+   "s2": {
+    "text": "§ 2 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40265802/NOR40265802.html"
+   },
+   "s3": {
+    "text": "§ 3 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249605/NOR40249605.html"
+   },
+   "s4": {
+    "text": "§ 4 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249606/NOR40249606.html"
+   },
+   "s5": {
+    "text": "§ 5 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249607/NOR40249607.html"
+   },
+   "s7": {
+    "text": "§ 7 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40263401/NOR40263401.html"
+   },
+   "s8": {
+    "text": "§ 8 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249610/NOR40249610.html"
+   },
+   "s9": {
+    "text": "§ 9 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249611/NOR40249611.html"
+   },
+   "anl2": {
+    "text": "Anlage 2 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249616/NOR40249616.html"
+   },
+   "anl3": {
+    "text": "Anlage 3 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40263402/NOR40263402.html"
+   },
+   "anl4": {
+    "text": "Anlage 4 NAPV",
+    "url": "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40249618/NOR40249618.html"
+   }
+  },
+  "duengerarten": {
+   "$comment": "§ 1 Z 8/9 (Löslichkeit), § 1 Z 14 (Ausbringungsverlust, Faktor der Jahreswirksamkeit), Anlage 2 (Ammoniumanteil in % des N)",
+   "mineralisch": {
+    "name": "Mineralischer N-Dünger",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0,
+    "jahreswirksamkeit": 1.0,
+    "nh4_anteil": 1.0,
+    "fluessig_wd": false
+   },
+   "rinderguelle": {
+    "name": "Rindergülle",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0.13,
+    "jahreswirksamkeit": 0.7,
+    "nh4_anteil": 0.5,
+    "fluessig_wd": true
+   },
+   "schweineguelle": {
+    "name": "Schweinegülle",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0.13,
+    "jahreswirksamkeit": 0.8,
+    "nh4_anteil": 0.65,
+    "fluessig_wd": true
+   },
+   "huehnerguelle": {
+    "name": "Hühnergülle (Legehühnergülle)",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0.13,
+    "jahreswirksamkeit": 0.85,
+    "nh4_anteil": 0.6,
+    "fluessig_wd": true
+   },
+   "jauche": {
+    "name": "Jauche (Rinderjauche)",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0.13,
+    "jahreswirksamkeit": 1.0,
+    "nh4_anteil": 0.9,
+    "fluessig_wd": true
+   },
+   "biogasguelle_rind": {
+    "name": "Biogasgülle/Gärrest, überwiegend Rind",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0.13,
+    "jahreswirksamkeit": 0.7,
+    "nh4_anteil": 0.5,
+    "fluessig_wd": true
+   },
+   "biogasguelle_schwein": {
+    "name": "Biogasgülle/Gärrest, überwiegend Schwein",
+    "loeslich": "leichtloeslich",
+    "ausbringungsverlust": 0.13,
+    "jahreswirksamkeit": 0.8,
+    "nh4_anteil": 0.65,
+    "fluessig_wd": true
+   },
+   "stallmist": {
+    "name": "Stallmist",
+    "loeslich": "langsamloeslich",
+    "ausbringungsverlust": 0.09,
+    "jahreswirksamkeit": 0.5,
+    "nh4_anteil": 0.15,
+    "fluessig_wd": false
+   },
+   "rottemist": {
+    "name": "Rottemist",
+    "loeslich": "langsamloeslich",
+    "ausbringungsverlust": 0.09,
+    "jahreswirksamkeit": 0.3,
+    "nh4_anteil": 0.05,
+    "fluessig_wd": false
+   },
+   "kompost": {
+    "name": "Kompost / Stallmistkompost",
+    "loeslich": "langsamloeslich",
+    "ausbringungsverlust": 0.09,
+    "jahreswirksamkeit": 0.1,
+    "nh4_anteil": 0.01,
+    "fluessig_wd": false
+   },
+   "huehnertrockenkot": {
+    "name": "Legehühnertrockenkot, Putenmist",
+    "loeslich": "langsamloeslich",
+    "ausbringungsverlust": 0.09,
+    "jahreswirksamkeit": null,
+    "nh4_anteil": 0.15,
+    "fluessig_wd": false,
+    "hinweis": "Für Trockenkot nennt § 1 Z 14 keinen Faktor der Jahreswirksamkeit – Wert aus der Fachliteratur selbst eintragen."
+   }
+  },
+  "sperrfristen": {
+   "$comment": "§ 2. Monat-Tag, jeweils einschließlich. „bis“ liegt im Folgejahr.",
+   "acker_leichtloeslich": {
+    "von": "10-16",
+    "bis": "02-15",
+    "ausnahme_bis": "10-31",
+    "ab_ernte_letzte_hauptfrucht": true,
+    "ausnahme_text": "Bis 31. Oktober zulässig auf Raps, Gerste oder Zwischenfrüchten (Anbau bis 15. Oktober) sowie auf Gemüse, Blühkulturen und Erdbeeren mit Anbau bis 31. August – höchstens 60 kg N/ha (§ 7 Abs. 3 Z 1)."
+   },
+   "acker_langsamloeslich": {
+    "von": "11-30",
+    "bis": "02-15"
+   },
+   "fruehe_kulturen_ab": "02-01",
+   "fruehe_kulturen_text": "Durum-Weizen, Raps, Gerste sowie Kulturen unter Vlies oder Folie: ab 1. Februar wieder zulässig.",
+   "fruehe_kulturen_napv": [
+    "durum",
+    "raps",
+    "winterfuttergerste",
+    "winterbraugerste",
+    "sommerfuttergerste",
+    "sommerbraugerste"
+   ],
+   "gruenland_alle": {
+    "von": "11-30",
+    "bis": "02-15"
+   },
+   "sonstige_leichtloeslich": {
+    "von": "10-15",
+    "bis": "02-15"
+   },
+   "sonstige_langsamloeslich": {
+    "von": "11-30",
+    "bis": "02-15"
+   }
+  },
+  "begrenzung_60": {
+   "kg_n_ha": 60,
+   "gruenland_von": "10-01",
+   "gruenland_bis": "11-29",
+   "acker_bis": "10-31",
+   "text": "Leichtlösliche N-Dünger höchstens 60 kg N/ha (nach Stall- und Lagerverlusten): auf Acker nach der Ernte der letzten Hauptfrucht bis 31. Oktober, auf Grünland/Ackerfutter vom 1. Oktober bis 29. November, nach der Sperrfrist auf aufgetauten Böden."
+  },
+  "gabenteilung_ab_kg_leichtloeslich": 100,
+  "hang": {
+   "neigung_prozent": 10,
+   "bereich_m": 20,
+   "max_vor_anbau_kg_n": 100,
+   "teilgaben_ab_kg_n": 100,
+   "erosion_kulturen": [
+    "Ackerbohne",
+    "Kartoffel",
+    "Mais",
+    "Kürbis",
+    "Rübe",
+    "Sojabohne",
+    "Sonnenblume",
+    "Sorghum"
+   ],
+   "ausnahme": "Gilt nicht für Schläge unter 1 ha in Berggebieten im alpinen Raum (§ 3 Abs. 7)."
+  },
+  "gewaesser": {
+   "streifen_bewachsen_m": 3,
+   "stehend_m": 20,
+   "stehend_reduziert_m": 10,
+   "fliessend_m": 10,
+   "fliessend_flach_m": 3,
+   "fliessend_steil_m": 5,
+   "neigung_grenze_prozent": 10
+  },
+  "einarbeitung_stunden": {
+   "moeglichst": 4,
+   "spaetestens": 12
+  },
+  "wirtschaftsduenger_obergrenze_kg_n_ha": 170,
+  "bodenzustand_abfrage": {
+   "von": "11-01",
+   "bis": "03-31"
+  },
+  "obergrenzen_acker": [
+   {
+    "id": "weizen_rp_ab14",
+    "name": "Weizen ≥ 14 % Rohprotein (Qualitätsweizen)",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 4",
+      "n": 105,
+      "n_anlage5": 95
+     },
+     "mittel": {
+      "ertrag": "4–5,5",
+      "n": 145,
+      "n_anlage5": 130
+     },
+     "hoch_1": {
+      "ertrag": "5,5–6,75",
+      "n": 170,
+      "n_anlage5": 150
+     },
+     "hoch_2": {
+      "ertrag": "6,75–8",
+      "n": 180,
+      "n_anlage5": 160
+     },
+     "hoch_3": {
+      "ertrag": "über 8",
+      "n": 195,
+      "n_anlage5": 175
+     }
+    }
+   },
+   {
+    "id": "weizen_rp_unter14",
+    "name": "Weizen < 14 % Rohprotein",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 5",
+      "n": 105,
+      "n_anlage5": 95
+     },
+     "mittel": {
+      "ertrag": "5–6",
+      "n": 145,
+      "n_anlage5": 130
+     },
+     "hoch_1": {
+      "ertrag": "6–7,5",
+      "n": 170,
+      "n_anlage5": 150
+     },
+     "hoch_2": {
+      "ertrag": "7,5–9",
+      "n": 180,
+      "n_anlage5": 160
+     },
+     "hoch_3": {
+      "ertrag": "über 9",
+      "n": 195,
+      "n_anlage5": 175
+     }
+    },
+    "mfa_codes": [
+     "138"
+    ]
+   },
+   {
+    "id": "durum",
+    "name": "Durum-Weizen",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 4",
+      "n": 105,
+      "n_anlage5": 95
+     },
+     "mittel": {
+      "ertrag": "4–5,25",
+      "n": 145,
+      "n_anlage5": 130
+     },
+     "hoch_1": {
+      "ertrag": "5,25–6,5",
+      "n": 170,
+      "n_anlage5": 150
+     },
+     "hoch_2": {
+      "ertrag": "6,5–7,75",
+      "n": 180,
+      "n_anlage5": 160
+     },
+     "hoch_3": {
+      "ertrag": "über 7,75",
+      "n": 195,
+      "n_anlage5": 175
+     }
+    },
+    "mfa_codes": [
+     "165",
+     "166"
+    ]
+   },
+   {
+    "id": "roggen",
+    "name": "Roggen",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 4",
+      "n": 80,
+      "n_anlage5": 70
+     },
+     "mittel": {
+      "ertrag": "4–5,5",
+      "n": 110,
+      "n_anlage5": 95
+     },
+     "hoch_1": {
+      "ertrag": "5,5–7",
+      "n": 130,
+      "n_anlage5": 110
+     },
+     "hoch_2": {
+      "ertrag": "7–8,5",
+      "n": 140,
+      "n_anlage5": 120
+     },
+     "hoch_3": {
+      "ertrag": "über 8,5",
+      "n": 150,
+      "n_anlage5": 130
+     }
+    },
+    "mfa_codes": [
+     "142"
+    ]
+   },
+   {
+    "id": "dinkel",
+    "name": "Dinkel (mit Spelzen)",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 3,5",
+      "n": 80,
+      "n_anlage5": 70
+     },
+     "mittel": {
+      "ertrag": "3,5–5,5",
+      "n": 110,
+      "n_anlage5": 95
+     },
+     "hoch_1": {
+      "ertrag": "5,5–6,5",
+      "n": 130,
+      "n_anlage5": 110
+     },
+     "hoch_2": {
+      "ertrag": "6,5–7,5",
+      "n": 140,
+      "n_anlage5": 120
+     },
+     "hoch_3": {
+      "ertrag": "über 7,5",
+      "n": 150,
+      "n_anlage5": 130
+     }
+    },
+    "mfa_codes": [
+     "145"
+    ]
+   },
+   {
+    "id": "winterfuttergerste",
+    "name": "Winterfuttergerste",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 5",
+      "n": 95,
+      "n_anlage5": 80
+     },
+     "mittel": {
+      "ertrag": "5–6",
+      "n": 130,
+      "n_anlage5": 110
+     },
+     "hoch_1": {
+      "ertrag": "6–7,5",
+      "n": 155,
+      "n_anlage5": 135
+     },
+     "hoch_2": {
+      "ertrag": "7,5–9",
+      "n": 170,
+      "n_anlage5": 145
+     },
+     "hoch_3": {
+      "ertrag": "über 9",
+      "n": 180,
+      "n_anlage5": 155
+     }
+    },
+    "mfa_codes": [
+     "110"
+    ]
+   },
+   {
+    "id": "winterbraugerste",
+    "name": "Winterbraugerste",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 4,5",
+      "n": 70,
+      "n_anlage5": 60
+     },
+     "mittel": {
+      "ertrag": "4,5–5,5",
+      "n": 100,
+      "n_anlage5": 85
+     },
+     "hoch_1": {
+      "ertrag": "5,5–7",
+      "n": 115,
+      "n_anlage5": 100
+     },
+     "hoch_2": {
+      "ertrag": "7–8,5",
+      "n": 125,
+      "n_anlage5": 105
+     },
+     "hoch_3": {
+      "ertrag": "über 8,5",
+      "n": 135,
+      "n_anlage5": 115
+     }
+    }
+   },
+   {
+    "id": "triticale",
+    "name": "Triticale",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 5",
+      "n": 90,
+      "n_anlage5": 80
+     },
+     "mittel": {
+      "ertrag": "5–6",
+      "n": 120,
+      "n_anlage5": 105
+     },
+     "hoch_1": {
+      "ertrag": "6–7,5",
+      "n": 145,
+      "n_anlage5": 125
+     },
+     "hoch_2": {
+      "ertrag": "7,5–9",
+      "n": 155,
+      "n_anlage5": 135
+     },
+     "hoch_3": {
+      "ertrag": "über 9",
+      "n": 165,
+      "n_anlage5": 140
+     }
+    },
+    "mfa_codes": [
+     "116",
+     "157"
+    ]
+   },
+   {
+    "id": "sommerfuttergerste",
+    "name": "Sommerfuttergerste",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 4",
+      "n": 80,
+      "n_anlage5": 70
+     },
+     "mittel": {
+      "ertrag": "4–5,5",
+      "n": 110,
+      "n_anlage5": 95
+     },
+     "hoch_1": {
+      "ertrag": "5,5–7",
+      "n": 130,
+      "n_anlage5": 110
+     },
+     "hoch_2": {
+      "ertrag": "7–8,5",
+      "n": 140,
+      "n_anlage5": 120
+     },
+     "hoch_3": {
+      "ertrag": "über 8,5",
+      "n": 150,
+      "n_anlage5": 130
+     }
+    },
+    "mfa_codes": [
+     "111",
+     "181"
+    ]
+   },
+   {
+    "id": "sommerbraugerste",
+    "name": "Sommerbraugerste",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 3,5",
+      "n": 65,
+      "n_anlage5": 55
+     },
+     "mittel": {
+      "ertrag": "3,5–5",
+      "n": 80,
+      "n_anlage5": 70
+     },
+     "hoch_1": {
+      "ertrag": "5–6,5",
+      "n": 95,
+      "n_anlage5": 80
+     },
+     "hoch_2": {
+      "ertrag": "6,5–8",
+      "n": 105,
+      "n_anlage5": 90
+     },
+     "hoch_3": {
+      "ertrag": "über 8",
+      "n": 110,
+      "n_anlage5": 95
+     }
+    }
+   },
+   {
+    "id": "hafer",
+    "name": "Hafer",
+    "gruppe": "Getreide",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 3,5",
+      "n": 70,
+      "n_anlage5": 60
+     },
+     "mittel": {
+      "ertrag": "3,5–5",
+      "n": 100,
+      "n_anlage5": 85
+     },
+     "hoch_1": {
+      "ertrag": "5–6,5",
+      "n": 115,
+      "n_anlage5": 100
+     },
+     "hoch_2": {
+      "ertrag": "6,5–8",
+      "n": 125,
+      "n_anlage5": 105
+     },
+     "hoch_3": {
+      "ertrag": "über 8",
+      "n": 135,
+      "n_anlage5": 115
+     }
+    },
+    "mfa_codes": [
+     "112",
+     "155"
+    ]
+   },
+   {
+    "id": "koernermais",
+    "name": "Körnermais (inkl. CCM)",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 8,5",
+      "n": 110,
+      "n_anlage5": 100
+     },
+     "mittel": {
+      "ertrag": "8,5–10,5",
+      "n": 155,
+      "n_anlage5": 140
+     },
+     "hoch_1": {
+      "ertrag": "10,5–12",
+      "n": 180,
+      "n_anlage5": 160
+     },
+     "hoch_2": {
+      "ertrag": "12–13,5",
+      "n": 195,
+      "n_anlage5": 175
+     },
+     "hoch_3": {
+      "ertrag": "über 13,5",
+      "n": 210,
+      "n_anlage5": 190
+     }
+    },
+    "mfa_codes": [
+     "105",
+     "106",
+     "173"
+    ]
+   },
+   {
+    "id": "silomais",
+    "name": "Silomais (Frischmasse)",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 40",
+      "n": 130,
+      "n_anlage5": 120
+     },
+     "mittel": {
+      "ertrag": "40–50",
+      "n": 175,
+      "n_anlage5": 160
+     },
+     "hoch_1": {
+      "ertrag": "50–57,5",
+      "n": 210,
+      "n_anlage5": 190
+     },
+     "hoch_2": {
+      "ertrag": "57,5–65",
+      "n": 225,
+      "n_anlage5": 205
+     },
+     "hoch_3": {
+      "ertrag": "über 65",
+      "n": 240,
+      "n_anlage5": 220
+     }
+    },
+    "mfa_codes": [
+     "109"
+    ]
+   },
+   {
+    "id": "zuckerruebe",
+    "name": "Zuckerrübe",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 55",
+      "n": 110,
+      "n_anlage5": 95
+     },
+     "mittel": {
+      "ertrag": "55–75",
+      "n": 155,
+      "n_anlage5": 130
+     },
+     "hoch_1": {
+      "ertrag": "75–85",
+      "n": 180,
+      "n_anlage5": 155
+     },
+     "hoch_2": {
+      "ertrag": "85–95",
+      "n": 195,
+      "n_anlage5": 165
+     },
+     "hoch_3": {
+      "ertrag": "über 95",
+      "n": 210,
+      "n_anlage5": 180
+     }
+    },
+    "mfa_codes": [
+     "651"
+    ]
+   },
+   {
+    "id": "futterruebe",
+    "name": "Futterrübe",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 60",
+      "n": 110,
+      "n_anlage5": 95
+     },
+     "mittel": {
+      "ertrag": "60–100",
+      "n": 155,
+      "n_anlage5": 130
+     },
+     "hoch_1": {
+      "ertrag": "über 100",
+      "n": 180,
+      "n_anlage5": 155
+     }
+    }
+   },
+   {
+    "id": "kartoffel",
+    "name": "Speise-/Industriekartoffel",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 33",
+      "n": 120,
+      "n_anlage5": 105
+     },
+     "mittel": {
+      "ertrag": "33–45",
+      "n": 165,
+      "n_anlage5": 140
+     },
+     "hoch_1": {
+      "ertrag": "45–55",
+      "n": 195,
+      "n_anlage5": 165
+     },
+     "hoch_2": {
+      "ertrag": "55–65",
+      "n": 210,
+      "n_anlage5": 180
+     },
+     "hoch_3": {
+      "ertrag": "über 65",
+      "n": 225,
+      "n_anlage5": 190
+     }
+    },
+    "mfa_codes": [
+     "524",
+     "525",
+     "526"
+    ]
+   },
+   {
+    "id": "fruehkartoffel",
+    "name": "Früh-, Pflanzkartoffel",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 15",
+      "n": 90,
+      "n_anlage5": 75
+     },
+     "mittel": {
+      "ertrag": "15–20",
+      "n": 120,
+      "n_anlage5": 100
+     },
+     "hoch_1": {
+      "ertrag": "über 20",
+      "n": 145,
+      "n_anlage5": 125
+     }
+    },
+    "mfa_codes": [
+     "513",
+     "520",
+     "527"
+    ]
+   },
+   {
+    "id": "koernerhirse",
+    "name": "Körnerhirse/-sorghum",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 6,5",
+      "n": 110,
+      "n_anlage5": 95
+     },
+     "mittel": {
+      "ertrag": "6,5–8",
+      "n": 155,
+      "n_anlage5": 130
+     },
+     "hoch_1": {
+      "ertrag": "8–9,5",
+      "n": 180,
+      "n_anlage5": 155
+     },
+     "hoch_2": {
+      "ertrag": "9,5–10,5",
+      "n": 195,
+      "n_anlage5": 165
+     },
+     "hoch_3": {
+      "ertrag": "über 10,5",
+      "n": 210,
+      "n_anlage5": 180
+     }
+    },
+    "mfa_codes": [
+     "118"
+    ]
+   },
+   {
+    "id": "silohirse",
+    "name": "Silohirse/-sorghum (Frischmasse)",
+    "gruppe": "Hackfrüchte",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 55",
+      "n": 130,
+      "n_anlage5": 110
+     },
+     "mittel": {
+      "ertrag": "55–68",
+      "n": 175,
+      "n_anlage5": 150
+     },
+     "hoch_1": {
+      "ertrag": "68–77",
+      "n": 210,
+      "n_anlage5": 180
+     },
+     "hoch_2": {
+      "ertrag": "77–86",
+      "n": 225,
+      "n_anlage5": 190
+     },
+     "hoch_3": {
+      "ertrag": "über 86",
+      "n": 240,
+      "n_anlage5": 205
+     }
+    }
+   },
+   {
+    "id": "leguminosen",
+    "name": "Soja, Erbse, Bohne",
+    "gruppe": "Öl- und Eiweißpflanzen",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "–",
+      "n": 0,
+      "n_anlage5": 0
+     }
+    },
+    "ausnahme": {
+     "n": 60,
+     "n_anlage5": 50,
+     "text": "bei nicht beimpftem Saatgut, mangelhaftem Knöllchenbesatz oder erstmaligem Anbau"
+    },
+    "mfa_codes": [
+     "211",
+     "213",
+     "214",
+     "308"
+    ]
+   },
+   {
+    "id": "raps",
+    "name": "Körnerraps",
+    "gruppe": "Öl- und Eiweißpflanzen",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 3",
+      "n": 110,
+      "n_anlage5": 100
+     },
+     "mittel": {
+      "ertrag": "3–3,5",
+      "n": 155,
+      "n_anlage5": 140
+     },
+     "hoch_1": {
+      "ertrag": "3,5–4,25",
+      "n": 180,
+      "n_anlage5": 160
+     },
+     "hoch_2": {
+      "ertrag": "4,25–5",
+      "n": 195,
+      "n_anlage5": 175
+     },
+     "hoch_3": {
+      "ertrag": "über 5",
+      "n": 210,
+      "n_anlage5": 190
+     }
+    },
+    "mfa_codes": [
+     "301"
+    ]
+   },
+   {
+    "id": "sonnenblume",
+    "name": "Sonnenblume",
+    "gruppe": "Öl- und Eiweißpflanzen",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 2",
+      "n": 50,
+      "n_anlage5": 40
+     },
+     "mittel": {
+      "ertrag": "2–3",
+      "n": 65,
+      "n_anlage5": 55
+     },
+     "hoch_1": {
+      "ertrag": "3–4",
+      "n": 80,
+      "n_anlage5": 70
+     },
+     "hoch_2": {
+      "ertrag": "4–5",
+      "n": 85,
+      "n_anlage5": 75
+     },
+     "hoch_3": {
+      "ertrag": "über 5",
+      "n": 90,
+      "n_anlage5": 80
+     }
+    },
+    "mfa_codes": [
+     "307"
+    ]
+   },
+   {
+    "id": "oelkuerbis",
+    "name": "Ölkürbis",
+    "gruppe": "Öl- und Eiweißpflanzen",
+    "ertrag_einheit": "t/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 0,6",
+      "n": 65,
+      "n_anlage5": 55
+     },
+     "mittel": {
+      "ertrag": "0,6–0,8",
+      "n": 90,
+      "n_anlage5": 75
+     },
+     "hoch_1": {
+      "ertrag": "über 0,8",
+      "n": 105,
+      "n_anlage5": 90
+     }
+    },
+    "mfa_codes": [
+     "751"
+    ]
+   },
+   {
+    "id": "zwischenfrucht_mit_leguminosen",
+    "name": "Zwischenfrucht(futter)bau mit Leguminosen",
+    "gruppe": "Zwischenfruchtanbau",
+    "ertrag_einheit": "–",
+    "stufen": {
+     "mittel": {
+      "ertrag": "–",
+      "n": 40,
+      "n_anlage5": 30
+     }
+    },
+    "hinweis": "Stickstoffgaben auf nicht genutzte Zwischenfrüchte sind in voller Höhe der Folgekultur anzurechnen."
+   },
+   {
+    "id": "zwischenfrucht_ohne_leguminosen",
+    "name": "Zwischenfrucht(futter)bau ohne Leguminosen",
+    "gruppe": "Zwischenfruchtanbau",
+    "ertrag_einheit": "–",
+    "stufen": {
+     "mittel": {
+      "ertrag": "–",
+      "n": 80,
+      "n_anlage5": 70
+     }
+    },
+    "hinweis": "Stickstoffgaben auf nicht genutzte Zwischenfrüchte sind in voller Höhe der Folgekultur anzurechnen."
+   },
+   {
+    "id": "stilllegung",
+    "name": "Stilllegungen/Grünbrachen",
+    "gruppe": "Sonstige",
+    "ertrag_einheit": "–",
+    "stufen": {
+     "mittel": {
+      "ertrag": "–",
+      "n": 0,
+      "n_anlage5": 0
+     }
+    }
+   }
+  ],
+  "obergrenzen_gruenland": [
+   {
+    "id": "wiese_1",
+    "name": "Dauer-/Wechselwiese, 1 Schnitt",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 2,5",
+      "n": 20
+     },
+     "mittel": {
+      "ertrag": "ab 2,5",
+      "n": 30
+     }
+    }
+   },
+   {
+    "id": "wiese_2",
+    "name": "Dauer-/Wechselwiese, 2 Schnitte",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 4",
+      "n": 60
+     },
+     "mittel": {
+      "ertrag": "ab 4",
+      "n": 90
+     }
+    }
+   },
+   {
+    "id": "wiese_3_klee",
+    "name": "3 Schnitte, kleereich",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 6",
+      "n": 80
+     },
+     "mittel": {
+      "ertrag": "6–8",
+      "n": 100
+     },
+     "hoch": {
+      "ertrag": "ab 8",
+      "n": 120
+     }
+    }
+   },
+   {
+    "id": "wiese_3_gras",
+    "name": "3 Schnitte, gräserbetont",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "6–8",
+      "n": 120
+     },
+     "hoch": {
+      "ertrag": "ab 8",
+      "n": 150
+     }
+    }
+   },
+   {
+    "id": "wiese_4_klee",
+    "name": "4 Schnitte, kleereich",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "bis 9,5",
+      "n": 120
+     },
+     "hoch": {
+      "ertrag": "ab 9,5",
+      "n": 150
+     }
+    }
+   },
+   {
+    "id": "wiese_4_gras",
+    "name": "4 Schnitte, gräserbetont",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "bis 9,5",
+      "n": 160
+     },
+     "hoch": {
+      "ertrag": "ab 9,5",
+      "n": 200
+     }
+    }
+   },
+   {
+    "id": "wiese_5_gras",
+    "name": "5 Schnitte, gräserbetont",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "bis 11",
+      "n": 200
+     },
+     "hoch": {
+      "ertrag": "ab 11",
+      "n": 210
+     }
+    },
+    "gunstlage_n": 240
+   },
+   {
+    "id": "wiese_6_gras",
+    "name": "6 Schnitte, gräserbetont",
+    "gruppe": "Dauer- und Wechselwiesen",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "hoch": {
+      "ertrag": "ab 12,5",
+      "n": 210
+     }
+    },
+    "gunstlage_n": 270
+   },
+   {
+    "id": "maehweide_1",
+    "name": "Mähweide: 1 Schnitt + 1–2 Weidegänge",
+    "gruppe": "Mähweiden",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 5,5",
+      "n": 60
+     },
+     "mittel": {
+      "ertrag": "ab 5,5",
+      "n": 90
+     }
+    }
+   },
+   {
+    "id": "maehweide_2_1",
+    "name": "Mähweide: 2 Schnitte + 1 Weidegang",
+    "gruppe": "Mähweiden",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "bis 8",
+      "n": 110
+     },
+     "hoch": {
+      "ertrag": "ab 8",
+      "n": 140
+     }
+    }
+   },
+   {
+    "id": "maehweide_2_2",
+    "name": "Mähweide: 2 Schnitte + 2 oder mehr Weidegänge",
+    "gruppe": "Mähweiden",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "bis 9",
+      "n": 120
+     },
+     "hoch": {
+      "ertrag": "ab 9",
+      "n": 170
+     }
+    }
+   },
+   {
+    "id": "dauerweide",
+    "name": "Dauerweide, Kulturweide",
+    "gruppe": "Weiden",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 6,5",
+      "n": 80
+     },
+     "mittel": {
+      "ertrag": "6,5–9,5",
+      "n": 130
+     },
+     "hoch": {
+      "ertrag": "über 9,5",
+      "n": 180
+     }
+    }
+   },
+   {
+    "id": "hutweide",
+    "name": "Hutweide/Almfutterfläche (zusätzlich zur Weide)",
+    "gruppe": "Weiden",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 2",
+      "n": 20
+     },
+     "mittel": {
+      "ertrag": "ab 2",
+      "n": 30
+     }
+    }
+   },
+   {
+    "id": "ackerfutter_klee",
+    "name": "Ackerfutter kleebetont (> 40 Flächen-%)",
+    "gruppe": "Ackerfutter",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "–",
+      "n": 40
+     }
+    },
+    "mfa_codes": [
+     "633",
+     "635"
+    ]
+   },
+   {
+    "id": "ackerfutter_gras",
+    "name": "Ackerfutter gräserbetont",
+    "gruppe": "Ackerfutter",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "niedrig": {
+      "ertrag": "bis 7",
+      "n": 100
+     },
+     "mittel": {
+      "ertrag": "7–10,5",
+      "n": 180
+     },
+     "hoch": {
+      "ertrag": "über 10,5",
+      "n": 210
+     }
+    },
+    "gunstlage_n": 250,
+    "mfa_codes": [
+     "634",
+     "636",
+     "679"
+    ]
+   },
+   {
+    "id": "ackerfutter_graeserrein",
+    "name": "Gräserreinbestände",
+    "gruppe": "Ackerfutter",
+    "ertrag_einheit": "t TM/ha",
+    "stufen": {
+     "mittel": {
+      "ertrag": "8–12",
+      "n": 200
+     },
+     "hoch": {
+      "ertrag": "über 12",
+      "n": 210
+     }
+    },
+    "gunstlage_n": 280,
+    "mfa_codes": [
+     "637"
+    ]
+   }
+  ],
+  "obergrenzen_hinweis": "Für nicht aufgelistete Kulturen sind die Werte aus der Fachliteratur abzuleiten; in Gebieten nach Anlage 5 um 10 % (Weizen, Mais, Raps) bzw. 15 % (andere) zu verringern. Ertragslage „hoch“ ist bei einer Ackerzahl unter 30 nicht zulässig.",
+  "vorfruchtwirkung": [
+   {
+    "id": "keine",
+    "name": "Keine Vorfruchtwirkung (z. B. Getreide, Mais)",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "ruebenblatt",
+    "name": "Ernterückstände: Rübenblatt",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "rapsstroh",
+    "name": "Ernterückstände: Rapsstroh",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "oelkuerbis",
+    "name": "Ernterückstände: Ölkürbis",
+    "kg_n_ha": 10
+   },
+   {
+    "id": "ackerbohne",
+    "name": "Vorfrucht Ackerbohne",
+    "kg_n_ha": 20
+   },
+   {
+    "id": "koernererbse",
+    "name": "Vorfrucht Körnererbse",
+    "kg_n_ha": 20
+   },
+   {
+    "id": "sojabohne",
+    "name": "Vorfrucht Sojabohne",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "zf_genutzt_leg60",
+    "name": "Genutzte Zwischenfrucht > 60 % Leguminosen",
+    "kg_n_ha": 10
+   },
+   {
+    "id": "fl1_leg10_60",
+    "name": "Futterleguminosen einjährig, 10–60 % Leguminosen (Wechselwiese)",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "fl1_leg60",
+    "name": "Futterleguminosen einjährig, > 60 % Leguminosen (Klee/Kleegras)",
+    "kg_n_ha": 20
+   },
+   {
+    "id": "flm_leg10_60",
+    "name": "Futterleguminosen mehrjährig, 10–60 % Leguminosen (Wechselwiese)",
+    "kg_n_ha": 30
+   },
+   {
+    "id": "flm_leg60",
+    "name": "Futterleguminosen mehrjährig, > 60 % Leguminosen (Klee/Kleegras)",
+    "kg_n_ha": 40
+   },
+   {
+    "id": "luzerne_futter_unter6",
+    "name": "Luzerne (Futternutzung), < 6 t TM/ha",
+    "kg_n_ha": 20
+   },
+   {
+    "id": "luzerne_futter_ueber6",
+    "name": "Luzerne (Futternutzung), > 6 t TM/ha",
+    "kg_n_ha": 40
+   },
+   {
+    "id": "zf_ungenutzt_leg60",
+    "name": "Ungenutzte Zwischenfrucht > 60 % Leguminosen",
+    "kg_n_ha": 20
+   },
+   {
+    "id": "gb1_leg10",
+    "name": "Ungenutzte Grünbrache einjährig, < 10 % Leguminosen",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "gb1_leg10_60",
+    "name": "Ungenutzte Grünbrache einjährig, 10–60 % Leguminosen",
+    "kg_n_ha": 20
+   },
+   {
+    "id": "gb1_leg60",
+    "name": "Ungenutzte Grünbrache einjährig, > 60 % Leguminosen",
+    "kg_n_ha": 40
+   },
+   {
+    "id": "gbm_leg10",
+    "name": "Ungenutzte Grünbrache mehrjährig, < 10 % Leguminosen",
+    "kg_n_ha": 0
+   },
+   {
+    "id": "gbm_leg10_60",
+    "name": "Ungenutzte Grünbrache mehrjährig, 10–60 % Leguminosen",
+    "kg_n_ha": 30
+   },
+   {
+    "id": "gbm_leg60",
+    "name": "Ungenutzte Grünbrache mehrjährig, > 60 % Leguminosen",
+    "kg_n_ha": 60
+   },
+   {
+    "id": "luzerne_brache_unter6",
+    "name": "Luzerne als Grünbrache, < 6 t TM/ha",
+    "kg_n_ha": 60
+   },
+   {
+    "id": "luzerne_brache_ueber6",
+    "name": "Luzerne als Grünbrache, > 6 t TM/ha",
+    "kg_n_ha": 110
+   }
+  ],
+  "bewaesserung": {
+   "formel": "N [kg/ha] = NO3 [mg/l] / 4,43 × Menge [mm] / 100",
+   "abzug_ab_kg_n_ha": 10
+  },
+  "entzug_kg_n_je_t": {
+   "durum": 23,
+   "dinkel": 24,
+   "roggen": 16,
+   "winterfuttergerste": 18,
+   "triticale": 18,
+   "sommerfuttergerste": 18,
+   "hafer": 16,
+   "koernermais": {
+    "niedrig": 13,
+    "mittel": 12.5,
+    "hoch_1": 12.5,
+    "hoch_2": 12,
+    "hoch_3": 11.5,
+    "hoch_3_ueber_15t": 11
+   },
+   "silomais": 4,
+   "silomais_tm": 10,
+   "zuckerruebe": 1.8,
+   "futterruebe": 1.4,
+   "kartoffel": 3.5,
+   "fruehkartoffel": 5,
+   "raps": 33,
+   "sonnenblume": 26,
+   "koernererbse": 32,
+   "ackerbohne": 42,
+   "sojabohne": 55,
+   "mohn": 100,
+   "kuemmel": 53
+  },
+  "entzug_weizen_braugerste": {
+   "$comment": "Anlage 3 Abschnitt V Tabelle 2: kg N je t bei Rohprotein (% TM) und Kornfeuchte 12/13/14/15/16 %",
+   "feuchte": [
+    12,
+    13,
+    14,
+    15,
+    16
+   ],
+   "weizen": {
+    "11.0": [
+     17.0,
+     16.8,
+     16.6,
+     16.4,
+     16.2
+    ],
+    "11.5": [
+     17.8,
+     17.6,
+     17.4,
+     17.1,
+     16.9
+    ],
+    "12.0": [
+     18.5,
+     18.3,
+     18.1,
+     17.9,
+     17.7
+    ],
+    "12.5": [
+     19.3,
+     19.1,
+     18.9,
+     18.6,
+     18.4
+    ],
+    "13.0": [
+     20.1,
+     19.8,
+     19.6,
+     19.4,
+     19.2
+    ],
+    "13.5": [
+     20.8,
+     20.6,
+     20.4,
+     20.1,
+     19.9
+    ],
+    "14.0": [
+     21.6,
+     21.4,
+     21.1,
+     20.9,
+     20.6
+    ],
+    "14.5": [
+     22.4,
+     22.1,
+     21.9,
+     21.6,
+     21.4
+    ],
+    "15.0": [
+     23.2,
+     22.9,
+     22.6,
+     22.4,
+     22.1
+    ],
+    "15.5": [
+     23.9,
+     23.7,
+     23.4,
+     23.1,
+     22.8
+    ],
+    "16.0": [
+     24.7,
+     24.4,
+     24.1,
+     23.9,
+     23.6
+    ],
+    "16.5": [
+     25.5,
+     25.2,
+     24.9,
+     24.6,
+     24.3
+    ],
+    "17.0": [
+     26.2,
+     25.9,
+     25.6,
+     25.4,
+     25.1
+    ],
+    "17.5": [
+     27.0,
+     26.7,
+     26.4,
+     26.1,
+     25.8
+    ],
+    "18.0": [
+     27.8,
+     27.5,
+     27.2,
+     26.8,
+     26.5
+    ],
+    "18.5": [
+     28.6,
+     28.2,
+     27.9,
+     27.6,
+     27.3
+    ],
+    "19.0": [
+     29.3,
+     29.0,
+     28.7,
+     28.3,
+     28.0
+    ],
+    "19.5": [
+     30.1,
+     29.8,
+     29.4,
+     29.1,
+     28.7
+    ],
+    "20.0": [
+     30.9,
+     30.5,
+     30.2,
+     29.8,
+     29.5
+    ],
+    "20.5": [
+     31.6,
+     31.3,
+     30.9,
+     30.6,
+     30.2
+    ],
+    "21.0": [
+     32.4,
+     32.1,
+     31.7,
+     31.3,
+     30.9
+    ],
+    "21.5": [
+     33.2,
+     32.8,
+     32.4,
+     32.1,
+     31.7
+    ],
+    "22.0": [
+     34.0,
+     33.6,
+     33.2,
+     32.8,
+     32.4
+    ]
+   },
+   "braugerste": {
+    "9.0": [
+     12.7,
+     12.5,
+     12.4,
+     12.2,
+     12.1
+    ],
+    "9.5": [
+     13.4,
+     13.2,
+     13.3,
+     13.3,
+     13.4
+    ],
+    "10.0": [
+     14.1,
+     13.9,
+     13.9,
+     13.9,
+     13.9
+    ],
+    "10.5": [
+     14.8,
+     14.6,
+     14.5,
+     14.5,
+     14.5
+    ],
+    "11.0": [
+     15.5,
+     15.3,
+     15.1,
+     15.1,
+     15.1
+    ],
+    "11.5": [
+     16.2,
+     16.0,
+     15.6,
+     15.6,
+     15.6
+    ],
+    "12.0": [
+     16.9,
+     16.7,
+     16.2,
+     16.2,
+     16.2
+    ],
+    "12.5": [
+     17.6,
+     17.4,
+     16.8,
+     16.8,
+     16.8
+    ],
+    "13.0": [
+     18.3,
+     18.1,
+     17.3,
+     17.3,
+     17.3
+    ],
+    "13.5": [
+     19.0,
+     18.8,
+     17.9,
+     17.9,
+     17.9
+    ],
+    "14.0": [
+     19.7,
+     19.5,
+     18.4,
+     18.4,
+     18.4
+    ],
+    "14.5": [
+     20.4,
+     20.2,
+     18.9,
+     18.9,
+     18.9
+    ],
+    "15.0": [
+     21.1,
+     20.9,
+     19.5,
+     19.5,
+     19.5
+    ],
+    "15.5": [
+     21.8,
+     21.6,
+     20.0,
+     20.0,
+     20.0
+    ],
+    "16.0": [
+     22.5,
+     22.3,
+     20.5,
+     20.5,
+     20.5
+    ]
+   }
+  },
+  "anfall_kg_n_je_platz": {
+   "$comment": "Anlage 4 (Auszug): N-Anfall nach Abzug der Stall- und Lagerverluste in kg je Platz und Jahr, Spalten Gülle / Mist / Jauche / Tiefstallmist",
+   "milchkuh_6000": [
+    82.8,
+    45.1,
+    22.5,
+    67.6
+   ],
+   "milchkuh_7000": [
+    89.7,
+    49.3,
+    24.6,
+    73.9
+   ],
+   "milchkuh_8000": [
+    97.3,
+    53.5,
+    26.7,
+    80.2
+   ],
+   "kalbin": [
+    58.9,
+    24.3,
+    24.2,
+    48.5
+   ],
+   "jungvieh_0_5": [
+    12.7,
+    5.2,
+    5.2,
+    10.4
+   ],
+   "jungvieh_05_1": [
+    34.4,
+    14.2,
+    14.2,
+    28.4
+   ],
+   "jungvieh_1_2": [
+    45.6,
+    18.8,
+    18.7,
+    37.5
+   ],
+   "mastschwein": [
+    7.5,
+    4.6,
+    2.3,
+    7.0
+   ],
+   "zuchtschwein": [
+    14.4,
+    8.9,
+    4.5,
+    13.4
+   ],
+   "legehenne": [
+    0.51,
+    null,
+    null,
+    0.43
+   ]
+  }
+ }
+}

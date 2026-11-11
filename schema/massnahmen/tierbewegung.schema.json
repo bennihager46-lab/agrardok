@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/tierbewegung.schema.json",
+  "title": "Details: Tierbewegung",
+  "description": "Zu- und Abgänge für Bestandsverzeichnis (§ 5 RKZV 2021) bzw. Bestandsregister (§ 19 TKZVO 2009). Rinder: Meldung an die AMA binnen 7 Tagen.",
+  "type": "object",
+  "properties": {
+    "bewegungsart": { "enum": ["geburt", "zugang", "abgang", "schlachtung", "verendung", "verlust", "alm_auftrieb", "alm_abtrieb", "umstellung"] },
+    "grund": { "type": "string" },
+    "anzahl": { "type": "integer", "minimum": 1, "description": "Bei Tiergruppen; bei Einzeltieren = Anzahl tier_ids" },
+    "partner": {
+      "type": "object",
+      "description": "Vorbesitzer bzw. Abnehmer",
+      "properties": {
+        "name": { "type": "string" },
+        "betriebsnummer": { "$ref": "../common.schema.json#/$defs/betriebsnummer" },
+        "registriernummer": { "type": "string" },
+        "adresse": { "$ref": "../common.schema.json#/$defs/adresse" }
+      },
+      "additionalProperties": false
+    },
+    "transport": {
+      "type": "object",
+      "properties": {
+        "transporteur": { "type": "string" },
+        "kennzeichen": { "type": "string" },
+        "begleitdokument_nr": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ama_gemeldet_am": { "$ref": "../common.schema.json#/$defs/datum", "description": "Für die Erinnerung an die 7-Tage-Meldefrist" }
+  },
+  "required": ["bewegungsart"],
+  "additionalProperties": false
+}

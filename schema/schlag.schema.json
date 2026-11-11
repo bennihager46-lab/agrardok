@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/schlag.schema.json",
+  "title": "Schlag",
+  "description": "Teil eines Feldstücks mit einer Kultur in einem Antragsjahr. Bezugsfläche für fast alle Maßnahmen.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/basis"
+    }
+  ],
+  "properties": {
+    "feldstueck_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "jahr": {
+      "$ref": "common.schema.json#/$defs/jahr",
+      "description": "Antragsjahr des Mehrfachantrags (= Erntejahr der Hauptkultur)"
+    },
+    "nummer": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schlagnummer innerhalb des Feldstücks"
+    },
+    "name": {
+      "type": "string"
+    },
+    "flaeche_ha": {
+      "$ref": "common.schema.json#/$defs/flaeche_ha"
+    },
+    "kultur_id": {
+      "$ref": "common.schema.json#/$defs/uuid",
+      "description": "Hauptkultur"
+    },
+    "invekos_flaeche_id": {
+      "type": "string",
+      "description": "Kennung der Flächeneinheit aus dem geodatenbasierten Beihilfeantrag; Lageangabe für PSM-Aufzeichnungen nach DVO (EU) 2023/564."
+    },
+    "bio": {
+      "type": "boolean",
+      "description": "Biologisch bewirtschafteter Schlag (bei Teil-Bio-Betrieben relevant)"
+    },
+    "oepul_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "geometrie": {
+      "$ref": "common.schema.json#/$defs/geometrie"
+    },
+    "vorfrucht_kultur_id": {
+      "$ref": "common.schema.json#/$defs/uuid",
+      "description": "Hauptkultur des Vorjahres"
+    },
+    "vorfrucht_name": {
+      "type": "string",
+      "description": "Momentaufnahme des Vorfrucht-Namens (bleibt lesbar, auch wenn der Vorjahresschlag fehlt)"
+    },
+    "ertragslage": {
+      "enum": [
+        "niedrig",
+        "mittel",
+        "hoch_1",
+        "hoch_2",
+        "hoch_3"
+      ],
+      "description": "Erwartete Ertragslage für die N-Bedarfsermittlung (NAPV Anlage 3). Stufenbezeichnungen noch an Anlage 3 zu prüfen (MVP-11)."
+    },
+    "invekos": {
+      "type": "object",
+      "properties": {
+        "snar_code": {
+          "type": "string"
+        },
+        "snar_bezeichnung": {
+          "type": "string"
+        },
+        "importiert_am": {
+          "$ref": "common.schema.json#/$defs/zeitpunkt"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "betrieb_id",
+    "feldstueck_id",
+    "jahr",
+    "flaeche_ha",
+    "kultur_id"
+  ],
+  "unevaluatedProperties": false
+}

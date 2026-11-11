@@ -1,0 +1,12 @@
+{
+  "id": "pflanzenschutz",
+  "name": "Pflanzenschutz",
+  "version": "0.5.0",
+  "beschreibung": "Pflanzenschutz-Aufzeichnung nach Art. 67 VO (EG) 1107/2009 und DVO (EU) 2023/564, Tankmischung, Fläche aus dem Mehrfachantrag. Prüft Zulassung/Aufbrauchfrist, Indikation für die Kultur, Aufwandmenge, BBCH, Anzahl Anwendungen, Wartezeit bis zur Ernte, Gewässerauflagen, Bienenschutz, Sachkundeausweis, Geräteprüfung und ÖPUL-Begrünung. CSV-Export.",
+  "massnahmen_arten": ["pflanzenschutz"],
+  "liest": ["betrieb", "schlag", "feldstueck", "kultur", "betriebsmittel", "person", "maschine", "massnahme"],
+  "regeln": ["oepul/begruenung"],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["pflanzenschutz-erfassen", "psm-bericht"]
+}

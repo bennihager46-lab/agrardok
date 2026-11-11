@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/maschine.schema.json",
+  "title": "Maschine",
+  "description": "Maschinen und Geräte. Relevant v. a. für PSM-Geräteprüfung und Ausbringungstechnik (ÖPUL bodennahe Ausbringung).",
+  "type": "object",
+  "allOf": [{ "$ref": "common.schema.json#/$defs/basis" }],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "art": { "enum": ["traktor", "feldspritze", "duengerstreuer", "guellefass", "saemaschine", "bodenbearbeitung", "erntemaschine", "maehwerk", "sonstiges"] },
+    "kennzeichen": { "type": "string" },
+    "baujahr": { "$ref": "common.schema.json#/$defs/jahr" },
+    "arbeitsbreite_m": { "type": "number", "minimum": 0 },
+    "ausbringtechnik": {
+      "enum": ["breitverteiler", "schleppschlauch", "schleppschuh", "injektor", "sonstige"],
+      "description": "Bei Güllefässern"
+    },
+    "geraetepruefung": {
+      "type": "object",
+      "description": "Nachweis der Überprüfung von PSM-Geräten (Konditionalität)",
+      "properties": {
+        "datum": { "$ref": "common.schema.json#/$defs/datum" },
+        "gueltig_bis": { "$ref": "common.schema.json#/$defs/datum" },
+        "pruefnummer": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "lohnunternehmer_person_id": { "$ref": "common.schema.json#/$defs/uuid", "description": "Wenn die Maschine einem Lohnunternehmer gehört" }
+  },
+  "required": ["betrieb_id", "name", "art"],
+  "unevaluatedProperties": false
+}

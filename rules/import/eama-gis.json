@@ -1,0 +1,49 @@
+{
+  "name": "import/eama-gis",
+  "titel": "Zuordnung der Spalten beim Flächenimport (eAMA-GIS-Export / INVEKOS-Daten)",
+  "quelle": "https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections",
+  "quelle_weitere": [
+    "https://geoportal.inspire.gv.at/metadatensuche/srv/api/records/14db662c-9859-4a49-919a-f5ba3cf173f0",
+    "https://www.bwsb.at/mmedia/download/2024.12.02/1733127484148897.pdf"
+  ],
+  "gueltig_ab": "2023-01-01",
+  "gueltig_bis": null,
+  "stand": "2026-11-11",
+  "status": "unsicher",
+  "hinweise": [
+    "eAMA bietet unter Extras → GIS Datenexport die Formate Formulare, CSV, Shapefile, Xml und Hofkarten an (Anleitung BWSB, 12/2024). GeoJSON bietet eAMA nicht an; die App liest es trotzdem (z. B. aus QGIS).",
+    "Spaltennamen mit 'belegt: true' stammen aus den öffentlichen INVEKOS-Daten der AMA (OGC API, Stand 2026-1, Koordinatensystem EPSG:31287). Ob der betriebsbezogene eAMA-Export dieselben Namen verwendet, ist NICHT geprüft – deshalb kann die Zuordnung in der Vorschau geändert werden.",
+    "Shapefile-Spaltennamen sind höchstens 10 Zeichen lang; längere Namen werden von Programmen gekürzt (z. B. SNAR_BEZEI). Deshalb sind auch gekürzte Varianten aufgeführt.",
+    "Groß-/Kleinschreibung wird ignoriert."
+  ],
+  "werte": {
+    "ebenen": {
+      "schlaege": { "erkennen_an": ["snar_code", "snar_bezeichnung", "snar_bezei", "sl_flaeche_brutto_ha", "sl_flaeche"] },
+      "feldstuecke": { "erkennen_an": ["fnar_code", "fnar_bezeichnung", "fnar_bezei", "fs_flaeche_ha", "fs_flaeche"] }
+    },
+    "felder": {
+      "fs_kennung": { "text": "Feldstück-Kennung (verbindet Schläge mit Feldstücken)", "kandidaten": ["fs_kennung", "fs_kennun", "fs_id"], "belegt": true },
+      "fs_nummer": { "text": "Feldstücknummer", "kandidaten": ["fs_nr", "fsnr", "fs_nummer", "feldstueck_nr", "feldstuecknummer", "fs_num"], "belegt": false },
+      "fs_name": { "text": "Feldstückname", "kandidaten": ["fs_name", "fs_bezeichnung", "feldstueckname", "name"], "belegt": false },
+      "sl_nummer": { "text": "Schlagnummer", "kandidaten": ["sl_nr", "slnr", "sl_nummer", "schlag_nr", "schlagnummer", "sl_num"], "belegt": false },
+      "snar_code": { "text": "Schlagnutzungsart (Code)", "kandidaten": ["snar_code", "snar"], "belegt": true },
+      "snar_bezeichnung": { "text": "Schlagnutzungsart (Bezeichnung)", "kandidaten": ["snar_bezeichnung", "snar_bezei", "snar_bez", "nutzung"], "belegt": true },
+      "sl_flaeche_ha": { "text": "Schlagfläche (ha)", "kandidaten": ["sl_flaeche_brutto_ha", "sl_flaeche", "sl_flaeche_ha", "flaeche_ha", "flaeche"], "belegt": true },
+      "fnar_code": { "text": "Feldstücknutzungsart (Code)", "kandidaten": ["fnar_code", "fnar"], "belegt": true },
+      "fnar_bezeichnung": { "text": "Feldstücknutzungsart (Bezeichnung)", "kandidaten": ["fnar_bezeichnung", "fnar_bezei", "fnar_bez"], "belegt": true },
+      "fs_flaeche_ha": { "text": "Feldstückfläche (ha)", "kandidaten": ["fs_flaeche_ha", "fs_flaeche", "flaeche_ha", "flaeche"], "belegt": true },
+      "bio": { "text": "Bio (ÖPUL) ja/nein", "kandidaten": ["kz_bio_oepul_jn", "kz_bio_oep", "bio"], "belegt": true },
+      "jahr": { "text": "Antragsjahr", "kandidaten": ["antragsjahr", "jahr", "antr_jahr"], "belegt": false }
+    },
+    "fnar_nutzungsart": {
+      "A": "acker",
+      "G": "gruenland",
+      "WI": "dauerkultur",
+      "S": "dauerkultur",
+      "L": "alm",
+      "GA": "sonstige"
+    },
+    "fnar_hinweis": "Codes laut Stichprobe INVEKOS Feldstücke 2026-1: A Ackerland, G Grünland, WI Weingartenflächen, S Spezialkulturen, L Almen, GA Geschützter Anbau.",
+    "flaechen_toleranz_prozent": 3
+  }
+}

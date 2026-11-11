@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/massnahmen/bodenbearbeitung.schema.json",
+  "title": "Details: Bodenbearbeitung",
+  "description": "Umbruch der Zwischenfrucht (ÖPUL Immergrün) und Bodenbearbeitung zur Erneuerung der Vegetation (NAPV § 8 Abs. 1 Z 7).",
+  "type": "object",
+  "properties": {
+    "verfahren": { "enum": ["pflug", "grubber", "scheibenegge", "kreiselegge", "fraese", "walze", "mulchen", "sonstiges"] },
+    "zweck": { "enum": ["grundbodenbearbeitung", "saatbettbereitung", "umbruch_zwischenfrucht", "umbruch_gruenland", "vegetationserneuerung", "einarbeitung_duenger", "sonstiges"] },
+    "tiefe_cm": { "type": "number", "minimum": 0 }
+  },
+  "required": ["verfahren", "zweck"],
+  "additionalProperties": false
+}

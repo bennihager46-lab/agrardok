@@ -1,0 +1,22 @@
+{
+  "name": "bio/kontrollstellen",
+  "titel": "Bio-Kontrollstellen (Vorschlagsliste)",
+  "quelle": "https://www.bio-austria.at/app/uploads/2021/03/kontrollstellen-2025.pdf",
+  "quelle_weitere": [
+    "https://wko.at/ktn/gewerbe-handwerk/lebensmittelgewerbe/codenummern-der-kontrollstellen--7.4.2010.pdf"
+  ],
+  "gueltig_ab": "2025-01-01",
+  "gueltig_bis": null,
+  "stand": "2026-11-11",
+  "status": "unsicher",
+  "hinweise": [
+    "UNVOLLSTÄNDIG: Nur die drei Codes, die in zwei Quellen übereinstimmen, sind eingetragen. Die Bio-Austria-Liste 2025 ließ sich nicht maschinell auslesen.",
+    "Die App nutzt diese Liste nur als Vorschlag; jede andere Eingabe ist erlaubt.",
+    "Vor Ausbau des Bio-Moduls (V2-01) die vollständige amtliche Liste übernehmen."
+  ],
+  "werte": [
+    { "code": "AT-BIO-301", "name": "Austria Bio Garantie" },
+    { "code": "AT-BIO-401", "name": "BIOS – Biokontrollservice Österreich" },
+    { "code": "AT-BIO-402", "name": "LACON" }
+  ]
+}

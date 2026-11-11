@@ -1,0 +1,1373 @@
+{
+  "format": "agrardok-export",
+  "schema_version": "0.5",
+  "erstellt_am": "2026-11-11T12:00:00+01:00",
+  "geraet_id": "0a000000-0000-4000-8000-000000000001",
+  "betrieb_id": "01000000-0000-4000-8000-000000000001",
+  "daten": {
+    "betriebe": [
+      {
+        "id": "01000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Musterhof Lindenau (fiktiv)",
+        "betriebsnummer": "9999999",
+        "vis_registriernummer": "AT-FIKTIV-0001",
+        "adresse": {
+          "strasse": "Lindenweg 1",
+          "plz": "9999",
+          "ort": "Musterdorf",
+          "land": "AT"
+        },
+        "bundesland": "NOE",
+        "bewirtschafter": {
+          "name": "Anna und Josef Muster",
+          "rechtsform": "ehegemeinschaft",
+          "person_id": "02000000-0000-4000-8000-000000000001"
+        },
+        "bewirtschaftung": "konventionell",
+        "napv_gebiet_anlage5": false,
+        "oepul_massnahmen": [
+          "ubb",
+          "begruenung_system_immergruen",
+          "bodennahe_ausbringung",
+          "tierwohl_weide"
+        ],
+        "notiz": "Fiktiver Testbetrieb: 18,2 ha LN, davon 37 % Grünland/Ackerfutter → NAPV-aufzeichnungspflichtig (> 15 ha, < 90 %)."
+      }
+    ],
+    "personen": [
+      {
+        "id": "02000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Anna Muster",
+        "rolle": "betriebsleitung",
+        "telefon": "+43 000 0000000",
+        "email": "anna@musterhof.example",
+        "psm_ausbildungsbescheinigung": {
+          "nummer": "NOE-FIKTIV-123",
+          "bundesland": "NOE",
+          "gueltig_bis": "2029-12-31"
+        },
+        "aktiv": true
+      },
+      {
+        "id": "02000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Josef Muster",
+        "rolle": "familie",
+        "aktiv": true,
+        "psm_ausbildungsbescheinigung": {
+          "nummer": "NOE-FIKTIV-456",
+          "bundesland": "NOE",
+          "gueltig_bis": "2026-12-15"
+        },
+        "notiz": "Sachkundeausweis läuft bald ab (Testfall Warnung; Stand Nov. 2026)."
+      },
+      {
+        "id": "02000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Dr. Eva Beispiel (Tierärztin, fiktiv)",
+        "rolle": "tierarzt",
+        "telefon": "+43 000 0000001",
+        "aktiv": true
+      }
+    ],
+    "feldstuecke": [
+      {
+        "id": "03000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "nummer": 1,
+        "name": "Hausacker",
+        "nutzungsart": "acker",
+        "flaeche_ha": 4.2,
+        "katastralgemeinde": "Musterdorf",
+        "gueltig_ab_jahr": 2020,
+        "bodenart": "lehm",
+        "bodenschwere": "mittel",
+        "hangneigung_prozent": 3,
+        "grenzt_an_gewaesser": false,
+        "gewaesser_abstand_m": 250,
+        "geometrie": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                15.1,
+                48.1
+              ],
+              [
+                15.10283,
+                48.1
+              ],
+              [
+                15.10283,
+                48.1018
+              ],
+              [
+                15.1,
+                48.1018
+              ],
+              [
+                15.1,
+                48.1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "03000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "nummer": 2,
+        "name": "Leiten",
+        "nutzungsart": "acker",
+        "flaeche_ha": 3.1,
+        "katastralgemeinde": "Musterdorf",
+        "gueltig_ab_jahr": 2020,
+        "bodenart": "sandiger_lehm",
+        "bodenschwere": "leicht",
+        "hangneigung_prozent": 12,
+        "grenzt_an_gewaesser": false,
+        "gewaesser_abstand_m": 80
+      },
+      {
+        "id": "03000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "nummer": 3,
+        "name": "Großfeld",
+        "nutzungsart": "acker",
+        "flaeche_ha": 8.4,
+        "katastralgemeinde": "Musterdorf",
+        "gueltig_ab_jahr": 2020,
+        "bodenart": "toniger_lehm",
+        "bodenschwere": "schwer",
+        "hangneigung_prozent": 2,
+        "geometrie": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                15.105,
+                48.1
+              ],
+              [
+                15.10877,
+                48.1
+              ],
+              [
+                15.10877,
+                48.1027
+              ],
+              [
+                15.105,
+                48.1027
+              ],
+              [
+                15.105,
+                48.1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "03000000-0000-4000-8000-000000000004",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "nummer": 4,
+        "name": "Bachwiese",
+        "nutzungsart": "gruenland",
+        "flaeche_ha": 2.5,
+        "katastralgemeinde": "Musterdorf",
+        "gueltig_ab_jahr": 2020,
+        "bodenart": "schluffiger_lehm",
+        "bodenschwere": "mittel",
+        "hangneigung_prozent": 1,
+        "grenzt_an_gewaesser": true,
+        "gewaesser_abstand_m": 0
+      }
+    ],
+    "schlaege": [
+      {
+        "id": "04000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "feldstueck_id": "03000000-0000-4000-8000-000000000001",
+        "jahr": 2026,
+        "nummer": 1,
+        "name": "Hausacker 1",
+        "flaeche_ha": 4.2,
+        "kultur_id": "05000000-0000-4000-8000-000000000634",
+        "invekos_flaeche_id": "FIKTIV-2026-0001",
+        "ertragslage": "mittel"
+      },
+      {
+        "id": "04000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "feldstueck_id": "03000000-0000-4000-8000-000000000002",
+        "jahr": 2026,
+        "nummer": 1,
+        "name": "Leiten 1",
+        "flaeche_ha": 3.1,
+        "kultur_id": "05000000-0000-4000-8000-000000000105",
+        "invekos_flaeche_id": "FIKTIV-2026-0002",
+        "vorfrucht_kultur_id": "05000000-0000-4000-8000-000000000138",
+        "vorfrucht_name": "Winterweichweizen",
+        "ertragslage": "hoch_1"
+      },
+      {
+        "id": "04000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "feldstueck_id": "03000000-0000-4000-8000-000000000003",
+        "jahr": 2026,
+        "nummer": 1,
+        "name": "Großfeld 1",
+        "flaeche_ha": 8.4,
+        "kultur_id": "05000000-0000-4000-8000-000000000138",
+        "invekos_flaeche_id": "FIKTIV-2026-0003",
+        "vorfrucht_kultur_id": "05000000-0000-4000-8000-000000000105",
+        "vorfrucht_name": "Körnermais",
+        "ertragslage": "mittel"
+      },
+      {
+        "id": "04000000-0000-4000-8000-000000000004",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "feldstueck_id": "03000000-0000-4000-8000-000000000004",
+        "jahr": 2026,
+        "nummer": 1,
+        "name": "Bachwiese 1",
+        "flaeche_ha": 2.5,
+        "kultur_id": "05000000-0000-4000-8000-000000000716",
+        "invekos_flaeche_id": "FIKTIV-2026-0004"
+      }
+    ],
+    "kulturen": [
+      {
+        "id": "05000000-0000-4000-8000-000000000138",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "mfa_code": "138",
+        "name": "Winterweichweizen",
+        "amtlicher_name": "WINTERWEICHWEIZEN",
+        "kategorie": "getreide",
+        "eppo_code": "TRZAW"
+      },
+      {
+        "id": "05000000-0000-4000-8000-000000000105",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "mfa_code": "105",
+        "name": "Körnermais",
+        "amtlicher_name": "KÖRNERMAIS",
+        "kategorie": "mais",
+        "eppo_code": "ZEAMX"
+      },
+      {
+        "id": "05000000-0000-4000-8000-000000000634",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "mfa_code": "634",
+        "name": "Kleegras",
+        "amtlicher_name": "KLEEGRAS",
+        "kategorie": "feldfutter"
+      },
+      {
+        "id": "05000000-0000-4000-8000-000000000716",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "mfa_code": "716",
+        "name": "Mähwiese/-Weide zwei Nutzungen",
+        "amtlicher_name": "MÄHWIESE/-WEIDE ZWEI NUTZUNGEN",
+        "kategorie": "gruenland"
+      },
+      {
+        "id": "05000000-0000-4000-8000-100000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Begrünung / Zwischenfrucht (Mischung)",
+        "kategorie": "zwischenfrucht"
+      }
+    ],
+    "tiere": [
+      {
+        "id": "06000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-01T07:30:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 2,
+        "hlc": "2026-02-01T06:30:00.000Z-0000-0a000000",
+        "erfassung": "einzeltier",
+        "tierart": "rind",
+        "nutzung": "milch",
+        "ohrmarke": "AT999990001",
+        "name": "Berta",
+        "geburtsdatum": "2019-03-14",
+        "geschlecht": "weiblich",
+        "rasse": "Fleckvieh",
+        "stall": "Laufstall"
+      },
+      {
+        "id": "06000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "erfassung": "einzeltier",
+        "tierart": "rind",
+        "nutzung": "milch",
+        "ohrmarke": "AT999990002",
+        "name": "Liesl",
+        "geburtsdatum": "2020-05-02",
+        "geschlecht": "weiblich",
+        "rasse": "Fleckvieh"
+      },
+      {
+        "id": "06000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-03-02T07:10:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-03-02T07:10:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "erfassung": "einzeltier",
+        "tierart": "rind",
+        "nutzung": "aufzucht",
+        "ohrmarke": "AT999990003",
+        "geburtsdatum": "2026-03-02",
+        "geschlecht": "maennlich",
+        "rasse": "Fleckvieh",
+        "mutter_id": "06000000-0000-4000-8000-000000000001",
+        "mutter_ohrmarke": "AT999990001"
+      },
+      {
+        "id": "06000000-0000-4000-8000-000000000004",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "erfassung": "gruppe",
+        "tierart": "schwein",
+        "nutzung": "mast",
+        "name": "Mastschweine Abteil 1",
+        "stall": "Maststall Abteil 1"
+      }
+    ],
+    "betriebsmittel": [
+      {
+        "id": "07000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "wirtschaftsduenger",
+        "name": "Rindergülle (eigen)",
+        "grundeinheit": "m3",
+        "duenger": {
+          "bezug": "kg_je_m3",
+          "n_gesamt": 3.0,
+          "nh4_n": 1.5,
+          "p2o5": 1.4,
+          "k2o": 4.6,
+          "herkunft": "eigen",
+          "tierart_quelle": "Rind",
+          "napv_typ": "rinderguelle",
+          "gehalte_quelle": "analyse",
+          "analyse_datum": "2025-11-20"
+        },
+        "notiz": "Beispielwerte für Tests, keine Richtwerte."
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "mineralduenger",
+        "name": "Kalkammonsalpeter 27 % N",
+        "grundeinheit": "kg",
+        "vorlage": "kas27",
+        "aktiv": true,
+        "duenger": {
+          "bezug": "prozent",
+          "n_gesamt": 27,
+          "napv_typ": "mineralisch",
+          "gehalte_quelle": "deklaration"
+        }
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "psm",
+        "name": "Beispiel-Herbizid A (fiktiv)",
+        "grundeinheit": "l",
+        "hersteller": "Beispiel Agrar GmbH (fiktiv)",
+        "psm": {
+          "zulassungsnummer": "9999-901",
+          "funktion": [
+            "Herbizid"
+          ],
+          "formulierung": "EC",
+          "wirkstoffe": [
+            {
+              "name": "Wirkstoff X (fiktiv)",
+              "gehalt": 50,
+              "einheit": "g/l"
+            }
+          ],
+          "bienengefaehrlich": false,
+          "zulassung_gueltig_bis": "2028-06-30",
+          "register_stand": "2026-03-01",
+          "auflagen": [
+            {
+              "art": "gewaesser",
+              "code": "SPe 3",
+              "text": "Zum Schutz von Gewässerorganismen Abstand zu Oberflächengewässern einhalten (fiktiver Wortlaut).",
+              "abstand_m": 10
+            },
+            {
+              "art": "gewaesser",
+              "code": "SPe 3",
+              "text": "Mit abdriftminderndem Gerät (fiktiver Wortlaut).",
+              "abstand_m": 5,
+              "abdriftminderung_prozent": 75
+            }
+          ],
+          "indikationen": [
+            {
+              "nr": "1",
+              "kulturen": "Winterweichweizen (TRZAW), Wintergerste (HORVW)",
+              "eppo_codes": [
+                "TRZAW",
+                "HORVW"
+              ],
+              "schaderreger": "Klettenlabkraut (GALAP)",
+              "aufwand": {
+                "wert": 1.0,
+                "einheit": "l_je_ha"
+              },
+              "wasser_l_je_ha_von": 200,
+              "wasser_l_je_ha_bis": 400,
+              "max_anwendungen": 1,
+              "bbch_von": 13,
+              "bbch_bis": 32,
+              "wartezeit_hinweis": "F – durch Anwendungszeitpunkt abgedeckt"
+            }
+          ]
+        }
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000007",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "psm",
+        "name": "Beispiel-Fungizid B (fiktiv)",
+        "grundeinheit": "l",
+        "psm": {
+          "zulassungsnummer": "9998-0",
+          "funktion": [
+            "Fungizid"
+          ],
+          "wirkstoffe": [
+            {
+              "name": "Wirkstoff Y (fiktiv)",
+              "gehalt": 125,
+              "einheit": "g/l"
+            }
+          ],
+          "zulassung_gueltig_bis": "2026-12-31",
+          "indikationen": [
+            {
+              "nr": "2",
+              "kulturen": "Winterweichweizen (TRZAW)",
+              "eppo_codes": [
+                "TRZAW"
+              ],
+              "schaderreger": "Gelbrost",
+              "aufwand": {
+                "wert": 1.0,
+                "einheit": "l_je_ha"
+              },
+              "max_anwendungen": 2,
+              "abstand_tage": 14,
+              "wartezeit_tage": 35
+            }
+          ]
+        },
+        "notiz": "Testfall: Zulassung endet bald (Stand Nov. 2026)."
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000008",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "psm",
+        "name": "Beispiel-Insektizid C (fiktiv)",
+        "grundeinheit": "l",
+        "psm": {
+          "zulassungsnummer": "9997-0",
+          "funktion": [
+            "Insektizid"
+          ],
+          "bienengefaehrlich": true,
+          "zulassung_gueltig_bis": "2025-12-31",
+          "abverkauf_bis": "2026-03-31",
+          "aufbrauch_bis": "2026-06-30"
+        },
+        "notiz": "Testfall: Aufbrauchfrist abgelaufen – darf nicht mehr verwendet werden."
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000009",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "wirtschaftsduenger",
+        "name": "Schweinegülle Nachbarhof (übernommen)",
+        "grundeinheit": "m3",
+        "duenger": {
+          "bezug": "kg_je_m3",
+          "n_gesamt": 4.2,
+          "p2o5": 2.0,
+          "k2o": 2.6,
+          "herkunft": "uebernahme",
+          "tierart_quelle": "Schwein",
+          "napv_typ": "schweineguelle",
+          "gehalte_quelle": "richtwert",
+          "uebernahme": {
+            "partner_name": "Schweinehof Beispiel (fiktiv)",
+            "partner_betriebsnummer": "9999996",
+            "vertrag_datum": "2026-01-15",
+            "zeitraum_von": "2026-01-01",
+            "zeitraum_bis": "2026-12-31",
+            "menge": {
+              "wert": 120,
+              "einheit": "m3"
+            },
+            "n_kg": 504,
+            "p2o5_kg": 240,
+            "beleg": "DAV-2026-01"
+          }
+        },
+        "notiz": "Testfall: Übernahme laut Düngerabgabevertrag."
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000004",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "saatgut",
+        "name": "Winterweizen Z-Saatgut Mustersorte",
+        "grundeinheit": "kg",
+        "saatgut": {
+          "kultur_id": "05000000-0000-4000-8000-000000000138",
+          "sorte": "Mustersorte (fiktiv)",
+          "gebeizt": true
+        }
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000005",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "tierarzneimittel",
+        "name": "Beispiel-Eutertube B (fiktiv)",
+        "grundeinheit": "stk",
+        "tierarzneimittel": {
+          "zulassungsnummer": "8-99999",
+          "wartezeiten": [
+            {
+              "tierart": "rind",
+              "produkt": "fleisch",
+              "tage": 7
+            },
+            {
+              "tierart": "rind",
+              "produkt": "milch",
+              "tage": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "07000000-0000-4000-8000-000000000006",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "biozid",
+        "name": "Beispiel-Rodentizid C (fiktiv)",
+        "grundeinheit": "kg",
+        "biozid": {
+          "registriernummer": "FIKTIV-BIO-1",
+          "produktart": "Rodentizid"
+        }
+      }
+    ],
+    "maschinen": [
+      {
+        "id": "08000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Traktor 1",
+        "art": "traktor",
+        "baujahr": 2015
+      },
+      {
+        "id": "08000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Anbauspritze 15 m",
+        "art": "feldspritze",
+        "arbeitsbreite_m": 15,
+        "geraetepruefung": {
+          "datum": "2025-04-10",
+          "gueltig_bis": "2028-04-10",
+          "pruefnummer": "FIKTIV-PR-77"
+        }
+      },
+      {
+        "id": "08000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-01-05T08:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-01-05T08:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "name": "Güllefass 10 m³",
+        "art": "guellefass",
+        "ausbringtechnik": "schleppschlauch",
+        "arbeitsbreite_m": 12
+      }
+    ],
+    "massnahmen": [
+      {
+        "id": "09000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2025-10-08T18:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2025-10-08T18:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "aussaat",
+        "modul": "ackerbau",
+        "datum": "2025-10-08",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000003"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "maschine_ids": [
+          "08000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "kultur_id": "05000000-0000-4000-8000-000000000138",
+          "kultur_name": "Winterweichweizen",
+          "sorte": "Mustersorte (fiktiv)",
+          "saatgut_betriebsmittel_id": "07000000-0000-4000-8000-000000000004",
+          "saatmenge": {
+            "wert": 180,
+            "einheit": "kg_je_ha"
+          }
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-03-12T17:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-03-12T17:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "duengung",
+        "modul": "duengung",
+        "datum": "2026-03-12",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000003"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "maschine_ids": [
+          "08000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "betriebsmittel_id": "07000000-0000-4000-8000-000000000002",
+          "duenger_name": "Kalkammonsalpeter 27 % N",
+          "duenger_art": "mineralduenger",
+          "aufwand": {
+            "wert": 150,
+            "einheit": "kg_je_ha"
+          },
+          "ausbringtechnik": "streuer",
+          "naehrstoffe_kg_je_ha": {
+            "n_gesamt": 40.5,
+            "n_nach_stall_lager": 40.5,
+            "n_leichtloeslich": 40.5,
+            "n_jahreswirksam": 40.5
+          },
+          "n_loeslichkeit": "leichtloeslich"
+        },
+        "regeln": [
+          "napv/duengung@2025-01-01"
+        ]
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000003",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-04-10T19:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-04-10T19:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "bodenbearbeitung",
+        "modul": "ackerbau",
+        "datum": "2026-04-10",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000002"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "details": {
+          "verfahren": "grubber",
+          "zweck": "umbruch_zwischenfrucht",
+          "tiefe_cm": 10
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000004",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-04-15T18:30:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-04-15T18:30:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "duengung",
+        "modul": "duengung",
+        "datum": "2026-04-15",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000002"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "maschine_ids": [
+          "08000000-0000-4000-8000-000000000001",
+          "08000000-0000-4000-8000-000000000003"
+        ],
+        "details": {
+          "betriebsmittel_id": "07000000-0000-4000-8000-000000000001",
+          "duenger_name": "Rindergülle (eigen)",
+          "duenger_art": "wirtschaftsduenger",
+          "aufwand": {
+            "wert": 20,
+            "einheit": "m3_je_ha"
+          },
+          "ausbringtechnik": "schleppschlauch",
+          "naehrstoffe_kg_je_ha": {
+            "n_gesamt": 60.0,
+            "n_nach_stall_lager": 60.0,
+            "n_leichtloeslich": 22.5,
+            "n_jahreswirksam": 36.5,
+            "p2o5": 28.0,
+            "k2o": 92.0
+          },
+          "n_loeslichkeit": "leichtloeslich"
+        },
+        "regeln": [
+          "napv/duengung@2025-01-01"
+        ],
+        "notiz": "Jahreswirksam: 60 × (1 − 13 %) × 70 % = 36,5 kg N/ha (§ 1 Z 14 NAPV)."
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000005",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-04-20T09:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-04-20T09:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "pflanzenschutz",
+        "modul": "pflanzenschutz",
+        "datum": "2026-04-20",
+        "uhrzeit_start": "07:30",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000003"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000001"
+        ],
+        "maschine_ids": [
+          "08000000-0000-4000-8000-000000000001",
+          "08000000-0000-4000-8000-000000000002"
+        ],
+        "details": {
+          "verwendungsart": "flaeche",
+          "mittel": [
+            {
+              "betriebsmittel_id": "07000000-0000-4000-8000-000000000003",
+              "name": "Beispiel-Herbizid A (fiktiv)",
+              "zulassungsnummer": "9999-901",
+              "aufwand": {
+                "wert": 1.0,
+                "einheit": "l_je_ha"
+              }
+            }
+          ],
+          "behandelte_flaeche_ha": 8.4,
+          "invekos_flaeche_ids": [
+            "FIKTIV-2026-0003"
+          ],
+          "kultur_name": "Winterweichweizen",
+          "eppo_code": "TRZAW",
+          "bbch": 30,
+          "grund": "Unkräuter (Klettenlabkraut)"
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000006",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-04-25T20:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-04-25T20:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "aussaat",
+        "modul": "ackerbau",
+        "datum": "2026-04-25",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000002"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "details": {
+          "kultur_id": "05000000-0000-4000-8000-000000000105",
+          "kultur_name": "Mais",
+          "saatmenge": {
+            "wert": 90000,
+            "einheit": "stk_je_ha"
+          }
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000007",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-05-20T19:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-05-20T19:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "weide",
+        "modul": "tiere",
+        "datum": "2026-05-01",
+        "datum_ende": "2026-05-20",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000004"
+        ],
+        "tier_ids": [
+          "06000000-0000-4000-8000-000000000001",
+          "06000000-0000-4000-8000-000000000002"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "tierkategorie": "Milchkühe",
+          "anzahl_tiere": 2,
+          "unterbrechungen": [
+            {
+              "datum": "2026-05-12",
+              "grund": "extremwetter",
+              "notiz": "Hagel, Tiere im Stall"
+            }
+          ]
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000008",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-03-02T07:15:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-03-02T07:15:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "tierbewegung",
+        "modul": "tiere",
+        "datum": "2026-03-02",
+        "tier_ids": [
+          "06000000-0000-4000-8000-000000000003"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "bewegungsart": "geburt",
+          "ama_gemeldet_am": "2026-03-05"
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000009",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-02-10T11:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-10T11:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "tierbewegung",
+        "modul": "tiere",
+        "datum": "2026-02-10",
+        "tier_ids": [
+          "06000000-0000-4000-8000-000000000004"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "bewegungsart": "zugang",
+          "anzahl": 40,
+          "partner": {
+            "name": "Ferkelhof Beispiel (fiktiv)",
+            "betriebsnummer": "9999998"
+          },
+          "transport": {
+            "transporteur": "Eigentransport",
+            "kennzeichen": "XX-000AA"
+          }
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000010",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-06-03T08:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-06-03T08:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "tierbehandlung",
+        "modul": "tiere",
+        "datum": "2026-06-03",
+        "tier_ids": [
+          "06000000-0000-4000-8000-000000000001"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000003"
+        ],
+        "details": {
+          "betriebsmittel_id": "07000000-0000-4000-8000-000000000005",
+          "mittel_name": "Beispiel-Eutertube B (fiktiv)",
+          "zulassungsnummer": "8-99999",
+          "menge": {
+            "wert": 1,
+            "einheit": "stk"
+          },
+          "anwendungsart": "intramammaer",
+          "diagnose": "Mastitis (Viertel hinten links)",
+          "behandlungsdauer_tage": 1,
+          "durch_tierarzt": true,
+          "tierarzt_person_id": "02000000-0000-4000-8000-000000000003",
+          "abgabebeleg_nr": "AB-2026-0042",
+          "wartezeit_ende": {
+            "fleisch": "2026-06-10",
+            "milch": "2026-06-08"
+          }
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000011",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-07-20T21:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-07-20T21:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "ernte",
+        "modul": "ackerbau",
+        "datum": "2026-07-20",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000003"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "details": {
+          "kultur_id": "05000000-0000-4000-8000-000000000138",
+          "kultur_name": "Winterweichweizen",
+          "hauptfrucht": true,
+          "menge": {
+            "wert": 60.48,
+            "einheit": "t"
+          },
+          "ertrag": {
+            "wert": 7.2,
+            "einheit": "t_je_ha"
+          },
+          "beleg": "wiegeschein",
+          "feuchte_prozent": 14,
+          "rohprotein_prozent": 12.5
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000012",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-08-01T10:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-08-01T10:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "biozid",
+        "modul": "lager",
+        "datum": "2026-08-01",
+        "ort": "Getreidelager",
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "betriebsmittel_id": "07000000-0000-4000-8000-000000000006",
+          "produkt_name": "Beispiel-Rodentizid C (fiktiv)",
+          "anwendungsbereich": "Getreidelager, 4 Köderstationen",
+          "haeufigkeit": "wöchentliche Kontrolle"
+        }
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000013",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-08-10T19:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-08-10T19:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "aussaat",
+        "modul": "schlagkartei",
+        "datum": "2026-08-10",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000003"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "maschine_ids": [
+          "08000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "kultur_id": "05000000-0000-4000-8000-100000000001",
+          "kultur_name": "Begrünung / Zwischenfrucht (Mischung)",
+          "zwischenfrucht": true,
+          "mischungspartner": 4,
+          "saatmenge": {
+            "wert": 30,
+            "einheit": "kg_je_ha"
+          }
+        },
+        "notiz": "System Immergrün: 21 Tage nach der Ernte angelegt."
+      },
+      {
+        "id": "09000000-0000-4000-8000-000000000014",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-04-12T20:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-04-12T20:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "art": "pflege",
+        "modul": "schlagkartei",
+        "datum": "2026-04-12",
+        "schlag_ids": [
+          "04000000-0000-4000-8000-000000000004"
+        ],
+        "person_ids": [
+          "02000000-0000-4000-8000-000000000002"
+        ],
+        "maschine_ids": [
+          "08000000-0000-4000-8000-000000000001"
+        ],
+        "details": {
+          "verfahren": "abschleppen",
+          "behandelte_flaeche_ha": 2.5
+        }
+      }
+    ],
+    "duengeplaene": [
+      {
+        "id": "13000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-02-20T19:00:00+01:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-02-20T19:00:00+01:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "schlag_id": "04000000-0000-4000-8000-000000000003",
+        "jahr": 2026,
+        "napv_kultur": "weizen_rp_unter14",
+        "ertragslage": "mittel",
+        "anlage5": false,
+        "erwarteter_ertrag_t_ha": 7.0,
+        "obergrenze_kg_n_ha": 145,
+        "vorfrucht_wirkung": "keine",
+        "vorfrucht_kg_n_ha": 0,
+        "n_bedarf_kg_ha": 145,
+        "p2o5_empfehlung_kg_ha": 55,
+        "k2o_empfehlung_kg_ha": 80,
+        "regeln": [
+          "napv/duengung@2025-01-01",
+          "boden/gehaltsklassen@2025-02-18"
+        ]
+      }
+    ],
+    "bodenproben": [
+      {
+        "id": "14000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2024-04-02T18:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2024-04-02T18:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "feldstueck_id": "03000000-0000-4000-8000-000000000001",
+        "datum": "2024-03-12",
+        "labor": "Beispiel-Labor (fiktiv)",
+        "probennummer": "FIKTIV-24-001",
+        "tiefe_cm": "0–30",
+        "nutzung": "acker",
+        "bodenschwere": "mittel",
+        "ton_prozent": 22,
+        "ph": 6.4,
+        "p_mg_kg": 95,
+        "k_mg_kg": 180,
+        "mg_mg_kg": 110,
+        "humus_prozent": 2.8,
+        "gehaltsklassen": {
+          "p": "C",
+          "k": "C",
+          "mg": "D"
+        }
+      },
+      {
+        "id": "14000000-0000-4000-8000-000000000002",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2021-05-02T18:00:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2021-05-02T18:00:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "feldstueck_id": "03000000-0000-4000-8000-000000000004",
+        "datum": "2021-04-15",
+        "probennummer": "FIKTIV-21-004",
+        "tiefe_cm": "0–10",
+        "nutzung": "gruenland",
+        "bodenschwere": "mittel",
+        "ph": 5.8,
+        "p_mg_kg": 60,
+        "k_mg_kg": 150,
+        "humus_prozent": 5.5,
+        "gehaltsklassen": {
+          "p": "C",
+          "k": "C"
+        },
+        "notiz": "Testfall: älter als 5 Jahre (GLÖZ 10)."
+      }
+    ],
+    "feldnotizen": [
+      {
+        "id": "15000000-0000-4000-8000-000000000001",
+        "betrieb_id": "01000000-0000-4000-8000-000000000001",
+        "erstellt_am": "2026-05-18T10:15:00+02:00",
+        "erstellt_von": "02000000-0000-4000-8000-000000000001",
+        "geaendert_am": "2026-05-18T10:15:00+02:00",
+        "geaendert_von": "02000000-0000-4000-8000-000000000001",
+        "geraet_id": "0a000000-0000-4000-8000-000000000001",
+        "rev": 1,
+        "zeitpunkt": "2026-05-18T10:15:00+02:00",
+        "kategorie": "schaedling",
+        "text": "Wühlmaus-Hügel im Kleegras am Feldrand, ca. 20 m² (fiktiv).",
+        "position": {
+          "breite": 48.1009,
+          "laenge": 15.1012,
+          "genauigkeit_m": 6
+        },
+        "schlag_id": "04000000-0000-4000-8000-000000000001",
+        "feldstueck_id": "03000000-0000-4000-8000-000000000001"
+      }
+    ]
+  },
+  "aenderungen": [
+    {
+      "id": "0c000000-0000-4000-8000-000000000001",
+      "hlc": "2026-02-01T06:30:00.000Z-0000-0a000000",
+      "geraet_id": "0a000000-0000-4000-8000-000000000001",
+      "person_id": "02000000-0000-4000-8000-000000000001",
+      "betrieb_id": "01000000-0000-4000-8000-000000000001",
+      "entitaet": "tier",
+      "datensatz_id": "06000000-0000-4000-8000-000000000001",
+      "operation": "aendern",
+      "felder": {
+        "stall": "Laufstall"
+      },
+      "schema_version": "0.5"
+    }
+  ]
+}

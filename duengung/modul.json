@@ -1,0 +1,13 @@
+{
+  "id": "duengung",
+  "name": "Düngung",
+  "version": "0.5.0",
+  "beschreibung": "Düngung nach NAPV: Ausbringung mit Berechnung von N gesamt, jahreswirksamem N, P₂O₅ und K₂O; Prüfung von Sperrfristen, Bodenzustand, Gabenteilung, 60-kg-Grenze, Gewässerabständen, Hanglage, Obergrenze laut Düngeplan, 170 kg N aus Wirtschaftsdünger und ÖPUL-Begrünung; Düngeplanung je Schlag; druckfertiger Jahresbericht.",
+  "massnahmen_arten": ["duengung"],
+  "schreibt": ["massnahme", "duengeplan"],
+  "liest": ["betrieb", "schlag", "feldstueck", "kultur", "betriebsmittel", "person", "maschine", "massnahme", "bodenprobe"],
+  "regeln": ["napv/duengung", "oepul/begruenung", "boden/gehaltsklassen"],
+  "aktiv_wenn": "immer",
+  "einstieg": "index.js",
+  "routen": ["duengung-erfassen", "duengeplanung", "duengeplan", "duengebericht"]
+}

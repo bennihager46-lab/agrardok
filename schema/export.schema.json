@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agrardok.invalid/schema/export.schema.json",
+  "title": "AGRARDOK+ – Export",
+  "description": "Austauschformat für Sicherung, Umzug auf ein neues Gerät und dateibasierte Synchronisation. 'daten' enthält den aktuellen Stand; 'aenderungen' optional das Protokoll seit 'seit_hlc' (Sync-Paket).",
+  "type": "object",
+  "properties": {
+    "format": {
+      "enum": ["agrardok-export", "agraropen-export"],
+      "description": "agraropen-export = ältere Dateien vor der Umbenennung in AGRARDOK+"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "erstellt_am": {
+      "$ref": "common.schema.json#/$defs/zeitpunkt"
+    },
+    "geraet_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "betrieb_id": {
+      "$ref": "common.schema.json#/$defs/uuid",
+      "description": "Nur beim Export eines einzelnen Betriebs; ein Gesamtexport kann mehrere Betriebe enthalten"
+    },
+    "seit_hlc": {
+      "$ref": "common.schema.json#/$defs/hlc",
+      "description": "Nur bei Sync-Paketen: enthält Änderungen nach diesem Zeitpunkt"
+    },
+    "daten": {
+      "type": "object",
+      "properties": {
+        "betriebe": {
+          "type": "array",
+          "items": {
+            "$ref": "betrieb.schema.json"
+          }
+        },
+        "personen": {
+          "type": "array",
+          "items": {
+            "$ref": "person.schema.json"
+          }
+        },
+        "feldstuecke": {
+          "type": "array",
+          "items": {
+            "$ref": "feldstueck.schema.json"
+          }
+        },
+        "schlaege": {
+          "type": "array",
+          "items": {
+            "$ref": "schlag.schema.json"
+          }
+        },
+        "kulturen": {
+          "type": "array",
+          "items": {
+            "$ref": "kultur.schema.json"
+          }
+        },
+        "tiere": {
+          "type": "array",
+          "items": {
+            "$ref": "tier.schema.json"
+          }
+        },
+        "betriebsmittel": {
+          "type": "array",
+          "items": {
+            "$ref": "betriebsmittel.schema.json"
+          }
+        },
+        "maschinen": {
+          "type": "array",
+          "items": {
+            "$ref": "maschine.schema.json"
+          }
+        },
+        "massnahmen": {
+          "type": "array",
+          "items": {
+            "$ref": "massnahme.schema.json"
+          }
+        },
+        "duengeplaene": {
+          "type": "array",
+          "items": {
+            "$ref": "duengeplan.schema.json"
+          }
+        },
+        "bodenproben": {
+          "type": "array",
+          "items": {
+            "$ref": "bodenprobe.schema.json"
+          }
+        },
+        "feldnotizen": {
+          "type": "array",
+          "items": {
+            "$ref": "feldnotiz.schema.json"
+          }
+        },
+        "anhaenge": {
+          "type": "array",
+          "items": {
+            "$ref": "anhang.schema.json"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "aenderungen": {
+      "type": "array",
+      "items": {
+        "$ref": "aenderung.schema.json"
+      }
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "erstellt_am",
+    "geraet_id"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "daten"
+      ]
+    },
+    {
+      "required": [
+        "aenderungen"
+      ]
+    }
+  ],
+  "additionalProperties": false
+}
